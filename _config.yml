@@ -4,11 +4,11 @@
 
 # Site
 title: Hexo
-subtitle:
-description:
-author: John Doe
-language:
-timezone:
+subtitle: subtitle
+description: description
+author: Ray.Guo
+language: zh-CN
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: maupassant
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

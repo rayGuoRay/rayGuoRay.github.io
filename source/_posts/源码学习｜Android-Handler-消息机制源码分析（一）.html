@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>源码学习｜Android Handler 消息机制源码分析（一）</title>
+    <style type="text/css" media="all">
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #777;
+        background-color: white;
+      }
+      .container {
+        width: 700px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .post {
+        font-family: Georgia, "Times New Roman", Times, "SimSun", serif;
+        position: relative;
+        padding: 70px;
+        bottom: 0;
+        overflow-y: auto;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 25px;
+        color: #515151;
+      }
+
+      .post h1{
+        font-size: 50px;
+        font-weight: 500;
+        line-height: 60px;
+        margin-bottom: 40px;
+        color: inherit;
+      }
+
+      .post p {
+        margin: 0 0 35px 0;
+      }
+
+      .post img {
+        border: 1px solid #D9D9D9;
+      }
+
+      .post a {
+        color: #28A1C5;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="post">
+        <h1 class="title">源码学习｜Android Handler 消息机制源码分析（一）</h1>
+        <div class="show-content">
+          <p>一直在用Handler,但却一直因为不能准确表述其工作原理而耿耿于怀，现在正好有时间，自己决定初步梳理下。如果有整理不足或不准确的地方，请大家批评指正。</p><p>相信大家对于主线程中创建并使用Handler一点都不陌生了。如下图所示：（声明为static的静态类原因是避免Handler作为内部类，避免隐式持有外部引用导致的内存泄漏问题。）</p><p><br></p><div class="image-package"><img src="http://upload-images.jianshu.io/upload_images/1489253-325849abb2712457.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1489253-325849abb2712457.png?imageMogr2/auto-orient/strip" data-image-slug="325849abb2712457" data-width="489" data-height="140"><br><div class="image-caption"></div></div><p>或许大家也有碰到过类似于下面的声明方法：<br></p><p>Handler mainHandler = newHandler(Looper.getMainLooper());</p><p>但是阅读Handler源码发现，Handler提供了多种构造方法以供使用：</p><p>1、public Handler() &nbsp;{ this(null,false); }</p><p>2、public Handler(Callback callback) &nbsp;{ this(callback,false); }</p><p>3、public Handler(Looper looper) { this(looper,null,false); }</p><p>4、public Handler(Looper looper, Callback callback) { this(looper, callback,false);}</p><p>5、public Handler(boolean async) {this(null, async);}</p><p>6、public Handler(Callback callback, boolean async) {}</p><p>7、public Handler(Looper looper, Callback callback,booleanasync) {}</p><p>可以看到，如果未传入最常见的参数为空的构造方法其实引用的序号为6的构造方法。其实大家应该也有发现：Handler如果不显式传入Looper 创建对象的话，最后都会调用序号为6的构造方法，而如果显示传入Looper的话，最后都会调用序号为7的构造方法。</p><p>而构造方法6与构造方法7的区别是什么呢？附上源码大家应该就比较清楚了</p><p><br></p><div class="image-package"><img src="http://upload-images.jianshu.io/upload_images/1489253-bcbc1d99a5675e43.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1489253-bcbc1d99a5675e43.png?imageMogr2/auto-orient/strip" data-image-slug="bcbc1d99a5675e43" data-width="817" data-height="443"><br><div class="image-caption"></div></div><p><br></p><div class="image-package"><img src="http://upload-images.jianshu.io/upload_images/1489253-759ccd6699ff4242.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" data-original-src="http://upload-images.jianshu.io/upload_images/1489253-759ccd6699ff4242.png?imageMogr2/auto-orient/strip" data-image-slug="759ccd6699ff4242" data-width="787" data-height="615"><br><div class="image-caption"></div></div><p>可以看到，唯一的区别或许就是mLooper的获取方式了，而在构造方法6中， 如果mLooper对象为空的时候，会抛出一个异常，称在线程中创建handler时没用调用Looper.prepare()方法。我想这也许就是大多数时候在子线程中调用构造方法1，时会抛出异常的原因了。</p><p>至于为何会抛出异常，请期待对Looper类的分析吧～～～😊</p><p>ps：或许有哪位小伙伴能回答下FIND_POTENTIAL_LEAKS这个参数有什么意义呢？</p><p>更新后续相关文章的传送门：<br></p><p><a target="_blank" href="http://www.jianshu.com/p/3be5cca5c518">《Android Handler消息机制源码分析（二）》</a> <br></p><p><a target="_blank" href="http://www.jianshu.com/p/04c76187de3a">《Android Handler消息机制源码分析（三）》</a> <br></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
