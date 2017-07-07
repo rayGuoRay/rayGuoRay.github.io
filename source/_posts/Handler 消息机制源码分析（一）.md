@@ -37,5 +37,5 @@ comments: true
 *ps：或许有哪位小伙伴能回答下FIND_POTENTIAL_LEAKS这个参数有什么意义呢？*
 
 相关文章链接：
-- [Handler 消息机制源码分析(二)]()
-- [Handler 消息机制源码分析(三)]()
+- [Handler 消息机制源码分析(二)](http://wizardiy.com/2016/06/18/Handler%20%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/)
+- [Handler 消息机制源码分析(三)](http://wizardiy.com/2016/08/18/Handler%20%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%89%EF%BC%89/)
