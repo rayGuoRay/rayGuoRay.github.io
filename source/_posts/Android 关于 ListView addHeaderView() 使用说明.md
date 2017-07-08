@@ -1,15 +1,19 @@
-
-![](http://upload-images.jianshu.io/upload_images/1489253-62e6f734b47199b1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-> 在日常的开发中在ListView中添加Header是一种很常见的需求,猿就日前关于addHeaderView中的一点总结拿出来分享给大家。
+---
+title: Android 关于 ListView addHeaderView() 使用说明
+date: 2017-03-04 12:37:56
+categories: 工作总结
+tags: [Android, ListView, HeaderView]
+keywords: Android, ListView, HeaderView
+comments: true
+---
 
 目前对于ListView中addHeaderView()方法的使用大致有以下两种说法:
 1. addHeaderView()方法必须在setAdapter()之前进行,否则会抛出异常。
 2. addHeaderView()方法可以随时调用。
 
-在经过分析后,猿发现:**以上两种说法都是正确的╮(╯▽╰)╭, 原因就在于Android版本不一致。**由于比对所有源码工作量较大,所以我们就选取三个Android版本进行比较,分别是:Android ICE_CREAM_SANDWICH_MR1(VersionCode  = 15)、Android L(VersionCode = 21)、Android N(VersionCode = 24)。
+在经过分析后,猿发现:**以上两种说法都是正确的╮(╯▽╰)╭, 原因就在于Android版本不一致。**由于比对所有源码工作量较大,所以我们就选取三个Android版本进行比较,分别是:Android ICE_CREAM_SANDWICH_MR1(VersionCode  = 15)、Android L(VersionCode = 21)、Android N(VersionCode = 24)。**
 
-##### ICE_CREAM_SANDWICH_MR1版本中的部分实现:
+### ICE_CREAM_SANDWICH_MR1版本中的部分实现:
 - addHeaderView()方法部分关键实现
 
       public void addHeaderView(View v, Object data, boolean isSelectable) {
@@ -39,10 +43,10 @@
       } else {
           mAdapter = adapter;
       }
-      
+
 我们可以看到，在这个版本中addHeaderView时，会对ListView绑定的adapter进行判断，如果非空并且类型不为HeaderViewListAdapter时，就会抛出IllegalStateException。而对于HeaderViewListAdapter的来源，则是在setAdapter方法中处理，如果当前有Header，则会将adapter包装为HeaderViewListAdapter，否则的话，就不进行处理，所以**在这个版本中，"addHeaderView()方法必须在setAdapter()之前进行,否则会抛出异常"这种说法是正确的**。
 
-#####Android L版本中的部分实现:
+###Android L版本中的部分实现:
 - addHeaderView()方法部分关键实现
 
       public void addHeaderView(View v, Object data, boolean isSelectable) {
@@ -75,7 +79,7 @@
          mAdapter = adapter;
       }
 
-#####Android N版本中的部分实现:
+###Android N版本中的部分实现:
 - addHeaderView()方法部分关键实现
 
       public void addHeaderView(View v, Object data, boolean isSelectable) {

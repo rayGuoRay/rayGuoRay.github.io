@@ -1,7 +1,16 @@
-> DownloadManager是Android用系统服务的方式提供的用来优化处理长时间下载任务的工具。
+---
+title: Android N DownloadManager 源码分析
+date: 2016-09-02 22:18:56
+categories: 源码分析
+tags: [Android, DownloadManager]
+keywords: Android, DownloadManager
+comments: true
+---
+
+DownloadManager是Android用系统服务的方式提供的用来优化处理长时间下载任务的工具。
 本文将基于Ａndroid Ｎ的源码进行分析。
 
-##### DownloadManager的使用方式
+### DownloadManager的使用方式
     DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
     Uri uri = Uri.parse("downloadUrl");
     DownloadManager.Request request = new Request(uri);
@@ -12,7 +21,7 @@
 
 *其他更详细API使用方法请参考[Android DownloadManager的使用](http://blog.csdn.net/sir_zeng/article/details/8983430)一文,此处不再详述。*
 
-##### DownloadManager的调用处理
+### DownloadManager的调用处理
 
 DownloadManager的执行入口方法enqueue的源码如下所示：
 
@@ -34,7 +43,7 @@ toContentValues()方法会以传入包名将待插入的数据生成ContentValue
 
 在插入ContentValues时，mResolver.insert()实际调用的是系统DownloadProvider中的insert方法,插入返回的downloadUri会在原有Uri基础上调用`ContentUris.withAppendedId(Downloads.Impl.CONTENT_URI, rowID)`添加一个rowId返回一个形如`content://downloads/my_downloads/33`的Uri，经过Uri截取之后，实际操作的reference其实是数据库中的rowId(数据库行号)。
 
-##### DownloadProvider的调用处理
+### DownloadProvider的调用处理
 在之前版本中，DownloadProvider在插入数据后，会直接以context.startService的方式
 来启动DownloadService。进行异步任务下载。而在Android N版本中引入了JobSchedule组件来进行异步下载任务的处理。
 在Android L版本中引入的JobScheduler可以控制耗电，具体使用可以参考：[Android JobSchedule工作调度](http://blog.csdn.net/qq_31726827/article/details/50462025),
@@ -59,7 +68,7 @@ toContentValues()方法会以传入包名将待插入的数据生成ContentValue
     }
 此时getDownloadNotifier(context).update()会将遍历出所有未删除的
 
-##### DownloadJobService调度执行
+### DownloadJobService调度执行
 DownloadService中调度的线程开始下载，在onStartJob中用rowId查出来后，直接开线程开始下载，具体代码如下所示：
 
     public boolean onStartJob(JobParameters params) {
@@ -79,7 +88,7 @@ DownloadService中调度的线程开始下载，在onStartJob中用rowId查出�
         return true;
     }
 
-##### DownloadJobService中的暂停、取消与完成
+### DownloadJobService中的暂停、取消与完成
 DownloadJobService中在线程开启后，会刷新展示相应的通知栏，通过通知栏UI中的相应控制，可以实现对于下载任务的控制。
 - 在开始下载后，当点击取消后，会发送广播到DownlaodReceiver,当接受到这个广播后，会调用DownloadManager.remove(downloadIds)，而DownloadManager.remove()方法则会调用DownloadProvider.delete去删除记录任务。同时会依据rowId移除该线程调度。
 
@@ -87,7 +96,7 @@ DownloadJobService中在线程开启后，会刷新展示相应的通知栏，�
 
 - 暂停，比较奇怪的是，DownloadManager的异步下载线程提供了断点下载的功能，写入文件也会检查任务的下载状态是不是暂停，但是，却并未提供暂停下载任务的API方法，同时它的下载状态查询的方法也是私有类型的。如果需要暂停任务就需要自定义自己的下载任务了。
 
-##### DownloadThread中的断点下载的实现方法
+### DownloadThread中的断点下载的实现方法
 其实在DownloadThread中，主要的下载方法就是就是线程中的excuteDownload()方法。部分关键代码如下：
 
     private void executeDownload() throws StopRequestException {

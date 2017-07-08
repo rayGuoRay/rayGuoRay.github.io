@@ -2,8 +2,8 @@
 title: Volley 网络库源码初探
 date: 2016-09-29 17:41:56
 categories: 源码分析
-tags: [源码分析, Android, Volley]
-keywords: 源码分析, Android, Volley
+tags: [Android, Volley]
+keywords: Android, Volley
 comments: true
 ---
 
