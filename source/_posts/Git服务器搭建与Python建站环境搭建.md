@@ -1,8 +1,16 @@
->搭建环境为阿里云 CenterOS 7.0 64位,
+---
+title: Git 服务器搭建与 Python 建站环境搭建
+date: 2016-08-23 23:47:56
+categories: 工作总结
+tags: [Android, Git，Python]
+keywords: Android, Git，Python
+comments: true
+---
+
+搭建环境为阿里云 CenterOS 7.0 64位,
 Git服务器自带版本号为 1.8.3.1
 
-
-##### Git服务器搭建与配置
+### Git服务器搭建与配置
 1. 创建Git管理员账号并设置密码：
 `useradd -m git`
 `passwd git`
@@ -60,7 +68,7 @@ list
 
 ***
 
-##### Nginx安装：
+### Nginx安装：
 1. 下载对应版本的nginx包
 `# wget http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm`
 2. 建立nginx的yum仓库
@@ -72,7 +80,7 @@ list
 5. 测试
 在浏览器地址栏中输入部署nginx环境的机器的IP，如果一切正常，应该能看到"Welcome to nginx!"字样的内容。
 
-##### Django 安装
+### Django 安装
 1. 首先安装pip包管理工具：
 `wget https://bootstrap.pypa.io/get-pip.py`
 `python get-pip.py`
@@ -84,11 +92,11 @@ list
 `django.get_version()｀
 输出1.7，证明安装成功。
 
-##### GUnicorn安装
+### GUnicorn安装
 [参考文档](http://docs.gunicorn.org/en/latest/install.html)使用`pip install unicorn`,全部安装完成
 
 
-##### MySQL安装：
+### MySQL安装：
 在CenterOS 7.0中的yum源没有mysql-server,所以我们采用如下方式安装：
 `# wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm`
 `# rpm -ivh mysql-community-release-el7-5.noarch.rpm`
@@ -97,7 +105,7 @@ list
 `# service mysqld restart`
 
 
-##### MySQLdb 模块依赖安装：
+### MySQLdb 模块依赖安装：
 直接尝试运行python项目报错缺少MySQLdb，使用yum安装
 `yum install MySQL-python -y`
 *尝试使用pip安装，但是安装失败。如果有成功的同学欢迎分享经验。*

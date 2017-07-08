@@ -1,12 +1,19 @@
-> 本文将基于Android N Framework层中的Volley库,对Volley中的图片加载框架的源码进行分析
+---
+title: Volley 图片加载源码分析
+date: 2016-10-25 19:15:56
+categories: 源码分析
+tags: [Android, Volley]
+keywords: Android, Volley
+comments: true
+---
 
-我们在上一篇中已经对Volley的网络库工作流程做了进行了简单分析,如果有不了解的朋友可以通过下面的链接进行点赞、关注和打赏。: )
+Volley基于基础的网络请求框架封装了自己的图片请求框架，我们在上一篇中已经对Volley的网络库工作流程做了进行了简单分析:
 
 - [[源码学习]Android N Volley网络库源码分析](http://www.jianshu.com/p/0e2d0d8b4e97)
 
-Volley基于基础的网络请求框架封装了自己的图片请求框架，Volley中的图片加载方式总结起来有三种，分别为ImageRequest、ImageLoader、NetworkImageView，这三种方式名称和使用方式各不相同，我们将通过每种加载方式的使用来对Volley的图片的加载框架进行分析。
+Volley中的图片加载方式总结起来有三种，分别为ImageRequest、ImageLoader、NetworkImageView，这三种方式名称和使用方式各不相同，下面我们将通过每种加载方式的使用来对Volley的图片的加载框架进行分析。
 
-##### Volley 图片请求加载的三种方式
+### Volley 图片请求加载的三种方式
 
 1. 使用ImageRequest方式加载,其请求示例代码如下:
 
@@ -57,7 +64,7 @@ Volley基于基础的网络请求框架封装了自己的图片请求框架，Vo
         networkImageView.setErrorImageResId(R.drawable.failed_image);  
         networkImageView.setImageUrl(url, imageLoader);  
 
-##### Volley ImageRequest 请求分析
+### Volley ImageRequest 请求分析
 
 方式1中ImageRequest的使用方式还是最常用的Request的使用方式,区别在于在deliverResponse的()结果不同(具体请求逻辑请参考文章头部的链接文章)。Volley的网络请求结果,如果缓存命中,则会调用如下方法对结果进行解析:
 
@@ -305,7 +312,7 @@ ImageListener作为Imageloader中的一个接口,其继承了Response中的Error
 
 **其中的isImmediate参数并未使用到，这个参数从其注释定义有这样的表述：isImmediate True if this was called during ImageLoader.get() variants.This can be used to differentiate between a cached image loading and a network　image loading in order to, for example, run an animation to fade in network loaded images．大意是指：这个参数如果是true,表明listener被调用是通过ImageLoader.get(),可以用来被区别图片是来自缓存还是网络加载。比如说在加载网络图片时来做一个淡入动画。但是我目前没看出这个参数有什么具体的实际意义，如果大家有什么想法可以在留言中提出。**
 
-##### Volley NetworkImageView 图片加载分析
+### Volley NetworkImageView 图片加载分析
 
 对于第三种使用NetworkIMageView请求方式进行的图片加载,我们可以看到,在配置文件中配置后,却是使用ImageLoader进行加载的.在初始化NetworkImage后,设置好url就开始加载逻辑了。
 
@@ -375,7 +382,7 @@ ImageListener作为Imageloader中的一个接口,其继承了Response中的Error
 
 **对于这段中的逻辑理解不了╮（╯▽╰）╭，有朋友有思路可以留言解惑。**
 
-#####结语
+###结语
 我们可以看出,ImageLoader对于图片逻辑的处理主要依赖于Request与RequestQueue框架,虽然整体使用较为繁琐，但是Volley对相关设置预留了扩展，总体来说如果使用Volley做网络库，但是又不想引入其他图片框架加大包体积的话，使用Volley来做图片加载也是一种不错的选择。
 
 对于网络请求缓存的源码分析已经更新，详情点击：

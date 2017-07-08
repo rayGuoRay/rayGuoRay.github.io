@@ -2,8 +2,8 @@
 title: Handler 消息机制源码分析（三）
 date: 2016-08-18 19:34:56
 categories: 源码分析
-tags: [源码分析, Android, Handler]
-keywords: 源码分析, Android, Handler
+tags: [Android, Handler]
+keywords: Android, Handler
 comments: true
 ---
 

@@ -1,14 +1,21 @@
-> 本文将基于Android N Framework层中的Volley库,对Volley请求库中的网络缓存框架源码进行分析
+---
+title: Volley 网络请求缓存策略源码分析
+date: 2017-02-07 11:37:56
+categories: 源码分析
+tags: [Android, Volley]
+keywords: Android, Volley
+comments: true
+---
 
 - [源码学习｜Volley网络库源码分析](http://www.jianshu.com/p/0e2d0d8b4e97)
 - [源码学习｜Volley图片加载源码分析](http://www.jianshu.com/p/2aa373c1c624)
 
 在上面两篇文章中,我们已经对Volley的简单使用和图片加载的源码进行了简单分析,在这篇文章中,我们将具体对Volley的网络缓存源码进行分析。
- 
-####1. 使用HTTP缓存的作用
+
+###1. 使用HTTP缓存的作用
 使用缓存其实主要有两个原因。首先降低延迟,缓存离客户端更近，因此，从缓存请求内容比从源服务器所用时间更少，呈现速度更快，网站就显得更灵敏。其次降低网络传输, 副本被重复使用，大大降低了用户的带宽使用，其实也是一种变相的省钱（如果流量要付费的话），同时保证了带宽请求在一个低水平上，更容易维护了。
 
-####2.  Volley中的缓存实现
+###2.  Volley中的缓存实现
 在前面文章中,我们已经知道,Volley中RequestQueue是通过下面方法进行构建的
 
     RequestQueue queue = new RequestQueue(new DiskBasedCache(cacheDir), network);
@@ -108,7 +115,7 @@
     }
 *当时看到这段的时候当时挺疑惑，为什么不直接返回一个缓存结果，将等待队列的请求都抛弃掉，后来想想也对，对于重复请求返回一个请求结果，这也不符合实际使用场景。*
 
-####3. CacheDispatcher的缓存策略:   
+###3. CacheDispatcher的缓存策略:   
 
 通过上文中,我们可以看到,Volley会默认为我们构建一个DiskBasedCache用来缓存Request请求。下面我们重点分析CacheDispatcher。
 对于CacheQueue中的Request,如果Request已经取消,则直接调用Request.finish()进行处理,如果未命中缓存,则添加到NetworkQueue中,交由NetworkDispatcher进行处理,如果entry过期,则重新设置entry并交由NetworkDispatcher进行处理,如果缓存命中,则直接返回缓存内容,由ResponseDelivery进行转发,最后将结果回调回调用者。但是此处缓存命中也分了两种情况,一种需要刷新缓存,一种不需要,如果需要刷新缓存,则需要将缓存结果先返回,然后在调用NetworkDispatcher进行缓存刷新。关键代码如下所示:
@@ -158,15 +165,15 @@
             }
         };
     }
-    
+
 
     //ResponseDeliveryRunnable run方法中的传入Runnable处理
     // If we have been provided a post-delivery runnable, run it.
      if (mRunnable != null) {
        mRunnable.run();
      }
- 
-####4. NetworkDispatcher的缓存策略:
+
+###4. NetworkDispatcher的缓存策略:
 
 NetworkDispatcher中只是简单的执行Request请求，将请求结果解析后，将Response置入缓存中，此时的过期时间也是在此时进行设置的。具体关键代码如下：
 

@@ -1,17 +1,16 @@
 ---
 title: 使用脚本快捷切换编译环境
-date: 2016-12-07 15:56:56
-categories: 工作分享
-tags: [工作分享, Shell, JDK, Linux]
-keywords: shell,工作分享,JDK,Linux
+date: 2016-10-29 16:50:56
+categories: 工具分享
+tags: [Shell, JDK, Linux]
+keywords: Shell, JDK, Linux
 comments: true
 ---
 
-![](http://upload-images.jianshu.io/upload_images/1489253-70f9233a9fd46a21.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 猿最近在Ubuntu 14.04.5环境下搞Android代码编译，但是由于重复开窗口、切换分支、切换JDK版本，要重复敲很多命令。深感不便，于是自己参考网上的语法，写了个简单脚本，现在share给大家，希望大家喜欢（＊＠ο＠＊）　哇～。
 
-####1. 总入口build.sh
+### 总入口build.sh
+
     #!bin/sh
     echo -e "#### open target folder ####\n 1.branch1\n 2.branch2\n 3.branch3\n 4.branch4\n"
     echo -n  "### input the type:"
@@ -33,12 +32,10 @@ comments: true
         	echo -e "\033[1;32m build target is branch4 \033[0m"
         	. /home/user/script/build_branch4_script.sh
         	;;
-        *)
-        	echo -e "\033[1;31m build target is wrong \033[0m"
-        	;;
     esac
 
-####2. 编译branch1版本脚本:build_branch1_script.sh
+### 编译branch1版本脚本:build_branch1_script.sh
+
     #!bin/sh
     echo "### open target folder ###"
     cd /home/user/src/android-branch1-dev
@@ -53,7 +50,8 @@ comments: true
     echo "### lunch source file ###"
     lunch branch1-userdebug
 
-####3. 编译branch2版本脚本:build_branch2_script.sh
+### 编译branch2版本脚本:build_branch2_script.sh
+
     #!bin/sh
     echo -e "#### open target folder ####"
     cd /home/user/src/android-branch2-dev
@@ -69,7 +67,8 @@ comments: true
     lunch branch2-userdebug
 
 
-####4. 编译branch3版本脚本:build_branch3_script.sh
+### 编译branch3版本脚本:build_branch3_script.sh
+
     #!bin/sh
     echo "##### open target folder #####"
     cd /home/user/src/android-branch3-dev
@@ -84,7 +83,8 @@ comments: true
     echo "##### lunch source file #####"
     lunch branch3-userdebug
 
-####5. 编译branch4版本脚本:build_branch4_script.sh
+### 编译branch4版本脚本:build_branch4_script.sh
+
     #!bin/sh
     echo "##### open target folder #####"
     cd /home/user/src/android-branch4-dev
