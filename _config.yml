@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: subtitle
-description: description
-author: Ray.Guo
+title: Wizardiy
+subtitle: 寒石の个人博客
+description:
+author: 寒石
 language: zh-Hans
 timezone: Asia/Shanghai
 keywords: Android, Linux, Shell, Ubuntu, Git
@@ -64,6 +64,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
+plugins: hexo-generate-feed
 theme: next
 
 # Deployment
