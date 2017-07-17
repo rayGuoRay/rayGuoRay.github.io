@@ -12,5 +12,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://www.wizardiy.com/sitemap.xml
-Sitemap: http://www.wizardiy.com/baidusitemap.xml
+Sitemap: http://wizardiy.com/sitemap.xml
+Sitemap: http://wizardiy.com/baidusitemap.xml

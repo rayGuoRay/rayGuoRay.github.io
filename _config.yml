@@ -5,7 +5,7 @@
 # Site
 title: Wizardiy
 subtitle: Wizardiy-Hexo搭建的寒石の博客
-description:
+description: 瞧~一只野生猴子！
 author: 寒石
 language: zh-Hans
 timezone: Asia/Shanghai
@@ -74,7 +74,6 @@ deploy:
     repo: https://github.com/rayGuoRay/rayGuoRay.github.io.git
     branch: master
   - type: baidu_url_submitter
-
 
 # SiteMap for easily to find us
 sitemap:
