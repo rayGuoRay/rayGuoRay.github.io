@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android, Java" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/uploads/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="最近在做关于压缩文件预览的需求，涉及到对于文件系统的目录结构进行简单的模拟。在实现过程中，尝试了三种实现方式，下文对三种实现方式做详细说明。  使用递归构建文件二叉树结构 最初的思路是：每次从输入流中读入一个结点，判断根据结点的路径名判断，如果是其子节点，则放入结点的右子树。如果是其同级结点，则放入其左子树中。（与上学时学的数据结构中多叉树转二叉树的区别在于：书上实现要求左孩子，右兄弟，我的实现是">
+<meta name="keywords" content="Android, Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创建文件系统结构的三种实现">
+<meta property="og:url" content="http://wizardiy.com/2016/11/18/创建文件系统结构的三种实现/index.html">
+<meta property="og:site_name" content="Wizardiy">
+<meta property="og:description" content="最近在做关于压缩文件预览的需求，涉及到对于文件系统的目录结构进行简单的模拟。在实现过程中，尝试了三种实现方式，下文对三种实现方式做详细说明。  使用递归构建文件二叉树结构 最初的思路是：每次从输入流中读入一个结点，判断根据结点的路径名判断，如果是其子节点，则放入结点的右子树。如果是其同级结点，则放入其左子树中。（与上学时学的数据结构中多叉树转二叉树的区别在于：书上实现要求左孩子，右兄弟，我的实现是">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1489253-f5d22bd0210e9a34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1489253-c64505e62acc48eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-07-17T15:51:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="创建文件系统结构的三种实现">
+<meta name="twitter:description" content="最近在做关于压缩文件预览的需求，涉及到对于文件系统的目录结构进行简单的模拟。在实现过程中，尝试了三种实现方式，下文对三种实现方式做详细说明。  使用递归构建文件二叉树结构 最初的思路是：每次从输入流中读入一个结点，判断根据结点的路径名判断，如果是其子节点，则放入结点的右子树。如果是其同级结点，则放入其左子树中。（与上学时学的数据结构中多叉树转二叉树的区别在于：书上实现要求左孩子，右兄弟，我的实现是">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1489253-f5d22bd0210e9a34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wizardiy.com/2016/11/18/创建文件系统结构的三种实现/"/>
+
+
+
+
+
+  <title>创建文件系统结构的三种实现 | Wizardiy</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wizardiy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Wizardiy-Hexo搭建的寒石の博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wizardiy.com/2016/11/18/创建文件系统结构的三种实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寒石">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wizardiy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">创建文件系统结构的三种实现</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-18T23:26:56+08:00">
+                2016-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作总结/" itemprop="url" rel="index">
+                    <span itemprop="name">工作总结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在做关于压缩文件预览的需求，涉及到对于文件系统的目录结构进行简单的模拟。在实现过程中，尝试了三种实现方式，下文对三种实现方式做详细说明。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1489253-f5d22bd0210e9a34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="传统目录结构"></p>
+<h3 id="使用递归构建文件二叉树结构"><a href="#使用递归构建文件二叉树结构" class="headerlink" title="使用递归构建文件二叉树结构"></a>使用递归构建文件二叉树结构</h3><ul>
+<li>最初的思路是：每次从输入流中读入一个结点，判断根据结点的路径名判断，如果是其子节点，则放入结点的右子树。如果是其同级结点，则放入其左子树中。（与上学时学的数据结构中多叉树转二叉树的区别在于：书上实现要求左孩子，右兄弟，我的实现是左兄弟，右孩子）</li>
+<li>类模型代码</li>
+</ul>
+<pre><code>public class CompressedFileInfo {
+    public String filePath;
+    public String parentPath;
+    private String name;
+    public boolean isDirectory;
+    private int levels;
+    private CompressedFileInfo leftFriendInfo;
+    private CompressedFileInfo rightChildInfo;
+｝
+</code></pre><ul>
+<li><p>递归创建二叉树结构代码</p>
+<pre><code>public void buildFileInfo(CompressedFileInfo root) {
+        if (root == null) {
+            return;
+        }
+        if (root.levels == 0) {
+            if (root.rightChildInfo == null) {
+                root.rightChildInfo = this;
+                return;
+            } else {
+                root = root.rightChildInfo;
+            }
+        }
+        if (root.levels &lt; levels) {
+            if (filePath.startsWith(root.filePath)) {
+                if (root.rightChildInfo == null) {
+                    root.rightChildInfo = this;
+                } else {
+                    buildFileInfo(root.rightChildInfo);
+                }
+            } else {
+                buildFileInfo(root.leftFriendInfo);
+            }
+        } else if (root.levels == levels) {
+            if (parentPath == null || filePath.startsWith(root.filePath)) {
+                if (root.leftFriendInfo == null) {
+                    root.leftFriendInfo = this;
+                } else {
+                    buildFileInfo(root.leftFriendInfo);
+                }
+            } else {
+                Log.d(&quot;raytest&quot;, &quot;Build Error&quot;);
+            }
+        } else {
+            Log.e(&quot;raytest&quot;, &quot;Build Error&quot;);
+        }
+}
+</code></pre></li>
+<li><p>采用二叉树构建的文件结构图如下所示:</p>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1489253-c64505e62acc48eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="二叉树目录结构"></p>
+<ul>
+<li>代码总结与分析<br>在构建中，根据节点初始化的levels来对结点的层级数进行记录，在递归过程中，注意要结合父一级路径进行遍历。否则，可能会出现结点组织错误的问题。<br>二叉树作为一种存储方式是一种很优雅的选择。但是对于我们项目中的需求来说，此种构建方式严重依赖于外部结点输入，必须保证从根节点，深度优先遍历，提供输入结点信息。否则并不能保证结点组织的准确性。同时二叉树递归遍历，在实际项目使用中，代码阅读性差，使用效率不高。所以，考虑到这些问题，我们决定采用多叉树型结构来实现文件结构</li>
+</ul>
+<h3 id="使用递归构建文件树形结构"><a href="#使用递归构建文件树形结构" class="headerlink" title="使用递归构建文件树形结构"></a>使用递归构建文件树形结构</h3><ul>
+<li><p>采用树形结构存储，为了摆脱对外部结点输入的依赖，引入一个缓存Map来缓存所有输入结点，在结点输入完毕后，通过递归，构建树形结构，在摆脱外部输入的基础上，提高了程序的可读性。</p>
+</li>
+<li><p>类模型代码</p>
+</li>
+</ul>
+<pre><code>public class DecompressFileItem extends FileItem {
+    private String mParentPath;
+    private List&lt;FileItem&gt; mChildList;
+}
+</code></pre><p><em>此处的FileItem可以理解为File对象属性的一些映射，包含一些获取文件名，获取文件路径之类的常用属性和方法。</em></p>
+<ul>
+<li>递归创建</li>
+</ul>
+<pre><code>public void buildFileSys(Map&lt;String, FileItem&gt; nodeMap, DecompressFileItem paramInfo, boolean isRoot) {
+        Map&lt;String, FileItem&gt; tempMap = new HashMap&lt;&gt;();
+        tempMap.putAll(nodeMap);
+        if (paramInfo == null || TextUtils.isEmpty(paramInfo.mData)) {
+            return;
+        }
+        if (nodeMap == null || nodeMap.size() &lt; 1) {
+            return;
+        }
+        String paramPathKey = paramInfo.mData;
+        if (isRoot) {
+            paramPathKey = paramPathKey.substring(0, paramPathKey.lastIndexOf(File.separator));
+            tempMap.remove(paramPathKey);
+        } else {
+            tempMap.remove(paramInfo.mData);
+        }
+        for (Map.Entry&lt;String, FileItem&gt; entry : tempMap.entrySet()) {
+            DecompressFileItem item = (DecompressFileItem) entry.getValue();
+            if (paramPathKey.equals(item.getParentPath())) {
+                if (paramInfo.mChildList == null) {
+                    paramInfo.mChildList = new ArrayList&lt;&gt;();
+                }
+                paramInfo.mChildList.add(item);
+                item.buildFileSys(tempMap, item, false);
+            }
+        }
+    }
+</code></pre><ul>
+<li>代码总结与分析<br>在构建中，每次都将所有结点放置于一个暂存map中，将当前结点移除map中，并遍历剩余结点，将其子节点加入list中，递归遍历子节点，自此完成构建。<br>此种实现，较为简单清晰，但是在实现过程中，由于实现路径写入错误，极有可能导致堆栈溢出。而且涉及文件结构处理，不可避免会涉及复杂结构，内存压力和堆栈溢出的风险这两个问题都需要考虑。所以，在老大Review完代码后，提出改写为迭代的方式进行创建。</li>
+</ul>
+<h3 id="使用迭代创建文件树形结构"><a href="#使用迭代创建文件树形结构" class="headerlink" title="使用迭代创建文件树形结构"></a>使用迭代创建文件树形结构</h3><ul>
+<li><p>在树形结构的基础上，我们对构建方法改造为使用迭代方式进行实现。</p>
+</li>
+<li><p>迭代构建代码</p>
+<p>  public void buildFileSys(Map<string, fileitem=""> nodeMap) {</string,></p>
+<pre><code>if (nodeMap == null || nodeMap.size() &lt; 1) {
+    return;
+}
+for (Map.Entry&lt;String, FileItem&gt; entrySource : nodeMap.entrySet()) {
+    String pathKey = entrySource.getKey();
+    if (TextUtils.isEmpty(pathKey)) {
+        continue;
+    }
+    DecompressFileItem pathItem = (DecompressFileItem) entrySource.getValue();
+    if (pathItem == null) {
+        continue;
+    }
+    for (Map.Entry&lt;String, FileItem&gt; entryCompare : nodeMap.entrySet()) {
+        DecompressFileItem compareItem = (DecompressFileItem) entryCompare.getValue();
+        if (compareItem == null) {
+            continue;
+        }
+        boolean isRootNode = compareItem.mData.equals(mData) &amp;&amp; compareItem.mFileName.equals(mFileName);
+        if (pathKey.equals(compareItem.getParentPath()) &amp;&amp; !isRootNode) {
+            if (pathItem.mChildList == null) {
+                pathItem.mChildList = new ArrayList&lt;FileItem&gt;();
+            }
+            pathItem.mChildList.add(compareItem);
+            // build file count
+            if (pathItem.mIsDir) {
+                pathItem.mFileCount++;
+            }
+        }
+    }
+}
+</code></pre><p>  }</p>
+</li>
+</ul>
+<ul>
+<li>代码总结与分析<br>此种构建方式相比于方式嵌套了两层循环，增加了代码的阅读难度，但是相对来说，还是比较简单，同时时间复杂度也只有Ｏ(n * n)，相对来说还是一种不错的选择。<br>同时在遍历的过程中，尝试去将一个结点所有子节点添加完毕后，就移除这个结点，可以减少时间复杂度，但是对于无序输入的结点，这样做，可能会出现，某个子节点已经被删除了，但它还未添加到其父结点中。╮（╯▽╰）╭<br>如果大家对于构建类似的结构还有其他更好的建议，请大家不吝赐教（∩＿∩）</li>
+</ul>
+<blockquote>
+<p>最后，附上银魂的一句吐槽：压力是导致秃顶的原因，所以请注意不要压力太大，但这样一来反而容易堆积压力，所以归根到底我们无能为力」</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/18/使用 Shell 脚本切换 Java 编译环境改良/" rel="next" title="使用脚本快捷切换编译环境改良">
+                <i class="fa fa-chevron-left"></i> 使用脚本快捷切换编译环境改良
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/07/Volley 请求缓存策略源码分析/" rel="prev" title="Volley 网络请求缓存策略源码分析">
+                Volley 网络请求缓存策略源码分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="寒石" />
+          <p class="site-author-name" itemprop="name">寒石</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rayGuoRay" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:guolei_ray@yeah.net" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope-o"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/e80ee485cfce" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com" title="简书" target="_blank">简书</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.zhihu.com" title="知乎" target="_blank">知乎</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用递归构建文件二叉树结构"><span class="nav-number">1.</span> <span class="nav-text">使用递归构建文件二叉树结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用递归构建文件树形结构"><span class="nav-number">2.</span> <span class="nav-text">使用递归构建文件树形结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用迭代创建文件树形结构"><span class="nav-number">3.</span> <span class="nav-text">使用迭代创建文件树形结构</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">寒石</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

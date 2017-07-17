@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android, Volley" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/uploads/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="源码学习｜Volley网络库源码分析 源码学习｜Volley图片加载源码分析  在上面两篇文章中,我们已经对Volley的简单使用和图片加载的源码进行了简单分析,在这篇文章中,我们将具体对Volley的网络缓存源码进行分析。 ###1. 使用HTTP缓存的作用使用缓存其实主要有两个原因。首先降低延迟,缓存离客户端更近，因此，从缓存请求内容比从源服务器所用时间更少，呈现速度更快，网站就显得更灵敏。">
+<meta name="keywords" content="Android, Volley">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Volley 网络请求缓存策略源码分析">
+<meta property="og:url" content="http://wizardiy.com/2017/02/07/Volley 请求缓存策略源码分析/index.html">
+<meta property="og:site_name" content="Wizardiy">
+<meta property="og:description" content="源码学习｜Volley网络库源码分析 源码学习｜Volley图片加载源码分析  在上面两篇文章中,我们已经对Volley的简单使用和图片加载的源码进行了简单分析,在这篇文章中,我们将具体对Volley的网络缓存源码进行分析。 ###1. 使用HTTP缓存的作用使用缓存其实主要有两个原因。首先降低延迟,缓存离客户端更近，因此，从缓存请求内容比从源服务器所用时间更少，呈现速度更快，网站就显得更灵敏。">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1489253-b063aa1e51e3f139.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-07-17T15:51:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Volley 网络请求缓存策略源码分析">
+<meta name="twitter:description" content="源码学习｜Volley网络库源码分析 源码学习｜Volley图片加载源码分析  在上面两篇文章中,我们已经对Volley的简单使用和图片加载的源码进行了简单分析,在这篇文章中,我们将具体对Volley的网络缓存源码进行分析。 ###1. 使用HTTP缓存的作用使用缓存其实主要有两个原因。首先降低延迟,缓存离客户端更近，因此，从缓存请求内容比从源服务器所用时间更少，呈现速度更快，网站就显得更灵敏。">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1489253-b063aa1e51e3f139.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wizardiy.com/2017/02/07/Volley 请求缓存策略源码分析/"/>
+
+
+
+
+
+  <title>Volley 网络请求缓存策略源码分析 | Wizardiy</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wizardiy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Wizardiy-Hexo搭建的寒石の博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wizardiy.com/2017/02/07/Volley 请求缓存策略源码分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寒石">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wizardiy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Volley 网络请求缓存策略源码分析</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-07T11:37:56+08:00">
+                2017-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/源码分析/" itemprop="url" rel="index">
+                    <span itemprop="name">源码分析</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li><a href="http://www.jianshu.com/p/0e2d0d8b4e97" target="_blank" rel="external">源码学习｜Volley网络库源码分析</a></li>
+<li><a href="http://www.jianshu.com/p/2aa373c1c624" target="_blank" rel="external">源码学习｜Volley图片加载源码分析</a></li>
+</ul>
+<p>在上面两篇文章中,我们已经对Volley的简单使用和图片加载的源码进行了简单分析,在这篇文章中,我们将具体对Volley的网络缓存源码进行分析。</p>
+<p>###1. 使用HTTP缓存的作用<br>使用缓存其实主要有两个原因。首先降低延迟,缓存离客户端更近，因此，从缓存请求内容比从源服务器所用时间更少，呈现速度更快，网站就显得更灵敏。其次降低网络传输, 副本被重复使用，大大降低了用户的带宽使用，其实也是一种变相的省钱（如果流量要付费的话），同时保证了带宽请求在一个低水平上，更容易维护了。</p>
+<p>###2.  Volley中的缓存实现<br>在前面文章中,我们已经知道,Volley中RequestQueue是通过下面方法进行构建的</p>
+<pre><code>RequestQueue queue = new RequestQueue(new DiskBasedCache(cacheDir), network);
+</code></pre><p>在初始化RequestQueue时会启动两个循环线程CacheDispatcher和NetworkDispatcher,它们会不断的遍历其耦合的队列,执行响应操作。</p>
+<pre><code>/**
+ * Starts the dispatchers in this queue.
+ */
+public void start() {
+    stop();  // Make sure any currently running dispatchers are stopped.
+    // Create the cache dispatcher and start it.
+    mCacheDispatcher = new CacheDispatcher(mCacheQueue, mNetworkQueue, mCache, mDelivery);
+    mCacheDispatcher.start();
+
+    // Create network dispatchers (and corresponding threads) up to the pool size.
+    for (int i = 0; i &lt; mDispatchers.length; i++) {
+        NetworkDispatcher networkDispatcher = new NetworkDispatcher(mNetworkQueue, mNetwork,
+                mCache, mDelivery);
+        mDispatchers[i] = networkDispatcher;
+        networkDispatcher.start();
+    }
+}
+</code></pre><p>而对于每一个add()到RequestQueue中的Request对象,需要设置SequenceNumber(用来决定执行顺序),其中对于addMarker(Adds an event to this request’s event log; for debugging.),注释上说明是用来做调试用的,我们不用重点关注。<br>对于不需要进行缓存的请求,会直接加入到NetWorkQueue中,由NetWorkDispatcher进行处理。而对于需要缓存的请求,则先判断waitingRequest队列中是否存在,如果存在,说明已经有相同任务通过CacheDispatcher进行处理,则会加入到WaitingReqeust的Map中进行排队,否则,则会加入到CacheDispatcher中进行处理。</p>
+<pre><code>// Process requests in the order they are added.
+request.setSequence(getSequenceNumber());
+request.addMarker(&quot;add-to-queue&quot;);
+
+// If the request is uncacheable, skip the cache queue and go straight to the network.
+if (!request.shouldCache()) {
+    mNetworkQueue.add(request);
+    return request;
+}
+
+// Insert request into stage if there&apos;s already a request with the same cache key in flight.
+synchronized (mWaitingRequests) {
+    String cacheKey = request.getCacheKey();
+    if (mWaitingRequests.containsKey(cacheKey)) {
+        // There is already a request in flight. Queue up.
+        Queue&lt;Request&lt;?&gt;&gt; stagedRequests = mWaitingRequests.get(cacheKey);
+        if (stagedRequests == null) {
+            stagedRequests = new LinkedList&lt;Request&lt;?&gt;&gt;();
+        }
+        stagedRequests.add(request);
+        mWaitingRequests.put(cacheKey, stagedRequests);
+        if (VolleyLog.DEBUG) {
+            VolleyLog.v(&quot;Request for cacheKey=%s is in flight, putting on hold.&quot;, cacheKey);
+        }
+    } else {
+        // Insert &apos;null&apos; queue for this cacheKey, indicating there is now a request in
+        // flight.
+        mWaitingRequests.put(cacheKey, null);
+        mCacheQueue.add(request);
+    }
+    return request;
+}
+</code></pre><p>此处的缓存是WaitingRequests,其作用主要是对于短时间内重复请求的Request进行缓存,其结构为HashMap。<br>我们在此处还要留意，就是对于WaitingRequests的处理，我们可以看到加入后等待队列后，并无处理，事实上，在已有请求Request Cancel时或者处于缓存，无需变化时，都会由Request调用finish()，进而将所有等待队列中的请求加入到缓存队列中进行遍历执行，最终返回缓存结果。具体代码参考如下所示：</p>
+<pre><code>/**
+ * Called from {@link Request#finish(String)}, indicating that processing of the given request
+ * has finished.
+ *
+ * &lt;p&gt;Releases waiting requests for &lt;code&gt;request.getCacheKey()&lt;/code&gt; if
+ *      &lt;code&gt;request.shouldCache()&lt;/code&gt;.&lt;/p&gt;
+ */
+&lt;T&gt; void finish(Request&lt;T&gt; request) {
+    // Remove from the set of requests currently being processed.
+    synchronized (mCurrentRequests) {
+        mCurrentRequests.remove(request);
+    }
+    synchronized (mFinishedListeners) {
+      for (RequestFinishedListener&lt;T&gt; listener : mFinishedListeners) {
+        listener.onRequestFinished(request);
+      }
+    }
+
+    if (request.shouldCache()) {
+        synchronized (mWaitingRequests) {
+            String cacheKey = request.getCacheKey();
+            Queue&lt;Request&lt;?&gt;&gt; waitingRequests = mWaitingRequests.remove(cacheKey);
+            if (waitingRequests != null) {
+                if (VolleyLog.DEBUG) {
+                    VolleyLog.v(&quot;Releasing %d waiting requests for cacheKey=%s.&quot;,
+                            waitingRequests.size(), cacheKey);
+                }
+                // Process all queued up requests. They won&apos;t be considered as in flight, but
+                // that&apos;s not a problem as the cache has been primed by &apos;request&apos;.
+                mCacheQueue.addAll(waitingRequests);
+            }
+        }
+    }
+}
+</code></pre><p><em>当时看到这段的时候当时挺疑惑，为什么不直接返回一个缓存结果，将等待队列的请求都抛弃掉，后来想想也对，对于重复请求返回一个请求结果，这也不符合实际使用场景。</em></p>
+<p>###3. CacheDispatcher的缓存策略:   </p>
+<p>通过上文中,我们可以看到,Volley会默认为我们构建一个DiskBasedCache用来缓存Request请求。下面我们重点分析CacheDispatcher。<br>对于CacheQueue中的Request,如果Request已经取消,则直接调用Request.finish()进行处理,如果未命中缓存,则添加到NetworkQueue中,交由NetworkDispatcher进行处理,如果entry过期,则重新设置entry并交由NetworkDispatcher进行处理,如果缓存命中,则直接返回缓存内容,由ResponseDelivery进行转发,最后将结果回调回调用者。但是此处缓存命中也分了两种情况,一种需要刷新缓存,一种不需要,如果需要刷新缓存,则需要将缓存结果先返回,然后在调用NetworkDispatcher进行缓存刷新。关键代码如下所示:</p>
+<pre><code>if (!entry.refreshNeeded()) {
+    // Completely unexpired cache hit. Just deliver the response.
+    mDelivery.postResponse(request, response);
+} else {
+    // Soft-expired cache hit. We can deliver the cached response,
+    // but we need to also send the request to the network for
+    // refreshing.
+    request.addMarker(&quot;cache-hit-refresh-needed&quot;);
+    request.setCacheEntry(entry);
+
+    // Mark the response as intermediate.
+    response.intermediate = true;
+
+    // Post the intermediate response back to the user and have
+    // the delivery then forward the request along to the network.
+    mDelivery.postResponse(request, response, new Runnable() {
+        @Override
+        public void run() {
+            try {
+                mNetworkQueue.put(request);
+            } catch (InterruptedException e) {
+                // Not much we can do about this.
+            }
+        }
+    });
+}
+</code></pre><p>此处使用的mDelivery是ResponseDelivery接口的实现类ExecutorDelivery的对象，其主要作用是用来转发请求结果与错误信息。其在RequestQueue中传入如下所示：</p>
+<pre><code>public RequestQueue(Cache cache, Network network, int threadPoolSize) {
+this(cache, network, threadPoolSize,
+        new ExecutorDelivery(new Handler(Looper.getMainLooper())));
+}
+</code></pre><p>我们可以看到它会传入一个主线程的Handler，传入的Handler其实最终是通过ExecutorDelivery中的Executor来将所有消息以postRunnable()的方式返回到主线程中。但是这里还是会有一个疑问，<strong>使用postResponse时，其传入的Runnable依然会在主线程中运行。为了保证主线程的优先工作，为什么不把这个提到子线程去做呢？</strong>具体关键代码如下：</p>
+<pre><code>  public ExecutorDelivery(final Handler handler) {
+    // Make an Executor that just wraps the handler.
+    mResponsePoster = new Executor() {
+        @Override
+        public void execute(Runnable command) {
+            handler.post(command);
+        }
+    };
+}
+
+
+//ResponseDeliveryRunnable run方法中的传入Runnable处理
+// If we have been provided a post-delivery runnable, run it.
+ if (mRunnable != null) {
+   mRunnable.run();
+ }
+</code></pre><p>###4. NetworkDispatcher的缓存策略:</p>
+<p>NetworkDispatcher中只是简单的执行Request请求，将请求结果解析后，将Response置入缓存中，此时的过期时间也是在此时进行设置的。具体关键代码如下：</p>
+<pre><code> if (request.shouldCache() &amp;&amp; response.cacheEntry != null) {
+      mCache.put(request.getCacheKey(), response.cacheEntry);
+      request.addMarker(&quot;network-cache-written&quot;);
+ }
+
+ // Post the response back.
+request.markDelivered();
+ mDelivery.postResponse(request, response);
+</code></pre><p>最后补上一张自己丧心病狂画的流程图：<br><img src="http://upload-images.jianshu.io/upload_images/1489253-b063aa1e51e3f139.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="缓存操作流程图"><br>至此，对于Volley的分析也就暂时告一段落了，如果分析中有什么错漏还请各位积极留言指导，谢谢（∩＿∩）哈哈～</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Volley/" rel="tag"># Volley</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/18/创建文件系统结构的三种实现/" rel="next" title="创建文件系统结构的三种实现">
+                <i class="fa fa-chevron-left"></i> 创建文件系统结构的三种实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/09/DownloadManager 使用 JobSchedule 的问题/" rel="prev" title="DownloadManager 使用 JobSchedule 的问题">
+                DownloadManager 使用 JobSchedule 的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="寒石" />
+          <p class="site-author-name" itemprop="name">寒石</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rayGuoRay" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:guolei_ray@yeah.net" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope-o"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/e80ee485cfce" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com" title="简书" target="_blank">简书</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.zhihu.com" title="知乎" target="_blank">知乎</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">寒石</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

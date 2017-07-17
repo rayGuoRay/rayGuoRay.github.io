@@ -1,0 +1,3185 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="寒石, Android, Blog" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/uploads/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="keywords" content="Android, Linux, Shell, Ubuntu, Git">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wizardiy">
+<meta property="og:url" content="http://wizardiy.com/index.html">
+<meta property="og:site_name" content="Wizardiy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Wizardiy">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wizardiy.com/"/>
+
+
+
+
+
+  <title>Wizardiy</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wizardiy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Wizardiy-Hexo搭建的寒石の博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wizardiy.com/2017/07/17/Android 自定义列表刷新控件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寒石">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wizardiy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/17/Android 自定义列表刷新控件/" itemprop="url">Android 列表刷新控件 EasyRefreshView</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-17T23:51:00+08:00">
+                2017-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工具分享/" itemprop="url" rel="index">
+                    <span itemprop="name">工具分享</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Android 中上拉加载和下拉刷新都是很常用的控件，所以在 Android 后续版本中提供了 PullToRefresh 这个控件，以方便开发者很便捷的集成下拉刷新功能。而对于上拉加载功能，仍然需要开发者自己监听 ListView 或者 RecyclerView 滑动状态来实现自己的上拉加载功能。因此在最近猿最近基于 PullToRefresh 与 RecyclerView 自己试做了一个控件：EasyRefreshView，来方便开发者集成相关功能。</p>
+<h3 id="控件截图"><a href="#控件截图" class="headerlink" title="控件截图"></a>控件截图</h3><p><img src="http://upload-images.jianshu.io/upload_images/1489253-0220580c36c04f7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h3><p>1、AndroidStudio 集成方法</p>
+<pre><code>compile &apos;com.ray.easyrefreshview:easy-refresh-view:0.5.9&apos;
+</code></pre><p>2、Layout 布局文件声明</p>
+<pre><code>&lt;com.ray.easyrefreshview.EasyRefreshView
+    android:id=&quot;@+id/user_elv&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    easyrefreshview:layoutType=&quot;linear&quot;
+    easyrefreshview:normalLayout=&quot;@layout/item_normal&quot;
+    easyrefreshview:loadingLayout=&quot;@layout/foot_loading&quot;
+    easyrefreshview:nomoreLayout=&quot;@layout/foot_loading_nomore_data&quot;
+    easyrefreshview:errorLayout=&quot;@layout/foot_loading_error&quot;/&gt;
+</code></pre><p>控件支持用户自定义相关 Item Layout ，分别是正常显示状态、等待显示状态、无更多数据状态、加载错误状态，集成者可以在 bindAdapter 中的 onCreate 回调方法中去创建对应 layout 的 Holder，并在 onBind 回调方法对相应的 View 进行操作。</p>
+<p>3、控件绑定 Adapter 并自定义相关 ViewHolder</p>
+<pre><code>easyRefreshView.bindAdapter(new EasyRefreshHolderCallBack() {
+    @Override
+    public RecyclerView.ViewHolder onCreateNormal(View view) {
+        //return new NormalHolder(view);
+    }
+
+    @Override
+    public void onBindNormal(RecyclerView.ViewHolder holder, int position) {
+        super.onBindNormal(holder, position);
+        //todo
+    }
+});
+</code></pre><p>4、 控件滑动到顶部和底部的两种回调</p>
+<p>当列表滑动到顶部和底部时，分别会有 onTopLoadStarted 与 onBottomLoadStarted 回调触发，继承者可以在这两个回调中进行下拉加载与上拉刷新进行数据更新。</p>
+<pre><code>public void onTopLoadStarted() {
+    list.clear();
+    startRxLoad(0);
+}
+
+public void onBottomLoadStarted(int position) {
+    if (position &gt;= mTotalCount) {
+        erv.setFootViewState(EasyRefreshAdapter.FOOT_STATE_LOAD_NOMORE);
+        return;
+    }
+    erv.setFootViewState(EasyRefreshAdapter.FOOT_STATE_LOADING);
+    startRxLoad(position + 1);
+}
+</code></pre><p>目前控件已开源至GitHub(<a href="https://github.com/rayGuoRay/RssMovie" target="_blank" rel="external">相关链接</a>) , 相关 Demo 使用数据来源豆瓣电影开放 API ,使用 Retrofit2 进行网络请求，并利用RxJava 对进行了部分逻辑处理，欢迎 Fork 和 Star ，如果有改进意见也可以提给猿，猿会在后续版本中加以改进。</p>
+<p>O(∩_∩)O谢谢</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wizardiy.com/2017/03/10/Android 关于 onKeyUp 方法回调不执行的问题分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寒石">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wizardiy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/10/Android 关于 onKeyUp 方法回调不执行的问题分析/" itemprop="url">Android 关于 onKeyUp 方法回调不执行的问题分析</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-10T10:18:56+08:00">
+                2017-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作总结/" itemprop="url" rel="index">
+                    <span itemprop="name">工作总结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>前段时间在修改一个关于按键事件点击的bug,让猿对Android的事件传递有了更深的了解,现在分享出来给大家。</p>
+<h3 id="需求描述"><a href="#需求描述" class="headerlink" title="需求描述"></a>需求描述</h3><p>当页面中ListView处于选择态时,当第一次点击Back键需要将ListView的选择态清除,点击第二次Back键时,页面才关闭退出。</p>
+<h3 id="需求实现"><a href="#需求实现" class="headerlink" title="需求实现"></a>需求实现</h3><p>在页面Activity中重写了onBackPressed()方法,ListView中重写了View的onKeyUp方法,当ListView中如果是点击态时,在onKeyUp中拦截事件,并清除ListView的选择态,并return True拦截按键事件返回。</p>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>在调试过程中发现:当页面中ListView处于选择态时,点击Back键时,页面直接关闭。程序并不执行ListView中的onKeyUp方法。</p>
+<h3 id="出现原因"><a href="#出现原因" class="headerlink" title="出现原因"></a>出现原因</h3><p>在页面初始化后,在选择ListView为选择态结束后,调用了<code>ListView.clearFocus()</code>方法,导致了<code>ListView的onKeyUp</code>方法不回调。</p>
+<h3 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h3><p>我们大概都知道,Android事件传递从上到下传递,而对于KeyEvent来说,ViewGroup中分发事件方法代码中有这样一段:</p>
+<pre><code>@Override
+public boolean dispatchKeyEvent(KeyEvent event) {
+    if (mInputEventConsistencyVerifier != null) {
+        mInputEventConsistencyVerifier.onKeyEvent(event, 1);
+    }
+
+    if ((mPrivateFlags &amp; (PFLAG_FOCUSED | PFLAG_HAS_BOUNDS))
+            == (PFLAG_FOCUSED | PFLAG_HAS_BOUNDS)) {
+        if (super.dispatchKeyEvent(event)) {
+            return true;
+        }
+    } else if (mFocused != null &amp;&amp; (mFocused.mPrivateFlags &amp; PFLAG_HAS_BOUNDS)
+            == PFLAG_HAS_BOUNDS) {
+        if (mFocused.dispatchKeyEvent(event)) {
+            return true;
+        }
+    }
+
+    if (mInputEventConsistencyVerifier != null) {
+        mInputEventConsistencyVerifier.onUnhandledEvent(event, 1);
+    }
+    return false;
+}
+</code></pre><p>我们可以看到,在ViewGroup中,会对<strong>mFocused</strong>这个View进行判断,如果它不为空,有焦点,才会由他去分发事件,最终才有可能执行它的回调方法。所以如果我们手动调用clearFocus后,使当前FocusView为空,自然就无法最终执行其回调方法了。</p>
+<p><em>事实上,当Activity中dispatcherKeyEvent时,是通过Activity中的PhoneWindow绑定的DecoderView进行分发的,DecoderView最终通过ViewGroup的dispatcherKeyEvent将事件分发出去。详细的事件分发流程会在后续文章中进行详细分析。请大家期待O(∩_∩)O</em></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wizardiy.com/2017/03/04/Android 关于 ListView addHeaderView() 使用说明/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寒石">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wizardiy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/03/04/Android 关于 ListView addHeaderView() 使用说明/" itemprop="url">Android 关于 ListView addHeaderView() 使用说明</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-04T12:37:56+08:00">
+                2017-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作总结/" itemprop="url" rel="index">
+                    <span itemprop="name">工作总结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>目前对于ListView中addHeaderView()方法的使用大致有以下两种说法:</p>
+<ol>
+<li>addHeaderView()方法必须在setAdapter()之前进行,否则会抛出异常。</li>
+<li>addHeaderView()方法可以随时调用。</li>
+</ol>
+<p>在经过分析后,猿发现:<strong>以上两种说法都是正确的╮(╯▽╰)╭, 原因就在于Android版本不一致。</strong>由于比对所有源码工作量较大,所以我们就选取三个Android版本进行比较,分别是:Android ICE_CREAM_SANDWICH_MR1(VersionCode  = 15)、Android L(VersionCode = 21)、Android N(VersionCode = 24)。**</p>
+<h3 id="ICE-CREAM-SANDWICH-MR1版本中的部分实现"><a href="#ICE-CREAM-SANDWICH-MR1版本中的部分实现" class="headerlink" title="ICE_CREAM_SANDWICH_MR1版本中的部分实现:"></a>ICE_CREAM_SANDWICH_MR1版本中的部分实现:</h3><ul>
+<li><p>addHeaderView()方法部分关键实现</p>
+<pre><code>public void addHeaderView(View v, Object data, boolean isSelectable) {
+
+  if (mAdapter != null &amp;&amp; ! (mAdapter instanceof HeaderViewListAdapter)) {
+      throw new IllegalStateException(
+              &quot;Cannot add header view to list -- setAdapter has already been called.&quot;);
+  }
+
+  FixedViewInfo info = new FixedViewInfo();
+  info.view = v;
+  info.data = data;
+  info.isSelectable = isSelectable;
+  mHeaderViewInfos.add(info);
+
+  // in the case of re-adding a header view, or adding one later on,
+  // we need to notify the observer
+  if (mAdapter != null &amp;&amp; mDataSetObserver != null) {
+      mDataSetObserver.onChanged();
+  }
+}
+</code></pre></li>
+<li><p>setAdapter()方法实现</p>
+<pre><code>if (mHeaderViewInfos.size() &gt; 0|| mFooterViewInfos.size() &gt; 0) {
+    mAdapter = new HeaderViewListAdapter(mHeaderViewInfos, mFooterViewInfos, adapter);
+} else {
+    mAdapter = adapter;
+}
+</code></pre></li>
+</ul>
+<p>我们可以看到，在这个版本中addHeaderView时，会对ListView绑定的adapter进行判断，如果非空并且类型不为HeaderViewListAdapter时，就会抛出IllegalStateException。而对于HeaderViewListAdapter的来源，则是在setAdapter方法中处理，如果当前有Header，则会将adapter包装为HeaderViewListAdapter，否则的话，就不进行处理，所以<strong>在这个版本中，”addHeaderView()方法必须在setAdapter()之前进行,否则会抛出异常”这种说法是正确的</strong>。</p>
+<p>###Android L版本中的部分实现:</p>
+<ul>
+<li><p>addHeaderView()方法部分关键实现</p>
+<pre><code>public void addHeaderView(View v, Object data, boolean isSelectable) {
+  final FixedViewInfo info = new FixedViewInfo();
+  info.view = v;
+  info.data = data;
+  info.isSelectable = isSelectable;
+  mHeaderViewInfos.add(info);
+  mAreAllItemsSelectable &amp;= isSelectable;
+
+  // Wrap the adapter if it wasn&apos;t already wrapped.
+  if (mAdapter != null) {
+      if (!(mAdapter instanceof HeaderViewListAdapter)) {
+          mAdapter = new HeaderViewListAdapter(mHeaderViewInfos, mFooterViewInfos, mAdapter);
+      }
+
+      // In the case of re-adding a header view, or adding one later on,
+      // we need to notify the observer.
+      if (mDataSetObserver != null) {
+          mDataSetObserver.onChanged();
+      }
+  }
+}
+</code></pre></li>
+<li><p>setAdapter()方法实现</p>
+<pre><code>if (mHeaderViewInfos.size() &gt; 0|| mFooterViewInfos.size() &gt; 0) {
+   mAdapter = new HeaderViewListAdapter(mHeaderViewInfos, mFooterViewInfos, adapter);
+} else {
+   mAdapter = adapter;
+}
+</code></pre></li>
+</ul>
+<p>###Android N版本中的部分实现:</p>
+<ul>
+<li><p>addHeaderView()方法部分关键实现</p>
+<pre><code>public void addHeaderView(View v, Object data, boolean isSelectable) {
+  final FixedViewInfo info = new FixedViewInfo();
+  info.view = v;
+  info.data = data;
+  info.isSelectable = isSelectable;
+  mHeaderViewInfos.add(info);
+  mAreAllItemsSelectable &amp;= isSelectable;
+
+  // Wrap the adapter if it wasn&apos;t already wrapped.
+  if (mAdapter != null) {
+      if (!(mAdapter instanceof HeaderViewListAdapter)) {
+          wrapHeaderListAdapterInternal();
+      }
+
+      // In the case of re-adding a header view, or adding one later on,
+      // we need to notify the observer.
+      if (mDataSetObserver != null) {
+          mDataSetObserver.onChanged();
+      }
+  }
+}
+</code></pre></li>
+<li><p>setAdapter()方法实现</p>
+<pre><code>if (mHeaderViewInfos.size() &gt; 0|| mFooterViewInfos.size() &gt; 0) {
+   mAdapter = wrapHeaderListAdapterInternal(mHeaderViewInfos, mFooterViewInfos, adapter);
+} else {
+   mAdapter = adapter;
+}
+</code></pre></li>
+</ul>
+<p>而对于Android L 和Android N这两个版本,其基本实现逻辑一致，相比于ICE_CREAM_SANDWICH_MR1版本,对于在setAdapter之后调用addHeaderView这种情况，并不会抛出异常，反而会对mAdapter强制进行一层包装，保证addHeaderView的Adapter是HeaderViewListAdapter，之后通知数据进行刷新。所以<strong>“addHeaderView()可以随时调用”这种说法在这两个版本中其实也是正确的</strong>。</p>
+<p><em>事实上考虑到目前大多数手机都运行在4.0以上的机型，所以对于addHeaderView()方法的使用本猿更倾向于第二种</em></p>
+<p>以上~~~b(￣▽￣)d</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wizardiy.com/2017/02/09/DownloadManager 使用 JobSchedule 的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寒石">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wizardiy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/09/DownloadManager 使用 JobSchedule 的问题/" itemprop="url">DownloadManager 使用 JobSchedule 的问题</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-09T22:39:56+08:00">
+                2017-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/源码分析/" itemprop="url" rel="index">
+                    <span itemprop="name">源码分析</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在之前的文章中本猿曾介绍过 Android N DownloadManager 中已经采用了 JobSchedule 方式进行下载任务的调度,今天就开发过程中碰到的关于 JobSchedule 的一点小坑,总结出来供大家参考分析。</p>
+<p>想了解更多关于Android N中DownloadManager的源码分析请点击下文:</p>
+<ul>
+<li><a href="http://www.jianshu.com/p/c9dc04af2f54" target="_blank" rel="external">源码学习｜Android N DownloadManager源码分析</a></li>
+</ul>
+<h3 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h3><p>在项目中,项目采用基于源码修改的DownloadManager进行下载任务,而出于控制下载流量的考虑,会额外对网络访问权限进行一定的处理。目前主要修改点有两个:</p>
+<ol>
+<li>Helpers类中的scheduleJob方法,主要作用是通过schedule来唤起DownloadJobService,最终执行下载操作。</li>
+<li>DownloadInfo类中的getRequiredNetworkType()方法,主要作用来返回下载任务需要的网络类型。</li>
+</ol>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>当前存在的问题是对于Android 7.0的手机共享出来的热点,我们的下载任务一直处于等待下载状态,无法执行。</p>
+<h3 id="问题结果"><a href="#问题结果" class="headerlink" title="问题结果"></a>问题结果</h3><p>在前文已经介绍过DownloadManager启动DownloadJobService是通过Helpers.scheduleJob()方法来调度任务,拉起DownloadJobService,最终完成下载功能的,<br>对于目前存在的问题,我们发现问题原因是由于scheduler.scheduleAsPackage()已经完成了调度工作,并返回了调度值为1。但为什么没有调用DownloadJobService呢,我们最后还是注意到我们设置的网络类型:</p>
+<pre><code>// We always require a network, but the type of network might be further
+// restricted based on download request or user override
+builder.setRequiredNetworkType(info.getRequiredNetworkType(info.mTotalBytes));
+</code></pre><p>我们要注意到,此处setRequiredNetworkType设置了调度任务执行需要的网络类型,而当前 DonwloadInfo 连接手机热点获取的网络类型为WIFI,由于需求要求控制访问网络请求的原因,所以我们对于所有网络类型为WIFI的网络,返回的类型为JobInfo.NETWORK_TYPE_UNMETERED,即只允许访问非计费的网络。</p>
+<p>但是对于Android6.0与7.0版本的手机,开出的热点识别出的NetworkInfo中mIsMetered对象为true, 而对于普通wifi中对于mIsMetered对象为false,这个标记值是用来标记当前网络是否为计费网络的标记位。对于手机网络的热点,此处他会识别为计费的网络,而对于普通通过路由分出的热点,会识别为非计费的网络,因此针对这个问题,我们将需要的网络类型设置为JobInfo.NETWORK_TYPE_ANY即可正常完成调用。</p>
+<h3 id="问题后记"><a href="#问题后记" class="headerlink" title="问题后记"></a>问题后记</h3><p>我们从这里可以看出Android系统设计的细腻之处,对于访问网络更强大的支持可以更灵活的让我们对手机网络的访问进行控制。</p>
+<p>但有个最重要的事是:对于是否为手机热点还不能单纯的以这个字段来判断,因为从Iphone上开出的热点,当手机读取的时候,这个mIsMetered对象又变成了true。</p>
+<p><strong>所以当有产品经理问你能不能识别当前连接的是wifi还是手机热点时,千万别急着说可以识别哦~~O(∩_∩)O哈哈~</strong></p>
+<p><em>大家对于Android 网络请求有什么建议和见解欢迎留言指导~~~</em></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wizardiy.com/2017/02/07/Volley 请求缓存策略源码分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寒石">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wizardiy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/07/Volley 请求缓存策略源码分析/" itemprop="url">Volley 网络请求缓存策略源码分析</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-07T11:37:56+08:00">
+                2017-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/源码分析/" itemprop="url" rel="index">
+                    <span itemprop="name">源码分析</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li><a href="http://www.jianshu.com/p/0e2d0d8b4e97" target="_blank" rel="external">源码学习｜Volley网络库源码分析</a></li>
+<li><a href="http://www.jianshu.com/p/2aa373c1c624" target="_blank" rel="external">源码学习｜Volley图片加载源码分析</a></li>
+</ul>
+<p>在上面两篇文章中,我们已经对Volley的简单使用和图片加载的源码进行了简单分析,在这篇文章中,我们将具体对Volley的网络缓存源码进行分析。</p>
+<p>###1. 使用HTTP缓存的作用<br>使用缓存其实主要有两个原因。首先降低延迟,缓存离客户端更近，因此，从缓存请求内容比从源服务器所用时间更少，呈现速度更快，网站就显得更灵敏。其次降低网络传输, 副本被重复使用，大大降低了用户的带宽使用，其实也是一种变相的省钱（如果流量要付费的话），同时保证了带宽请求在一个低水平上，更容易维护了。</p>
+<p>###2.  Volley中的缓存实现<br>在前面文章中,我们已经知道,Volley中RequestQueue是通过下面方法进行构建的</p>
+<pre><code>RequestQueue queue = new RequestQueue(new DiskBasedCache(cacheDir), network);
+</code></pre><p>在初始化RequestQueue时会启动两个循环线程CacheDispatcher和NetworkDispatcher,它们会不断的遍历其耦合的队列,执行响应操作。</p>
+<pre><code>/**
+ * Starts the dispatchers in this queue.
+ */
+public void start() {
+    stop();  // Make sure any currently running dispatchers are stopped.
+    // Create the cache dispatcher and start it.
+    mCacheDispatcher = new CacheDispatcher(mCacheQueue, mNetworkQueue, mCache, mDelivery);
+    mCacheDispatcher.start();
+
+    // Create network dispatchers (and corresponding threads) up to the pool size.
+    for (int i = 0; i &lt; mDispatchers.length; i++) {
+        NetworkDispatcher networkDispatcher = new NetworkDispatcher(mNetworkQueue, mNetwork,
+                mCache, mDelivery);
+        mDispatchers[i] = networkDispatcher;
+        networkDispatcher.start();
+    }
+}
+</code></pre><p>而对于每一个add()到RequestQueue中的Request对象,需要设置SequenceNumber(用来决定执行顺序),其中对于addMarker(Adds an event to this request’s event log; for debugging.),注释上说明是用来做调试用的,我们不用重点关注。<br>对于不需要进行缓存的请求,会直接加入到NetWorkQueue中,由NetWorkDispatcher进行处理。而对于需要缓存的请求,则先判断waitingRequest队列中是否存在,如果存在,说明已经有相同任务通过CacheDispatcher进行处理,则会加入到WaitingReqeust的Map中进行排队,否则,则会加入到CacheDispatcher中进行处理。</p>
+<pre><code>// Process requests in the order they are added.
+request.setSequence(getSequenceNumber());
+request.addMarker(&quot;add-to-queue&quot;);
+
+// If the request is uncacheable, skip the cache queue and go straight to the network.
+if (!request.shouldCache()) {
+    mNetworkQueue.add(request);
+    return request;
+}
+
+// Insert request into stage if there&apos;s already a request with the same cache key in flight.
+synchronized (mWaitingRequests) {
+    String cacheKey = request.getCacheKey();
+    if (mWaitingRequests.containsKey(cacheKey)) {
+        // There is already a request in flight. Queue up.
+        Queue&lt;Request&lt;?&gt;&gt; stagedRequests = mWaitingRequests.get(cacheKey);
+        if (stagedRequests == null) {
+            stagedRequests = new LinkedList&lt;Request&lt;?&gt;&gt;();
+        }
+        stagedRequests.add(request);
+        mWaitingRequests.put(cacheKey, stagedRequests);
+        if (VolleyLog.DEBUG) {
+            VolleyLog.v(&quot;Request for cacheKey=%s is in flight, putting on hold.&quot;, cacheKey);
+        }
+    } else {
+        // Insert &apos;null&apos; queue for this cacheKey, indicating there is now a request in
+        // flight.
+        mWaitingRequests.put(cacheKey, null);
+        mCacheQueue.add(request);
+    }
+    return request;
+}
+</code></pre><p>此处的缓存是WaitingRequests,其作用主要是对于短时间内重复请求的Request进行缓存,其结构为HashMap。<br>我们在此处还要留意，就是对于WaitingRequests的处理，我们可以看到加入后等待队列后，并无处理，事实上，在已有请求Request Cancel时或者处于缓存，无需变化时，都会由Request调用finish()，进而将所有等待队列中的请求加入到缓存队列中进行遍历执行，最终返回缓存结果。具体代码参考如下所示：</p>
+<pre><code>/**
+ * Called from {@link Request#finish(String)}, indicating that processing of the given request
+ * has finished.
+ *
+ * &lt;p&gt;Releases waiting requests for &lt;code&gt;request.getCacheKey()&lt;/code&gt; if
+ *      &lt;code&gt;request.shouldCache()&lt;/code&gt;.&lt;/p&gt;
+ */
+&lt;T&gt; void finish(Request&lt;T&gt; request) {
+    // Remove from the set of requests currently being processed.
+    synchronized (mCurrentRequests) {
+        mCurrentRequests.remove(request);
+    }
+    synchronized (mFinishedListeners) {
+      for (RequestFinishedListener&lt;T&gt; listener : mFinishedListeners) {
+        listener.onRequestFinished(request);
+      }
+    }
+
+    if (request.shouldCache()) {
+        synchronized (mWaitingRequests) {
+            String cacheKey = request.getCacheKey();
+            Queue&lt;Request&lt;?&gt;&gt; waitingRequests = mWaitingRequests.remove(cacheKey);
+            if (waitingRequests != null) {
+                if (VolleyLog.DEBUG) {
+                    VolleyLog.v(&quot;Releasing %d waiting requests for cacheKey=%s.&quot;,
+                            waitingRequests.size(), cacheKey);
+                }
+                // Process all queued up requests. They won&apos;t be considered as in flight, but
+                // that&apos;s not a problem as the cache has been primed by &apos;request&apos;.
+                mCacheQueue.addAll(waitingRequests);
+            }
+        }
+    }
+}
+</code></pre><p><em>当时看到这段的时候当时挺疑惑，为什么不直接返回一个缓存结果，将等待队列的请求都抛弃掉，后来想想也对，对于重复请求返回一个请求结果，这也不符合实际使用场景。</em></p>
+<p>###3. CacheDispatcher的缓存策略:   </p>
+<p>通过上文中,我们可以看到,Volley会默认为我们构建一个DiskBasedCache用来缓存Request请求。下面我们重点分析CacheDispatcher。<br>对于CacheQueue中的Request,如果Request已经取消,则直接调用Request.finish()进行处理,如果未命中缓存,则添加到NetworkQueue中,交由NetworkDispatcher进行处理,如果entry过期,则重新设置entry并交由NetworkDispatcher进行处理,如果缓存命中,则直接返回缓存内容,由ResponseDelivery进行转发,最后将结果回调回调用者。但是此处缓存命中也分了两种情况,一种需要刷新缓存,一种不需要,如果需要刷新缓存,则需要将缓存结果先返回,然后在调用NetworkDispatcher进行缓存刷新。关键代码如下所示:</p>
+<pre><code>if (!entry.refreshNeeded()) {
+    // Completely unexpired cache hit. Just deliver the response.
+    mDelivery.postResponse(request, response);
+} else {
+    // Soft-expired cache hit. We can deliver the cached response,
+    // but we need to also send the request to the network for
+    // refreshing.
+    request.addMarker(&quot;cache-hit-refresh-needed&quot;);
+    request.setCacheEntry(entry);
+
+    // Mark the response as intermediate.
+    response.intermediate = true;
+
+    // Post the intermediate response back to the user and have
+    // the delivery then forward the request along to the network.
+    mDelivery.postResponse(request, response, new Runnable() {
+        @Override
+        public void run() {
+            try {
+                mNetworkQueue.put(request);
+            } catch (InterruptedException e) {
+                // Not much we can do about this.
+            }
+        }
+    });
+}
+</code></pre><p>此处使用的mDelivery是ResponseDelivery接口的实现类ExecutorDelivery的对象，其主要作用是用来转发请求结果与错误信息。其在RequestQueue中传入如下所示：</p>
+<pre><code>public RequestQueue(Cache cache, Network network, int threadPoolSize) {
+this(cache, network, threadPoolSize,
+        new ExecutorDelivery(new Handler(Looper.getMainLooper())));
+}
+</code></pre><p>我们可以看到它会传入一个主线程的Handler，传入的Handler其实最终是通过ExecutorDelivery中的Executor来将所有消息以postRunnable()的方式返回到主线程中。但是这里还是会有一个疑问，<strong>使用postResponse时，其传入的Runnable依然会在主线程中运行。为了保证主线程的优先工作，为什么不把这个提到子线程去做呢？</strong>具体关键代码如下：</p>
+<pre><code>  public ExecutorDelivery(final Handler handler) {
+    // Make an Executor that just wraps the handler.
+    mResponsePoster = new Executor() {
+        @Override
+        public void execute(Runnable command) {
+            handler.post(command);
+        }
+    };
+}
+
+
+//ResponseDeliveryRunnable run方法中的传入Runnable处理
+// If we have been provided a post-delivery runnable, run it.
+ if (mRunnable != null) {
+   mRunnable.run();
+ }
+</code></pre><p>###4. NetworkDispatcher的缓存策略:</p>
+<p>NetworkDispatcher中只是简单的执行Request请求，将请求结果解析后，将Response置入缓存中，此时的过期时间也是在此时进行设置的。具体关键代码如下：</p>
+<pre><code> if (request.shouldCache() &amp;&amp; response.cacheEntry != null) {
+      mCache.put(request.getCacheKey(), response.cacheEntry);
+      request.addMarker(&quot;network-cache-written&quot;);
+ }
+
+ // Post the response back.
+request.markDelivered();
+ mDelivery.postResponse(request, response);
+</code></pre><p>最后补上一张自己丧心病狂画的流程图：<br><img src="http://upload-images.jianshu.io/upload_images/1489253-b063aa1e51e3f139.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="缓存操作流程图"><br>至此，对于Volley的分析也就暂时告一段落了，如果分析中有什么错漏还请各位积极留言指导，谢谢（∩＿∩）哈哈～</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wizardiy.com/2016/11/18/创建文件系统结构的三种实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寒石">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wizardiy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/11/18/创建文件系统结构的三种实现/" itemprop="url">创建文件系统结构的三种实现</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-18T23:26:56+08:00">
+                2016-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作总结/" itemprop="url" rel="index">
+                    <span itemprop="name">工作总结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近在做关于压缩文件预览的需求，涉及到对于文件系统的目录结构进行简单的模拟。在实现过程中，尝试了三种实现方式，下文对三种实现方式做详细说明。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1489253-f5d22bd0210e9a34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="传统目录结构"></p>
+<h3 id="使用递归构建文件二叉树结构"><a href="#使用递归构建文件二叉树结构" class="headerlink" title="使用递归构建文件二叉树结构"></a>使用递归构建文件二叉树结构</h3><ul>
+<li>最初的思路是：每次从输入流中读入一个结点，判断根据结点的路径名判断，如果是其子节点，则放入结点的右子树。如果是其同级结点，则放入其左子树中。（与上学时学的数据结构中多叉树转二叉树的区别在于：书上实现要求左孩子，右兄弟，我的实现是左兄弟，右孩子）</li>
+<li>类模型代码</li>
+</ul>
+<pre><code>public class CompressedFileInfo {
+    public String filePath;
+    public String parentPath;
+    private String name;
+    public boolean isDirectory;
+    private int levels;
+    private CompressedFileInfo leftFriendInfo;
+    private CompressedFileInfo rightChildInfo;
+｝
+</code></pre><ul>
+<li><p>递归创建二叉树结构代码</p>
+<pre><code>public void buildFileInfo(CompressedFileInfo root) {
+        if (root == null) {
+            return;
+        }
+        if (root.levels == 0) {
+            if (root.rightChildInfo == null) {
+                root.rightChildInfo = this;
+                return;
+            } else {
+                root = root.rightChildInfo;
+            }
+        }
+        if (root.levels &lt; levels) {
+            if (filePath.startsWith(root.filePath)) {
+                if (root.rightChildInfo == null) {
+                    root.rightChildInfo = this;
+                } else {
+                    buildFileInfo(root.rightChildInfo);
+                }
+            } else {
+                buildFileInfo(root.leftFriendInfo);
+            }
+        } else if (root.levels == levels) {
+            if (parentPath == null || filePath.startsWith(root.filePath)) {
+                if (root.leftFriendInfo == null) {
+                    root.leftFriendInfo = this;
+                } else {
+                    buildFileInfo(root.leftFriendInfo);
+                }
+            } else {
+                Log.d(&quot;raytest&quot;, &quot;Build Error&quot;);
+            }
+        } else {
+            Log.e(&quot;raytest&quot;, &quot;Build Error&quot;);
+        }
+}
+</code></pre></li>
+<li><p>采用二叉树构建的文件结构图如下所示:</p>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1489253-c64505e62acc48eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="二叉树目录结构"></p>
+<ul>
+<li>代码总结与分析<br>在构建中，根据节点初始化的levels来对结点的层级数进行记录，在递归过程中，注意要结合父一级路径进行遍历。否则，可能会出现结点组织错误的问题。<br>二叉树作为一种存储方式是一种很优雅的选择。但是对于我们项目中的需求来说，此种构建方式严重依赖于外部结点输入，必须保证从根节点，深度优先遍历，提供输入结点信息。否则并不能保证结点组织的准确性。同时二叉树递归遍历，在实际项目使用中，代码阅读性差，使用效率不高。所以，考虑到这些问题，我们决定采用多叉树型结构来实现文件结构</li>
+</ul>
+<h3 id="使用递归构建文件树形结构"><a href="#使用递归构建文件树形结构" class="headerlink" title="使用递归构建文件树形结构"></a>使用递归构建文件树形结构</h3><ul>
+<li><p>采用树形结构存储，为了摆脱对外部结点输入的依赖，引入一个缓存Map来缓存所有输入结点，在结点输入完毕后，通过递归，构建树形结构，在摆脱外部输入的基础上，提高了程序的可读性。</p>
+</li>
+<li><p>类模型代码</p>
+</li>
+</ul>
+<pre><code>public class DecompressFileItem extends FileItem {
+    private String mParentPath;
+    private List&lt;FileItem&gt; mChildList;
+}
+</code></pre><p><em>此处的FileItem可以理解为File对象属性的一些映射，包含一些获取文件名，获取文件路径之类的常用属性和方法。</em></p>
+<ul>
+<li>递归创建</li>
+</ul>
+<pre><code>public void buildFileSys(Map&lt;String, FileItem&gt; nodeMap, DecompressFileItem paramInfo, boolean isRoot) {
+        Map&lt;String, FileItem&gt; tempMap = new HashMap&lt;&gt;();
+        tempMap.putAll(nodeMap);
+        if (paramInfo == null || TextUtils.isEmpty(paramInfo.mData)) {
+            return;
+        }
+        if (nodeMap == null || nodeMap.size() &lt; 1) {
+            return;
+        }
+        String paramPathKey = paramInfo.mData;
+        if (isRoot) {
+            paramPathKey = paramPathKey.substring(0, paramPathKey.lastIndexOf(File.separator));
+            tempMap.remove(paramPathKey);
+        } else {
+            tempMap.remove(paramInfo.mData);
+        }
+        for (Map.Entry&lt;String, FileItem&gt; entry : tempMap.entrySet()) {
+            DecompressFileItem item = (DecompressFileItem) entry.getValue();
+            if (paramPathKey.equals(item.getParentPath())) {
+                if (paramInfo.mChildList == null) {
+                    paramInfo.mChildList = new ArrayList&lt;&gt;();
+                }
+                paramInfo.mChildList.add(item);
+                item.buildFileSys(tempMap, item, false);
+            }
+        }
+    }
+</code></pre><ul>
+<li>代码总结与分析<br>在构建中，每次都将所有结点放置于一个暂存map中，将当前结点移除map中，并遍历剩余结点，将其子节点加入list中，递归遍历子节点，自此完成构建。<br>此种实现，较为简单清晰，但是在实现过程中，由于实现路径写入错误，极有可能导致堆栈溢出。而且涉及文件结构处理，不可避免会涉及复杂结构，内存压力和堆栈溢出的风险这两个问题都需要考虑。所以，在老大Review完代码后，提出改写为迭代的方式进行创建。</li>
+</ul>
+<h3 id="使用迭代创建文件树形结构"><a href="#使用迭代创建文件树形结构" class="headerlink" title="使用迭代创建文件树形结构"></a>使用迭代创建文件树形结构</h3><ul>
+<li><p>在树形结构的基础上，我们对构建方法改造为使用迭代方式进行实现。</p>
+</li>
+<li><p>迭代构建代码</p>
+<p>  public void buildFileSys(Map<string, fileitem=""> nodeMap) {</string,></p>
+<pre><code>if (nodeMap == null || nodeMap.size() &lt; 1) {
+    return;
+}
+for (Map.Entry&lt;String, FileItem&gt; entrySource : nodeMap.entrySet()) {
+    String pathKey = entrySource.getKey();
+    if (TextUtils.isEmpty(pathKey)) {
+        continue;
+    }
+    DecompressFileItem pathItem = (DecompressFileItem) entrySource.getValue();
+    if (pathItem == null) {
+        continue;
+    }
+    for (Map.Entry&lt;String, FileItem&gt; entryCompare : nodeMap.entrySet()) {
+        DecompressFileItem compareItem = (DecompressFileItem) entryCompare.getValue();
+        if (compareItem == null) {
+            continue;
+        }
+        boolean isRootNode = compareItem.mData.equals(mData) &amp;&amp; compareItem.mFileName.equals(mFileName);
+        if (pathKey.equals(compareItem.getParentPath()) &amp;&amp; !isRootNode) {
+            if (pathItem.mChildList == null) {
+                pathItem.mChildList = new ArrayList&lt;FileItem&gt;();
+            }
+            pathItem.mChildList.add(compareItem);
+            // build file count
+            if (pathItem.mIsDir) {
+                pathItem.mFileCount++;
+            }
+        }
+    }
+}
+</code></pre><p>  }</p>
+</li>
+</ul>
+<ul>
+<li>代码总结与分析<br>此种构建方式相比于方式嵌套了两层循环，增加了代码的阅读难度，但是相对来说，还是比较简单，同时时间复杂度也只有Ｏ(n * n)，相对来说还是一种不错的选择。<br>同时在遍历的过程中，尝试去将一个结点所有子节点添加完毕后，就移除这个结点，可以减少时间复杂度，但是对于无序输入的结点，这样做，可能会出现，某个子节点已经被删除了，但它还未添加到其父结点中。╮（╯▽╰）╭<br>如果大家对于构建类似的结构还有其他更好的建议，请大家不吝赐教（∩＿∩）</li>
+</ul>
+<blockquote>
+<p>最后，附上银魂的一句吐槽：压力是导致秃顶的原因，所以请注意不要压力太大，但这样一来反而容易堆积压力，所以归根到底我们无能为力」</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wizardiy.com/2016/11/18/使用 Shell 脚本切换 Java 编译环境改良/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寒石">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wizardiy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/11/18/使用 Shell 脚本切换 Java 编译环境改良/" itemprop="url">使用脚本快捷切换编译环境改良</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-18T21:37:56+08:00">
+                2016-11-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工具分享/" itemprop="url" rel="index">
+                    <span itemprop="name">工具分享</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>猿之前自己搞了个脚本(<a href="http://www.jianshu.com/p/989d0d3fb29d" target="_blank" rel="external">工作分享｜使用脚本快捷切换编译环境</a>)来切换自己的编译环境，提高工作效率。但是随着近期维护的项目逐渐变多，原来的脚本已不满足需求。因此，猿对自己的脚本进行了一定的改造，贡献出来供大家参考。</p>
+<h3 id="执行脚本-build-sh"><a href="#执行脚本-build-sh" class="headerlink" title="执行脚本(build.sh)"></a>执行脚本(build.sh)</h3><ul>
+<li><p>脚本说明<br>脚本中会以source方式引入自己定义的一个build_util.sh脚本，此脚本为执行脚本提供输出提示信息方法和过滤用户输入的方法，最后用户输入的文件目录选项，模块选项，操作的文件夹选项都会通过build_util.sh脚本进行处理和分发。</p>
+</li>
+<li><p>脚本源码</p>
+<pre><code>#!bin/sh                                                                    
+. /home/script/build_util.sh
+# open target project #
+funOperationHint 1
+read chooseProject
+# switch operation moudle
+funOperationHint 2
+read chooseModule
+# open folder
+funOperationHint 3
+read chooseFolder
+# operation target folder
+funOperationTarget ${chooseProject} ${chooseModule} ${chooseFolder}
+</code></pre></li>
+</ul>
+<h3 id="工具脚本-build-util-sh"><a href="#工具脚本-build-util-sh" class="headerlink" title="工具脚本(build_util.sh)"></a>工具脚本(build_util.sh)</h3><ul>
+<li>脚本说明<br>脚本中会同样以source方式引入每个分支的脚本，此脚本除了输出提示信息外，最后会通过funOperationTarget()方法选择不同的脚本方法去处理。</li>
+</ul>
+<p><strong>这里需要注意的是，以source方式引入的脚本中，最好不要有重名方法。</strong>因为猿最初是每个分支脚本中定义相同的方法然后去执行发现执行结果错误。后来想想原因也简单，脚本source相当于include, 本身直接调用一个同名方法，脚本也不确认究竟要执行哪个脚本中的方法，肯定执行不正确。**</p>
+<ul>
+<li>脚本源码<pre><code>#!bin/sh
+. /home/script/build_branch1.sh
+. /home/script/build_branch2.sh
+. /home/script/build_branch3.sh
+. /home/script/build_branch4.sh
+# hint message about operation project name
+funOperationHint() {
+    case $1 in
+        1)
+            echo -e &quot;\033[1;33m
+            ## Choose Operation Project ##
+            |     1. Device A           |
+            |     2. Device B           |
+            |     3. Device C           |
+            |     4. Device D         |
+            ##############################
+            \033[0m&quot;
+            ;;
+        2)
+          echo -e &quot;\033[1;33m
+          #### Choose Operation Project  ####
+          |   1. Module ModuleA    |
+          |   2. Module ModuleB         |
+          ###################################
+          \033[0m&quot;
+          ;;
+      3)
+          echo -e &quot;\033[1;33m
+          ##  Choose Operation Type  ##
+          |     1. Folder package     |
+          |     2. Folder out         |
+          ############################
+          \033[0m&quot;
+          ;;
+          esac
+          echo -e &quot;\033[1;35m*****input the switch key*****\033[0m&quot;
+  }
+  # target to handle the command
+  funOperationTarget() {
+      case $1 in
+         1)
+            handleOperationOnA $2 $3
+            ;;
+        2)
+            handleOperationOnB $2 $3
+            ;;
+        3)
+            handleOperationOnC $2 $3
+            ;;
+        4)
+            handleOperationOnD $2 $3
+          ;;
+     esac
+}
+</code></pre></li>
+</ul>
+<h3 id="分支脚本-build-branch1-sh"><a href="#分支脚本-build-branch1-sh" class="headerlink" title="分支脚本(build_branch1.sh)"></a>分支脚本(build_branch1.sh)</h3><ul>
+<li><p>脚本说明<br>分支脚本中主要实现了handleOperationOnC方法的实现，主要用于判断模块与操作目录，根据输入的模块选项进行编译或者打开目录。由于实现部分代码比较类似，主要列出一项用于参考。</p>
+</li>
+<li><p>脚本源码</p>
+<pre><code>#!bin/sh
+# handle operation
+handleOperationOnA() {
+    case $1 in
+        1)
+            handleFolderA $2
+            ;;
+        2)
+            handleFolderB $2
+            ;;
+    esac
+}
+
+# handle FolderA
+handleFolderA() {
+     case $1 in
+         1)
+            cd folderA/folderC
+             ;;
+         2)
+            cd /folderD/folderE
+            ;;
+   esac
+}
+
+# handleFolderB
+handleT1FileManager() {
+     case $1 in
+        1)
+          sudo sed -ri &apos;s#^.*JAVA_HOME=.*$#export JAVA_HOME=/usr/lib/java/jdk1.6.0_41#&apos; /etc/profile
+          . /etc/profile
+          . build/envsetup.sh
+          lunch branch-userdebug
+          cd /home/folderF
+          ;;
+      2)
+          cd FolderG
+      ;;
+  esac
+}
+</code></pre></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wizardiy.com/2016/10/29/使用 Shell 脚本快捷切换 Java 编译环境/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寒石">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wizardiy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/29/使用 Shell 脚本快捷切换 Java 编译环境/" itemprop="url">使用脚本快捷切换编译环境</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-29T16:50:56+08:00">
+                2016-10-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工具分享/" itemprop="url" rel="index">
+                    <span itemprop="name">工具分享</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>猿最近在Ubuntu 14.04.5环境下搞Android代码编译，但是由于重复开窗口、切换分支、切换JDK版本，要重复敲很多命令。深感不便，于是自己参考网上的语法，写了个简单脚本，现在share给大家，希望大家喜欢（＊＠ο＠＊）　哇～。</p>
+<h3 id="总入口build-sh"><a href="#总入口build-sh" class="headerlink" title="总入口build.sh"></a>总入口build.sh</h3><pre><code>#!bin/sh
+echo -e &quot;#### open target folder ####\n 1.branch1\n 2.branch2\n 3.branch3\n 4.branch4\n&quot;
+echo -n  &quot;### input the type:&quot;
+read target
+case &quot;$target&quot; in
+    1)
+        echo -e &quot;\033[1;32m build target is branch1 \033[0m&quot;
+        . /home/user/script/build_branch1_script.sh
+    ;;
+    2)
+        echo -e &quot;\033[1;32m build target is branch2 \033[0m&quot;
+        . /home/user/script/build_branch2_script.sh
+        ;;
+    3)
+        echo -e &quot;\033[1;32m build target is branch3 \033[0m&quot;
+        . /home/user/script/build_branch3_script.sh
+        ;;
+    4)
+        echo -e &quot;\033[1;32m build target is branch4 \033[0m&quot;
+        . /home/user/script/build_branch4_script.sh
+        ;;
+esac
+</code></pre><h3 id="编译branch1版本脚本-build-branch1-script-sh"><a href="#编译branch1版本脚本-build-branch1-script-sh" class="headerlink" title="编译branch1版本脚本:build_branch1_script.sh"></a>编译branch1版本脚本:build_branch1_script.sh</h3><pre><code>#!bin/sh
+echo &quot;### open target folder ###&quot;
+cd /home/user/src/android-branch1-dev
+echo -e &quot;#### change java environment ####&quot;
+sudo sed -ri &apos;s#^.*JAVA_HOME=.*$#export JAVA_HOME=/usr/lib/java/jdk1.6.0_41#&apos; /etc/profile
+echo -e &quot;#### source the profile&quot;
+. /etc/profile
+echo -e &quot;#### output java version&quot;
+java -version
+echo &quot;### source envsetup.sh ###&quot;
+. build/envsetup.sh
+echo &quot;### lunch source file ###&quot;
+lunch branch1-userdebug
+</code></pre><h3 id="编译branch2版本脚本-build-branch2-script-sh"><a href="#编译branch2版本脚本-build-branch2-script-sh" class="headerlink" title="编译branch2版本脚本:build_branch2_script.sh"></a>编译branch2版本脚本:build_branch2_script.sh</h3><pre><code>#!bin/sh
+echo -e &quot;#### open target folder ####&quot;
+cd /home/user/src/android-branch2-dev
+echo -e &quot;#### change java environment ####&quot;
+sudo sed -ri &apos;s#^.*JAVA_HOME=.*$#export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64#&apos; /etc/profile
+echo -e &quot;#### source the profile&quot;
+. /etc/profile
+echo -e &quot;#### output java version&quot;
+java -version
+echo -e &quot;#### source envsetup.sh ####&quot;
+. build/envsetup.sh
+echo -e &quot;#### lunch source file ####&quot;
+lunch branch2-userdebug
+</code></pre><h3 id="编译branch3版本脚本-build-branch3-script-sh"><a href="#编译branch3版本脚本-build-branch3-script-sh" class="headerlink" title="编译branch3版本脚本:build_branch3_script.sh"></a>编译branch3版本脚本:build_branch3_script.sh</h3><pre><code>#!bin/sh
+echo &quot;##### open target folder #####&quot;
+cd /home/user/src/android-branch3-dev
+echo -e &quot;#### change java environment ####&quot;
+sudo sed -ri &apos;s#^.*JAVA_HOME=.*$#export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64#&apos; /etc/profile
+echo -e &quot;#### source the profile&quot;
+. /etc/profile
+echo -e &quot;#### output java version&quot;
+java -version
+echo &quot;##### source envsetup.sh #####&quot;
+. build/envsetup.sh
+echo &quot;##### lunch source file #####&quot;
+lunch branch3-userdebug
+</code></pre><h3 id="编译branch4版本脚本-build-branch4-script-sh"><a href="#编译branch4版本脚本-build-branch4-script-sh" class="headerlink" title="编译branch4版本脚本:build_branch4_script.sh"></a>编译branch4版本脚本:build_branch4_script.sh</h3><pre><code>#!bin/sh
+echo &quot;##### open target folder #####&quot;
+cd /home/user/src/android-branch4-dev
+echo -e &quot;#### change java environment ####&quot;
+sudo sed -ri &apos;s#^.*JAVA_HOME=.*$#export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64#&apos; /etc/profile
+echo -e &quot;#### source the profile&quot;
+. /etc/profile
+echo -e &quot;#### output java version&quot;
+java -version
+echo &quot;##### source envsetup.sh #####&quot;
+. build/envsetup.sh
+echo &quot;##### lunch source file #####&quot;
+lunch branch4-userdebug
+</code></pre><p>这几段脚本组合起来的作用其实特别简单，就是打开对应的分支目录，同时修改JAVA_HOME的配置，启动Android编译。当然有不少同学会说Ubuntu切换JDK可以使用update-alternatives进行切换。但是这里本猿要说明一下，这个命令配置也挺繁琐的，而且猿配置了以后，发现切换了使用java -version输出的一直是默认版本，切换不过来╮（╯▽╰）╭，后来就放弃了，改用最熟悉的手动切换，而且现在配合自己的脚本，用的还挺顺手。当然，如果有人对于Ubuntu的java多版本切换有心得或者对于脚本的改进和书写有什么建议，都可以给猿留言哦～Ｏ（∩＿∩）Ｏ哈哈～</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wizardiy.com/2016/10/25/Volley 图片加载源码分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寒石">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wizardiy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/25/Volley 图片加载源码分析/" itemprop="url">Volley 图片加载源码分析</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-25T19:15:56+08:00">
+                2016-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/源码分析/" itemprop="url" rel="index">
+                    <span itemprop="name">源码分析</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Volley基于基础的网络请求框架封装了自己的图片请求框架，我们在上一篇中已经对Volley的网络库工作流程做了进行了简单分析:</p>
+<ul>
+<li><a href="http://www.jianshu.com/p/0e2d0d8b4e97" target="_blank" rel="external">[源码学习]Android N Volley网络库源码分析</a></li>
+</ul>
+<p>Volley中的图片加载方式总结起来有三种，分别为ImageRequest、ImageLoader、NetworkImageView，这三种方式名称和使用方式各不相同，下面我们将通过每种加载方式的使用来对Volley的图片的加载框架进行分析。</p>
+<h3 id="Volley-图片请求加载的三种方式"><a href="#Volley-图片请求加载的三种方式" class="headerlink" title="Volley 图片请求加载的三种方式"></a>Volley 图片请求加载的三种方式</h3><ol>
+<li><p>使用ImageRequest方式加载,其请求示例代码如下:</p>
+<pre><code>RequestQueue mQueue = Volley.newRequestQueue(context);
+ImageRequest imageRequest = new ImageRequest(url,
+    new Response.Listener&lt;Bitmap&gt;() {  
+                    @Override  
+                    public void onResponse(Bitmap response) {  
+                        imageView.setImageBitmap(response);  
+                    }  
+                }, 0, 0, Config.RGB_565, new Response.ErrorListener() {  
+                    @Override  
+                    public void onErrorResponse(VolleyError error) {  
+                        imageView.setImageResource(R.drawable.default_image);  
+                    }  
+                });  
+mQueue.add(imageRequest);
+</code></pre></li>
+<li><p>使用ImageLoader方式加载,其请求示例代码如下:</p>
+<pre><code>RequestQueue mQueue = Volley.newRequestQueue(context);
+ImageLoader imageLoader = new ImageLoader(mQueue, new ImageCache() {  
+    @Override  
+    public void putBitmap(String url, Bitmap bitmap) {  
+    }  
+
+    @Override  
+    public Bitmap getBitmap(String url) {  
+        return null;  
+    }  
+});  
+ImageListener listener = ImageLoader.getImageListener(imageView, R.drawable.default_image, R.drawable.failed_image);
+imageLoader.get(url, listener);
+</code></pre></li>
+<li><p>使用NetworkImageView方式加载,其请求示例代码如下:</p>
+<pre><code>&lt;com.android.volley.toolbox.NetworkImageView   
+    android:id=&quot;@+id/network_image_view&quot;  
+    android:layout_width=&quot;200dp&quot;  
+    android:layout_height=&quot;200dp&quot;  
+    android:layout_gravity=&quot;center_horizontal&quot;  
+    /&gt;  
+
+RequestQueue mQueue = Volley.newRequestQueue(context);
+ImageLoader imageLoader = new ImageLoader(mQueue,ImageCache);
+networkImageView = (NetworkImageView) findViewById(R.id.network_image_view);  
+networkImageView.setDefaultImageResId(R.drawable.default_image);  
+networkImageView.setErrorImageResId(R.drawable.failed_image);  
+networkImageView.setImageUrl(url, imageLoader);  
+</code></pre></li>
+</ol>
+<h3 id="Volley-ImageRequest-请求分析"><a href="#Volley-ImageRequest-请求分析" class="headerlink" title="Volley ImageRequest 请求分析"></a>Volley ImageRequest 请求分析</h3><p>方式1中ImageRequest的使用方式还是最常用的Request的使用方式,区别在于在deliverResponse的()结果不同(具体请求逻辑请参考文章头部的链接文章)。Volley的网络请求结果,如果缓存命中,则会调用如下方法对结果进行解析:</p>
+<pre><code>// We have a cache hit; parse its data for delivery back to the request.
+request.addMarker(&quot;cache-hit&quot;);
+Response&lt;?&gt; response = request.parseNetworkResponse(
+        new NetworkResponse(entry.data, entry.responseHeaders));
+request.addMarker(&quot;cache-hit-parsed&quot;);
+</code></pre><p>如果缓存未命中,通过NetworkDispatcher进行网络请求,则会调用如下方法对结果进行解析:</p>
+<pre><code>// Parse the response here on the worker thread.
+Response&lt;?&gt; response = request.parseNetworkResponse(networkResponse);
+request.addMarker(&quot;network-parse-complete&quot;);
+</code></pre><p>不管是缓存命中(CacheDispatcher)还是不命中(NetworkDispatcher),都会通过<code>request.parseNetworkResponse(response)</code>的方式将网络结果的解析回调到Request中。则对于Request的子类实现ImageRequest,其解析方法实现如下代码所示:</p>
+<pre><code>@Override
+protected Response&lt;Bitmap&gt; parseNetworkResponse(NetworkResponse response) {
+    // Serialize all decode on a global lock to reduce concurrent heap usage.
+    synchronized (sDecodeLock) {
+        try {
+            return doParse(response);
+        } catch (OutOfMemoryError e) {
+            VolleyLog.e(&quot;Caught OOM for %d byte image, url=%s&quot;, response.data.length, getUrl());
+            return Response.error(new ParseError(e));
+        }
+    }
+}
+</code></pre><p>其中doParse()会进行对reponse的字节留进行处理,按请求参数包装成相应的Bitmap,其关键代码如下所示。</p>
+<pre><code>byte[] data = response.data;
+BitmapFactory.Options decodeOptions = new BitmapFactory.Options();
+Bitmap bitmap = null;
+if (mMaxWidth == 0 &amp;&amp; mMaxHeight == 0) {
+    decodeOptions.inPreferredConfig = mDecodeConfig;
+    bitmap = BitmapFactory.decodeByteArray(data, 0, data.length, decodeOptions);
+} else {
+    // If we have to resize this image, first get the natural bounds.
+    decodeOptions.inJustDecodeBounds = true;
+    BitmapFactory.decodeByteArray(data, 0, data.length, decodeOptions);
+    int actualWidth = decodeOptions.outWidth;
+    int actualHeight = decodeOptions.outHeight;
+    // Then compute the dimensions we would ideally like to decode to.
+    int desiredWidth = getResizedDimension(mMaxWidth, mMaxHeight,
+            actualWidth, actualHeight, mScaleType);
+    int desiredHeight = getResizedDimension(mMaxHeight, mMaxWidth,
+            actualHeight, actualWidth, mScaleType);
+    // Decode to the nearest power of two scaling factor.
+    decodeOptions.inJustDecodeBounds = false;
+    // TODO(ficus): Do we need this or is it okay since API 8 doesn&apos;t support it?
+    // decodeOptions.inPreferQualityOverSpeed = PREFER_QUALITY_OVER_SPEED;
+    decodeOptions.inSampleSize =
+        findBestSampleSize(actualWidth, actualHeight, desiredWidth, desiredHeight);
+    Bitmap tempBitmap =
+        BitmapFactory.decodeByteArray(data, 0, data.length, decodeOptions);
+
+    // If necessary, scale down to the maximal acceptable size.
+    if (tempBitmap != null &amp;&amp; (tempBitmap.getWidth() &gt; desiredWidth ||
+            tempBitmap.getHeight() &gt; desiredHeight)) {
+        bitmap = Bitmap.createScaledBitmap(tempBitmap,
+                desiredWidth, desiredHeight, true);
+        tempBitmap.recycle();
+    } else {
+        bitmap = tempBitmap;
+    }
+}
+if (bitmap == null) {
+    return Response.error(new ParseError(response));
+} else {
+    return Response.success(bitmap, HttpHeaderParser.parseCacheHeaders(response));
+}
+</code></pre><p>注意这段解析代码中maxWidth与maxHeight是用户初始化传入的请求参数,如果调用方不传的话,默认为0,不进行缩放。则解析的bitmap是原图的尺寸大小,而如果调用方传入参数,则需要对图片进行缩放(<strong>PS:这段缩放代码其实也是很有参考意义的</strong>)。在缩放完成后,将请求结果转入到Response对象中返回。之后,通过ResponseDelivery调用postResponse(reqeust, response)将结果回调到Listener的时候,通过deliverResponse回调的就是具体的解析结果了(从这里我们也可以看出,如果有自定义Request需要的时候,只需要继承Request,重写parseNetworkResponse与deliverResponse方法即可实现Volley中Request的自定义结果解析与回调)。</p>
+<p>#####Volley ImageLoader 请求分析</p>
+<p>ImageLoader中只有一个构造函数,它需要传入RequestQueue（我们从这点可以猜想ImageLoader可能也会依赖ImageReqeust进行请求）和ImageCache对象,而ImageCache是定义于ImageLoader类中的接口。<br>对于ImageCache说明如下源码所示:</p>
+<pre><code>/**
+  　Simple cache adapter interface. If provided to the ImageLoader, it
+ 　 will be used as an L1 cache before dispatch to Volley. Implementations
+ 　 must not block. Implementation with an LruCache is recommended.
+＊/
+public interface ImageCache {
+    public Bitmap getBitmap(String url);
+    public void putBitmap(String url, Bitmap bitmap);
+}
+</code></pre><p>这段代码的说明中注释说的很清楚，大意为ImageCache是一个简单的缓存适配接口,它提供给Volley作为一级缓存,其实现不能产生阻塞。推荐使用LruCache来实现这个接口。在上面的示例中,使用ImageCache直接返回了NULL,所以并没有起到缓存的效果。</p>
+<p>ImageListener作为Imageloader中的一个接口,其继承了Response中的ErrorListener,从这个角度也可以看的出,Imageloader底层是通过Request执行的请求。而对于ImageListener的获取,如下代码所示:</p>
+<pre><code>public static ImageListener getImageListener(final ImageView view,
+        final int defaultImageResId, final int errorImageResId) {
+    return new ImageListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            if (errorImageResId != 0) {
+                view.setImageResource(errorImageResId);
+            }
+        }
+
+        @Override
+        public void onResponse(ImageContainer response, boolean isImmediate) {
+            if (response.getBitmap() != null) {
+                view.setImageBitmap(response.getBitmap());
+            } else if (defaultImageResId != 0) {
+                view.setImageResource(defaultImageResId);
+            }
+        }
+    };
+}
+</code></pre><p>我们从默认实现也可以看的出,在response回调中会去Response中获取Bitmap,所以我们可以做一个推论:ImageLoader是通过ImageReqeust请求并对请求结果进行封装的一种图片加载方式。接下来我们对ImageLoader的加载过程进行详细分析。在为ImageLoader绑定注册监听回调后,我们可以使用ImageLoader的get方式加载图片。其中get有三种多态方法,如下所示:</p>
+<pre><code>public ImageContainer get(String requestUrl, final ImageListener listener) {
+    return get(requestUrl, listener, 0, 0);
+}
+
+public ImageContainer get(String requestUrl, ImageListener imageListener,
+        int maxWidth, int maxHeight) {
+    return get(requestUrl, imageListener, maxWidth, maxHeight, ScaleType.CENTER_INSIDE);
+}
+
+public ImageContainer get(String requestUrl, ImageListener imageListener,
+        int maxWidth, int maxHeight, ScaleType scaleType) {
+    ...
+}
+</code></pre><p>我们可以看到,其中最终都是通过第三种方式进行获取,其中依赖传入参数数:url,listener,maxWidth,maxHeight,scaleType,如果不传ScaleType,默认的ScaleType为CenterInside。在ImageLoader通过get方式提交请求后，会首先到设置的一级缓存中查询图片缓存，如果缓存没有命中，则将request加入到RequestQueue中开始一个新请求，同时在mInFlightRequests中将请求加到请求队列中。源码如下：</p>
+<pre><code>public ImageContainer get(String requestUrl, ImageListener imageListener,
+        int maxWidth, int maxHeight, ScaleType scaleType) {
+
+    // only fulfill requests that were initiated from the main thread.
+    throwIfNotOnMainThread();
+
+    final String cacheKey = getCacheKey(requestUrl, maxWidth, maxHeight, scaleType);
+
+    // Try to look up the request in the cache of remote images.
+    Bitmap cachedBitmap = mCache.getBitmap(cacheKey);
+    if (cachedBitmap != null) {
+        // Return the cached bitmap.
+        ImageContainer container = new ImageContainer(cachedBitmap, requestUrl, null, null);
+        imageListener.onResponse(container, true);
+        return container;
+    }
+
+    // The bitmap did not exist in the cache, fetch it!
+    ImageContainer imageContainer =
+            new ImageContainer(null, requestUrl, cacheKey, imageListener);
+
+    // Update the caller to let them know that they should use the default bitmap.
+    imageListener.onResponse(imageContainer, true);
+
+    // Check to see if a request is already in-flight.
+    BatchedImageRequest request = mInFlightRequests.get(cacheKey);
+    if (request != null) {
+        // If it is, add this request to the list of listeners.
+        request.addContainer(imageContainer);
+        return imageContainer;
+    }
+
+    // The request is not already in flight. Send the new request to the network and
+    // track it.
+    Request&lt;Bitmap&gt; newRequest = makeImageRequest(requestUrl, maxWidth, maxHeight, scaleType,
+            cacheKey);
+
+    mRequestQueue.add(newRequest);
+    mInFlightRequests.put(cacheKey,
+            new BatchedImageRequest(newRequest, imageContainer));
+    return imageContainer;
+}
+</code></pre><p><strong>PS:这段代码会检查是否运行在主线程，如果运行在子线程中，则会直接抛出异常的。</strong><br>其中,ImageContainer是ImageLoader的内部类,在源码中的注释对它的介绍是：<code>Container object for all of the data surrounding an image request.</code>，意思是一个ImageRequest的数据对象包装类，它作为get方法的返回值，当有缓存的时候，它会将数据取出，直接回调同时返回包装类。而若不存在缓存，则先创建ImageContainer,回调listenert通知显示设置的默认图片。</p>
+<p>接着这里会出现一个新的类型BatchedImageRequest，还有一个类型为HashMap的mInFlightRequests，mInFlightRequests是用来保存当前已存在的Request,若有相同请求时，它会将ImageContainer加入到BatchedImageRquest中，而BatchedImageRequest是ImageLoader的内部类，它是Request的包装类，其中有一个LinkedList去存储ImageContainer。</p>
+<p>当有新的请求，并将请求请求加入到请求队列中的时候，就进入了Volley的网络请求逻辑中，这个我们前文已经分析过，这里就不再赘述。</p>
+<p>在请求响应后（以响应成功为例），则会遍历所有的ImageContainer，回调到batchedRequest耦合的ImageContainer注册的ImageListener中。部分代码如下：</p>
+<pre><code>protected void onGetImageSuccess(String cacheKey, Bitmap response) {
+    // cache the image that was fetched.
+    mCache.putBitmap(cacheKey, response);
+
+    // remove the request from the list of in-flight requests.
+    BatchedImageRequest request = mInFlightRequests.remove(cacheKey);
+
+    if (request != null) {
+        // Update the response bitmap.
+        request.mResponseBitmap = response;
+
+        // Send the batched response
+        batchResponse(cacheKey, request);
+    }
+}
+private void batchResponse(String cacheKey, BatchedImageRequest request) {
+    mBatchedResponses.put(cacheKey, request);
+    // If we don&apos;t already have a batch delivery runnable in flight, make a new one.
+    // Note that this will be used to deliver responses to all callers in mBatchedResponses.
+    if (mRunnable == null) {
+        mRunnable = new Runnable() {
+            @Override
+            public void run() {
+                for (BatchedImageRequest bir : mBatchedResponses.values()) {
+                    for (ImageContainer container : bir.mContainers) {
+                        // If one of the callers in the batched request canceled the request
+                        // after the response was received but before it was delivered,
+                        // skip them.
+                        if (container.mListener == null) {
+                            continue;
+                        }
+                        if (bir.getError() == null) {
+                            container.mBitmap = bir.mResponseBitmap;
+                            container.mListener.onResponse(container, false);
+                        } else {
+                            container.mListener.onErrorResponse(bir.getError());
+                        }
+                    }
+                }
+                mBatchedResponses.clear();
+                mRunnable = null;
+            }
+
+        };
+        // Post the runnable.
+        mHandler.postDelayed(mRunnable, mBatchResponseDelayMs);
+    }
+}
+</code></pre><p>在加载完成后，将缓存中的Request清空，这样整个请求就完成了。但这里还有一个问题，ImageLoader中默认构建的ImageListener的onResponse回调方法如下所示：</p>
+<pre><code>public void onResponse(ImageContainer response, boolean isImmediate) {
+      if (response.getBitmap() != null) {
+          view.setImageBitmap(response.getBitmap());
+      } else if (defaultImageResId != 0) {
+          view.setImageResource(defaultImageResId);
+      }
+  }
+</code></pre><p><strong>其中的isImmediate参数并未使用到，这个参数从其注释定义有这样的表述：isImmediate True if this was called during ImageLoader.get() variants.This can be used to differentiate between a cached image loading and a network　image loading in order to, for example, run an animation to fade in network loaded images．大意是指：这个参数如果是true,表明listener被调用是通过ImageLoader.get(),可以用来被区别图片是来自缓存还是网络加载。比如说在加载网络图片时来做一个淡入动画。但是我目前没看出这个参数有什么具体的实际意义，如果大家有什么想法可以在留言中提出。</strong></p>
+<h3 id="Volley-NetworkImageView-图片加载分析"><a href="#Volley-NetworkImageView-图片加载分析" class="headerlink" title="Volley NetworkImageView 图片加载分析"></a>Volley NetworkImageView 图片加载分析</h3><p>对于第三种使用NetworkIMageView请求方式进行的图片加载,我们可以看到,在配置文件中配置后,却是使用ImageLoader进行加载的.在初始化NetworkImage后,设置好url就开始加载逻辑了。</p>
+<pre><code>public void setImageUrl(String url, ImageLoader imageLoader) {
+    mUrl = url;
+    mImageLoader = imageLoader;
+    // The URL has potentially changed. See if we need to load it.
+    loadImageIfNecessary(false);
+}
+</code></pre><p>调用loadImageIfNecessary()方法进行图片加载,而这个方法在NetworkImage中的onlayout中同样会调用代码如下所示(<strong>我没想明白有什么场景是需要在在onLayout的时候去加载图片的╮（╯▽╰）╭</strong>):</p>
+<pre><code>protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+      super.onLayout(changed, left, top, right, bottom);
+      loadImageIfNecessary(true);
+}
+</code></pre><p>下面分析loadImageIfNecessary方法,我们可以看到如果传入url为空,则调用setDefaultImageOrNull()方法设置默认图片,否则的话才会继续加载图片。</p>
+<pre><code> // if the URL to be loaded in this view is empty, cancel any old requests and clear the
+// currently loaded image.
+if (TextUtils.isEmpty(mUrl)) {
+    if (mImageContainer != null) {
+        mImageContainer.cancelRequest();
+        mImageContainer = null;
+    }
+    setDefaultImageOrNull();
+    return;
+}
+</code></pre><p>假如有相同的图片在加载，则会直接返回。否则的话，会将之前的那个Request取消，重新加载现有请求。</p>
+<pre><code>// if there was an old request in this view, check if it needs to be canceled.
+if (mImageContainer != null &amp;&amp; mImageContainer.getRequestUrl() != null) {
+    if (mImageContainer.getRequestUrl().equals(mUrl)) {
+        // if the request is from the same URL, return.
+        return;
+    } else {
+        // if there is a pre-existing request, cancel it if it&apos;s fetching a different URL.
+        mImageContainer.cancelRequest();
+        setDefaultImageOrNull();
+    }
+}
+</code></pre><p>最后，这些条件都不满足，则通过<code>mImageLoader.get()使用ImageLoader</code>进行请求加载，这样就进入了ImageLoader的加载逻辑。这里，我们也找到了上述疑惑的地方，在NetworkImageView中创建的ImageListener 回调中有如下逻辑：</p>
+<pre><code>public void onResponse(final ImageContainer response, boolean isImmediate) {
+    // If this was an immediate response that was delivered inside of a layout
+   // pass do not set the image immediately as it will trigger a requestLayout
+   // inside of a layout. Instead, defer setting the image by posting back to
+   // the main thread.
+  if (isImmediate &amp;&amp; isInLayoutPass) {
+      post(new Runnable() {
+          @Override
+          public void run() {
+               onResponse(response, false);
+         　}
+       });
+       return;
+ 　}
+   if (response.getBitmap() != null) {
+            setImageBitmap(response.getBitmap());
+   } else if (mDefaultImageId != 0) {
+            setImageResource(mDefaultImageId);
+    }
+}
+</code></pre><p><strong>对于这段中的逻辑理解不了╮（╯▽╰）╭，有朋友有思路可以留言解惑。</strong></p>
+<p>###结语<br>我们可以看出,ImageLoader对于图片逻辑的处理主要依赖于Request与RequestQueue框架,虽然整体使用较为繁琐，但是Volley对相关设置预留了扩展，总体来说如果使用Volley做网络库，但是又不想引入其他图片框架加大包体积的话，使用Volley来做图片加载也是一种不错的选择。</p>
+<p>对于网络请求缓存的源码分析已经更新，详情点击：</p>
+<ul>
+<li><a href="http://www.jianshu.com/p/dd81b0e692c7" target="_blank" rel="external">源码学习｜Volley 网络请求缓存策略源码分析</a></li>
+</ul>
+<p><em>PS:整体层次图，仅供参考，如果不足，欢迎指出</em>Ｏ（∩＿∩）Ｏ哈！</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1489253-bb68ac44e93c08e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片请求整体框架层次图"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://wizardiy.com/2016/09/29/Volley 网络库源码初探/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="寒石">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wizardiy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/09/29/Volley 网络库源码初探/" itemprop="url">Volley 网络库源码初探</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-29T17:41:56+08:00">
+                2016-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/源码分析/" itemprop="url" rel="index">
+                    <span itemprop="name">源码分析</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Volley是Google I/O 2013上发布的一个网络通信库，本文将基于Ａndroid N Frameworks层中的Volley源码对其基础实现进行分析。</p>
+<h3 id="Volley-框架介绍"><a href="#Volley-框架介绍" class="headerlink" title="Volley 框架介绍:"></a>Volley 框架介绍:</h3><p>在计算机网络发展中，诞生了两种经典的计算机网络参考模型： OSI 参考模型与 TCP/IP 参考模型，其中的分层如下所示：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">OSI 七层模型</th>
+<th style="text-align:center">TCP/IP 四层模型</th>
+<th style="text-align:center">传输的数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">应用层</td>
+<td style="text-align:center">应用层</td>
+<td style="text-align:center">数据</td>
+</tr>
+<tr>
+<td style="text-align:center">表示层</td>
+<td style="text-align:center">应用层</td>
+<td style="text-align:center">数据</td>
+</tr>
+<tr>
+<td style="text-align:center">会话层</td>
+<td style="text-align:center">应用层</td>
+<td style="text-align:center">数据</td>
+</tr>
+<tr>
+<td style="text-align:center">传输层</td>
+<td style="text-align:center">传输层</td>
+<td style="text-align:center">段</td>
+</tr>
+<tr>
+<td style="text-align:center">网络层</td>
+<td style="text-align:center">网际互联层</td>
+<td style="text-align:center">包</td>
+</tr>
+<tr>
+<td style="text-align:center">数据链路层</td>
+<td style="text-align:center">网络接入层</td>
+<td style="text-align:center">帧</td>
+</tr>
+<tr>
+<td style="text-align:center">物理层</td>
+<td style="text-align:center">网络接入层</td>
+<td style="text-align:center">比特流</td>
+</tr>
+</tbody>
+</table>
+<p>而目前　Android　开发中常提及的各种网络框架面向的网络层也是不同的，针对 TCP/IP 四层模型中，现在使用较多的 OKHttp ，HttpClient ，URLConnection 都是面向传输层的网络框架，而 Retrofit ， AsyncHttp ，Volley 则是依托于这些面向传输层的网络框架。其中 Retrofit 中默认采用 OKHttp 作为其网络传输层 ，AsyncHttp 则默认采用 HttpClient ，而 Volley 中对于 API Level 大于8的采用 URLConnection 作为网络传输层,而小于等于8的采用 HttpClient 作为网络传输层,同时它支持定义 OKHttp 作为其网络传输层。<strong>对于一些说 Volley 是基于 OKHttp 进行封装的网络库,个人认为这种说法其实并不准确。</strong></p>
+<h3 id="Volley-简单使用"><a href="#Volley-简单使用" class="headerlink" title="Volley 简单使用"></a>Volley 简单使用</h3><p>Volley 的使用大致分为三步:请求初始化、构建请求参数、设置请求回调、执行请求。如下所示是简单的 Volley 请求写法。</p>
+<pre><code>RequestQueue mQueue = Volley.newRequestQueue(context);  
+StringRequest stringRequest = new StringRequest(url,  
+                new Response.Listener&lt;String&gt;() {  
+                    @Override  
+                    public void onResponse(String response) {  
+                        Log.d(&quot;TAG&quot;, response);  
+                    }  
+                }, new Response.ErrorListener() {  
+                    @Override  
+                    public void onErrorResponse(VolleyError error) {  
+                        Log.e(&quot;TAG&quot;, error.getMessage(), error);  
+                    }  
+                });  
+mQueue.add(stringRequest);  
+</code></pre><h3 id="Volley-源码分析"><a href="#Volley-源码分析" class="headerlink" title="Volley 源码分析"></a>Volley 源码分析</h3><p>Android 7.0 源码中关于 Volley 的库位于 frameworks/volley 包下。现我们将按 Volley 的使用步骤进行源码的分析:</p>
+<h4 id="Volly-RequestQueue-的初始化"><a href="#Volly-RequestQueue-的初始化" class="headerlink" title="Volly RequestQueue 的初始化"></a>Volly RequestQueue 的初始化</h4><p>Volley 调用的 newRequestQueue 有两类构造方法:</p>
+<ul>
+<li>newRequestQueue(Context context)</li>
+<li>newRequestQueue(Context context, HttpStack stack)</li>
+</ul>
+<p>如果不选择传入 HttpStack ,则 Volley 将以传入 null 的形式调用后一方法。其具体实现如下所示:</p>
+<pre><code>File cacheDir = new File(context.getCacheDir(), DEFAULT_CACHE_DIR);
+String userAgent = &quot;volley/0&quot;;
+try {
+    String packageName = context.getPackageName();
+    PackageInfo info = context.getPackageManager().getPackageInfo(packageName, 0);
+    userAgent = packageName + &quot;/&quot; + info.versionCode;
+} catch (NameNotFoundException e) {
+}
+if (stack == null) {
+    if (Build.VERSION.SDK_INT &gt;= 9) {
+        stack = new HurlStack();
+    } else {
+        stack = new HttpClientStack(AndroidHttpClient.newInstance(userAgent));
+    }
+}
+Network network = new BasicNetwork(stack);
+RequestQueue queue = new RequestQueue(new DiskBasedCache(cacheDir), network);
+queue.start();
+</code></pre><p>我们可以看到,对于 stack 的处理:如果默认传入 HttpStack 的实例 stack 为空,则会根据 SDK API 版本选择不同的实现类.其中 HurlStack 与 HttpClientStack 都是 HttpStack 的实现类,从名称上以可以看的出来, HurlStack 是封装的 HttpURLConnection，而　HttpClientStack 是封装的 HttpClient。其具体的封装与请求使用我会在其他文章中进行详细分析。此处不再详述。</p>
+<p><em>BasicNetWork 是 Network 接口的实现类,其中接口的实现方法 performRequest(Request&lt;?&gt; request) 中会调用请求 Request 去真正执行网络请求。此处的 start() 方法只是调用 RequestQueue的start() 方法启动 CacheDispatcher 与 NetRequestDispatcher 两个请求转发线程,具体请参考后文的 RequestQueue 的 start 方法分析。</em></p>
+<h4 id="Volley-RequestQueue-的构造函数"><a href="#Volley-RequestQueue-的构造函数" class="headerlink" title="Volley RequestQueue 的构造函数"></a>Volley RequestQueue 的构造函数</h4><p>在 RequestQueue 中 start() 方法启动前,会调用 RequestQueue 构造方法进行初始化,将 NetWork 实现类和默认的缓存传入 RequestQueue 中,完成 RequestQueue 的初始化。其中最终调用的初始化方法如下所示:</p>
+<pre><code>public RequestQueue(Cache cache, Network network, int threadPoolSize,
+        ResponseDelivery delivery) {
+    mCache = cache;
+    mNetwork = network;
+    mDispatchers = new NetworkDispatcher[threadPoolSize];
+    mDelivery = delivery;
+}
+</code></pre><p>在构造方法中, RequestQueue 中对传入各部分的参数注释如下:</p>
+<ul>
+<li>cache A Cache to use for persisting responses to disk (Cache 是一个接口定义,默认使用DiskCache来持久化响应结果)</li>
+<li>network A Network interface for performing HTTP requests (Network 是一个接口定义,默认使用BasicNetwork来执行HTTP请求)</li>
+<li>threadPoolSize Number of network dispatcher threads to create (使用NetworkDispatcher数组定义执行器容器,默认容器最大容量为4)</li>
+<li>delivery A ResponseDelivery interface for posting responses and errors (请求结果转发接口,默认使用ExecutorDelivery转发结果)</li>
+</ul>
+<p>在构造函数之前的注释说明的更清楚一点: Creates the worker pool. Processing will not begin until {@link #start()} is called. 大意为创建工作池,但是在调用 start 方法之前,整个请求并不会真正开始工作。那么接下来我们便来分析 RequestQueue 的启动方法 start() 。</p>
+<h4 id="Volley-RequestQueue-的启动"><a href="#Volley-RequestQueue-的启动" class="headerlink" title="Volley RequestQueue 的启动"></a>Volley RequestQueue 的启动</h4><p>RequestQueue 中的 start() 方法中,会真正的开始执行一个请求队列,而在这之中, RequestQueue 又会引入二个新的类型,分别为: CacheDispatcher 与 NetworkDispatcher ,具体代码如下所示:</p>
+<pre><code>public void start() {
+    stop();  // Make sure any currently running dispatchers are stopped.
+    // Create the cache dispatcher and start it.
+    mCacheDispatcher = new CacheDispatcher(mCacheQueue, mNetworkQueue, mCache, mDelivery);
+    mCacheDispatcher.start();
+
+    // Create network dispatchers (and corresponding threads) up to the pool size.
+    for (int i = 0; i &lt; mDispatchers.length; i++) {
+        NetworkDispatcher networkDispatcher = new NetworkDispatcher(mNetworkQueue, mNetwork,
+                mCache, mDelivery);
+        mDispatchers[i] = networkDispatcher;
+        networkDispatcher.start();
+    }
+}
+</code></pre><p>在启动任务之前会调用 stop() 方法确保当前没有正在运行任务这个比较好理解,而接下来创建的 CacheDispatcher 从构造方法传参看,其中又多了一个未曾在前面出现过的 mCacheQueue , NetWorkDispatcher 也多了一个未曾在前面出现过的 mNetworkQueue。这两个集合类是在类变量声明时便进行初始化了:</p>
+<pre><code>private final PriorityBlockingQueue&lt;Request&lt;?&gt;&gt; mCacheQueue = new PriorityBlockingQueue&lt;Request&lt;?&gt;&gt;();
+private final PriorityBlockingQueue&lt;Request&lt;?&gt;&gt; mNetworkQueue = new PriorityBlockingQueue&lt;Request&lt;?&gt;&gt;();
+</code></pre><p>CacheDispatcher 继承自 Thread,从名称就可以看出,主要作用是管理缓存派发请求的。而 NetworkDispatcher 同样也继承自 Thread,是处理缓存未派发的请求的。当调用其 start() 方法后,线程便会启动。我会在其他文章中对它的缓存派发和请求管理进行详细分析。此处不再详述</p>
+<h4 id="Volley-构建-Request-请求与注册监听"><a href="#Volley-构建-Request-请求与注册监听" class="headerlink" title="Volley 构建 Request 请求与注册监听"></a>Volley 构建 Request 请求与注册监听</h4><p>在 Volley 对 RequestQueue 初始化完毕后,我们需要构建请求,来完成我们的网络请求.在简单使用的代码中,构建请求使用的是 StringRequest,它是抽象类 Request 的子类。Request 的子类请求还有 ImageRequest、JsonRequest。而 JsonRequest 是 JsonArrayRequest 与 JsonObjectRequest 的父类。</p>
+<p>对于 Request 类中,我们注意到,对于 Request 这个顶级父类,其监听只注册了一个 ErrorListener,而结果监听则交给其实现类去注册,如 StringRequest 的结果监听为 Listener<string> 、ImageRequest 的结果监听为 Listener<bitmap>、JsonArrayRequest注册的结果监听为 Listener<jsonarray>、JsonObjectRequest 注册的结果监听为 Listener<jsonobject>。而 JsonRequest 的结果监听却支持范型传入 Listener<t>。</t></jsonobject></jsonarray></bitmap></string></p>
+<p><strong>从这点来说,个人有些疑惑,既然支持范型定义,为何不直接在顶级父类定义封装,然后在子类中传入参数进行初始化使用呢? 从软件分层的角度来看,好像这样也更合理。希望对这个问题有想法的同学能提供些思路给我。</strong></p>
+<p>而对于不同的 Request 子类实现类,笔者会在以后对几种实现类进行详细分析。大致概括说来, Volley 会对请求结果进行解析封装,以对应的类型包装回调回来,其是由抽象类中的 deliverResponse() 返回,其代码如下所示:</p>
+<pre><code>@Override
+protected void deliverResponse(String response) {
+    mListener.onResponse(response);
+}
+</code></pre><p>而在 <strong>RequestQueue 的初始化</strong> 中我们说过, BasicNetWork 中的 performRequest() 方法是会去执行 Request 的网络请求,那它是要如何请求呢,这就需要我们将构建的请求与 ReqeustQueue 及其相关组件关联起来了,这就是我们下一步要介绍的 RequestQueue 的 add() 方法。</p>
+<h4 id="RequestQueue-添加-Request-请求"><a href="#RequestQueue-添加-Request-请求" class="headerlink" title="RequestQueue 添加 Request 请求"></a>RequestQueue 添加 Request 请求</h4><p>在使用对应的 Request 构建好网络请求后, RequestQueue 会调用其 add() 方法将构建的请求加入到请求队列中,其具体执行方法代码如下所示:</p>
+<pre><code>// If the request is uncacheable, skip the cache queue and go straight to the network.
+if (!request.shouldCache()) {
+    mNetworkQueue.add(request);
+    return request;
+}
+// Insert request into stage if there&apos;s already a request with the same cache key in flight.
+synchronized (mWaitingRequests) {
+    String cacheKey = request.getCacheKey();
+    if (mWaitingRequests.containsKey(cacheKey)) {
+        // There is already a request in flight. Queue up.
+        Queue&lt;Request&lt;?&gt;&gt; stagedRequests = mWaitingRequests.get(cacheKey);
+        if (stagedRequests == null) {
+            stagedRequests = new LinkedList&lt;Request&lt;?&gt;&gt;();
+        }
+        stagedRequests.add(request);
+        mWaitingRequests.put(cacheKey, stagedRequests);
+        if (VolleyLog.DEBUG) {
+            VolleyLog.v(&quot;Request for cacheKey=%s is in flight, putting on hold.&quot;, cacheKey);
+        }
+    } else {
+        // Insert &apos;null&apos; queue for this cacheKey, indicating there is now a request in
+        // flight.
+        mWaitingRequests.put(cacheKey, null);
+        mCacheQueue.add(request);
+    }
+    return request;
+}
+</code></pre><p>从代码中可以看到,如果 Request 不允许缓存的话, Request 直接加入到 NetWorkQueue 中就直接 return 了,而默认 request 是允许使用缓存的,当允许使用缓存时,如果 WaitingRequestsQueue 中没有相同的请求任务,则会将任务 key 加入到 waitingRquests 中,但是传入队列为空,然后将任务加入 CacheQueue 中。如果已经有同样的请求在运行,则会将新任务构建队列,加入到 WaitingRequest 中,但并不不执行。</p>
+<p>将 Request 加入到 CacheQueue 中后,我们留意到 CacheQueue 后续没有操作了,这个原因在于,CacheQueue 与前文中描述的 CacheDispatcher 耦合, CacheDispatcher 作为一个线程死循环,在 RequestQueue 中已经启动,它会不停的遍历 CacheQueue 中的 Request 请求。其部分主要代码如下所示:</p>
+<pre><code>// Attempt to retrieve this item from cache.
+Cache.Entry entry = mCache.get(request.getCacheKey());
+if (entry == null) {
+    request.addMarker(&quot;cache-miss&quot;);
+    // Cache miss; send off to the network dispatcher.
+    mNetworkQueue.put(request);
+    continue;
+}
+
+// If it is completely expired, just send it to the network.
+if (entry.isExpired()) {
+    request.addMarker(&quot;cache-hit-expired&quot;);
+    request.setCacheEntry(entry);
+    mNetworkQueue.put(request);
+    continue;
+}
+
+// We have a cache hit; parse its data for delivery back to the request.
+request.addMarker(&quot;cache-hit&quot;);
+Response&lt;?&gt; response = request.parseNetworkResponse(
+        new NetworkResponse(entry.data, entry.responseHeaders));
+request.addMarker(&quot;cache-hit-parsed&quot;);
+
+if (!entry.refreshNeeded()) {
+    // Completely unexpired cache hit. Just deliver the response.
+    mDelivery.postResponse(request, response);
+}
+</code></pre><p>如果缓存未命中或者缓存过期,则会调用 NetworkQueue 进行请求。如果缓存命中,则会直接调用 ResponseDelivery (默认为其实现类 ExecutorDelivery )进行结果分发。对于 NetworkQueue.post(Request) 的执行结果,最后会由 NetworkDispatcher 去执行,最后也会将执行结果通过 ResponseDelivery 调用 postResponse(reqeust, response) 将结果返回。</p>
+<p><strong>特别的对于 reponse 的结果 CacheDispatcher 和 NetworkDispathcer 都会调用 Request.ParseNetworkResponse() 方法来解析 Response 结果。这样处理的结果就是,在回调 listenter 中, Response 回调的就是已经处理过的类型,而不用再去做一次数据解析,相关示例会在对于图片请求源码分析中进行说明。</strong></p>
+<h4 id="Volley-Request-的请求回调"><a href="#Volley-Request-的请求回调" class="headerlink" title="Volley Request 的请求回调"></a>Volley Request 的请求回调</h4><p>在 ExecutorDelivery 调用 postResponse 方法后, ExecutorDelivery 将以 handler.post(runnable) 的形式来执行调用的 request 与 response ,其关键构建方法如下:</p>
+<pre><code>public ExecutorDelivery(final Handler handler) {
+    // Make an Executor that just wraps the handler.
+    mResponsePoster = new Executor() {
+        @Override
+        public void execute(Runnable command) {
+            handler.post(command);
+        }
+    };
+}
+</code></pre><p>其中,ExecutorDelivery 调用的 postResponse 方法中所执行的 Runnable 对象为内部类 ResponseDeliveryRunnable ,其执行工作主要是将结果回调到 Request 中,其关键代码如下所示:</p>
+<pre><code>// Deliver a normal response or error, depending.
+if (mResponse.isSuccess()) {
+    mRequest.deliverResponse(mResponse.result);
+} else {
+    mRequest.deliverError(mResponse.error);
+}
+</code></pre><p>在回调到 Request 中后,最后会通过祖册的 listener 将 result 回调回来,以 StringRequest 如下所示:</p>
+<pre><code>@Override
+protected void deliverResponse(String response) {
+    mListener.onResponse(response);
+}
+</code></pre><p>这样一个完整的 Volley 网络请求也就完成了。<em>最后附上一张简单的流程图,随着分析完善,图中缺失的部分也会慢慢补齐</em></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1489253-1b1a6b2aee03f6f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Volley 简单请求流程图"></p>
+<p><em>对于本文中的描述有什么疑问或者建议都可以留言提出,欢迎大家批评指导。O(∩_∩)O哈哈哈~</em></p>
+<blockquote>
+<p>对于Volley的初步源码分析我们也暂告一段落,在这篇文章中所遗留的Volley的异步图片加载支持、缓存策略、Request子类分类请求区别以及Volley采用OkHttp作为网络传输层等都会在后面文章继续分析。</p>
+</blockquote>
+<ul>
+<li>Volley 源码解析相关链接：</li>
+<li><a href="http://www.jianshu.com/p/2aa373c1c624" target="_blank" rel="external">Volley 图片加载源码分析</a></li>
+<li><a href="http://www.jianshu.com/p/dd81b0e692c7" target="_blank" rel="external">Volley 网络请求缓存策略源码分析</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="寒石" />
+          <p class="site-author-name" itemprop="name">寒石</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/rayGuoRay" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:guolei_ray@yeah.net" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope-o"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/e80ee485cfce" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jianshu.com" title="简书" target="_blank">简书</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.zhihu.com" title="知乎" target="_blank">知乎</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">寒石</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
