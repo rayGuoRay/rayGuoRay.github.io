@@ -4,7 +4,7 @@
 
 # Site
 title: Wizardiy
-subtitle: 寒石の个人博客
+subtitle: Wizardiy-Hexo搭建的寒石の博客
 description:
 author: 寒石
 language: zh-Hans
@@ -70,9 +70,11 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: https://github.com/rayGuoRay/rayGuoRay.github.io.git
-  branch: master
+  - type: git
+    repo: https://github.com/rayGuoRay/rayGuoRay.github.io.git
+    branch: master
+  - type: baidu_url_submitter
+
 
 # SiteMap for easily to find us
 sitemap:
@@ -80,3 +82,10 @@ sitemap:
 # BaiduSiteMap for easily to find us
 baidusitemap:
   path: baidusitemap.xml
+
+# BaiduSiteMap Push
+baidu_url_submit:
+  count: 1
+  host: wizardiy.com
+  token: Q4FBUn2uRhyQ0YuG
+  path: baidu_urls.txt
