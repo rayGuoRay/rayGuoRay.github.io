@@ -2,7 +2,7 @@
 title: Git 服务器搭建与 Python 建站环境搭建
 date: 2016-08-23 23:47:56
 categories: 工作总结
-tags: [Android, Git，Python]
+tags: [Android, Git, Python]
 keywords: Android, Git，Python
 comments: true
 ---
