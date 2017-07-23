@@ -31,28 +31,6 @@
 
     
   <url>
-    <loc>http://wizardiy.com/2016/09/02/DownloadManager%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</loc>
-    <lastmod>2017-07-17T15:51:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>Android N DownloadManager 源码分析</title>
-        <pubTime>2016-09-02T14:18:56.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-        <tag>DownloadManager</tag>
-         
-         
-           
-             
-              <breadCrumb title="源码分析" url="http://wizardiy.com/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://wizardiy.com/2016/08/23/Git%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E4%B8%8EPython%E5%BB%BA%E7%AB%99%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
     <lastmod>2017-07-17T15:51:00.000Z</lastmod>
     <data>
@@ -97,16 +75,16 @@
 
     
   <url>
-    <loc>http://wizardiy.com/2016/06/18/Handler%20%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
+    <loc>http://wizardiy.com/2016/09/02/DownloadManager%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</loc>
     <lastmod>2017-07-17T15:51:00.000Z</lastmod>
     <data>
         <display>
-        <title>Handler 消息机制源码分析（二）</title>
-        <pubTime>2016-06-18T09:16:56.000Z</pubTime>
+        <title>Android N DownloadManager 源码分析</title>
+        <pubTime>2016-09-02T14:18:56.000Z</pubTime>
         
         <tag>Android</tag>
          
-        <tag>Handler</tag>
+        <tag>DownloadManager</tag>
          
          
            
@@ -125,6 +103,28 @@
         <display>
         <title>Handler 消息机制源码分析（三）</title>
         <pubTime>2016-08-18T11:34:56.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Handler</tag>
+         
+         
+           
+             
+              <breadCrumb title="源码分析" url="http://wizardiy.com/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://wizardiy.com/2016/06/18/Handler%20%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/</loc>
+    <lastmod>2017-07-17T15:51:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Handler 消息机制源码分析（二）</title>
+        <pubTime>2016-06-18T09:16:56.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -187,12 +187,12 @@
 
     
   <url>
-    <loc>http://wizardiy.com/2017/02/07/Volley%20%E8%AF%B7%E6%B1%82%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</loc>
+    <loc>http://wizardiy.com/2016/10/25/Volley%20%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</loc>
     <lastmod>2017-07-17T15:51:00.000Z</lastmod>
     <data>
         <display>
-        <title>Volley 网络请求缓存策略源码分析</title>
-        <pubTime>2017-02-07T03:37:56.000Z</pubTime>
+        <title>Volley 图片加载源码分析</title>
+        <pubTime>2016-10-25T11:15:56.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -329,12 +329,12 @@
 
     
   <url>
-    <loc>http://wizardiy.com/2016/10/25/Volley%20%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</loc>
+    <loc>http://wizardiy.com/2017/02/07/Volley%20%E8%AF%B7%E6%B1%82%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</loc>
     <lastmod>2017-07-17T15:51:00.000Z</lastmod>
     <data>
         <display>
-        <title>Volley 图片加载源码分析</title>
-        <pubTime>2016-10-25T11:15:56.000Z</pubTime>
+        <title>Volley 网络请求缓存策略源码分析</title>
+        <pubTime>2017-02-07T03:37:56.000Z</pubTime>
         
         <tag>Android</tag>
          
