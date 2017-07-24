@@ -100,6 +100,7 @@
 <meta property="og:url" content="http://wizardiy.com/2016/11/18/创建文件系统结构的三种实现/index.html">
 <meta property="og:site_name" content="Wizardiy">
 <meta property="og:description" content="最近在做关于压缩文件预览的需求，涉及到对于文件系统的目录结构进行简单的模拟。在实现过程中，尝试了三种实现方式，下文对三种实现方式做详细说明。  使用递归构建文件二叉树结构 最初的思路是：每次从输入流中读入一个结点，判断根据结点的路径名判断，如果是其子节点，则放入结点的右子树。如果是其同级结点，则放入其左子树中。（与上学时学的数据结构中多叉树转二叉树的区别在于：书上实现要求左孩子，右兄弟，我的实现是">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1489253-f5d22bd0210e9a34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1489253-c64505e62acc48eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:updated_time" content="2017-07-17T15:51:00.000Z">
@@ -724,7 +725,7 @@ for (Map.Entry&lt;String, FileItem&gt; entrySource : nodeMap.entrySet()) {
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

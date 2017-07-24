@@ -100,6 +100,7 @@
 <meta property="og:url" content="http://wizardiy.com/2017/03/10/Android 关于 onKeyUp 方法回调不执行的问题分析/index.html">
 <meta property="og:site_name" content="Wizardiy">
 <meta property="og:description" content="前段时间在修改一个关于按键事件点击的bug,让猿对Android的事件传递有了更深的了解,现在分享出来给大家。 需求描述当页面中ListView处于选择态时,当第一次点击Back键需要将ListView的选择态清除,点击第二次Back键时,页面才关闭退出。 需求实现在页面Activity中重写了onBackPressed()方法,ListView中重写了View的onKeyUp方法,当ListVi">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-07-17T15:51:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 关于 onKeyUp 方法回调不执行的问题分析">
@@ -605,7 +606,7 @@ public boolean dispatchKeyEvent(KeyEvent event) {
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
