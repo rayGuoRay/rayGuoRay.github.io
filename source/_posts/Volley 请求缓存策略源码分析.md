@@ -5,7 +5,7 @@ categories: 源码分析
 tags: [Android, Volley]
 keywords: Android, Volley
 comments: true
-description: 在前面两篇文章中,我们已经对 Volley 的简单使用和图片加载的源码进行了简单分析,在这篇文章中,我们将具体对 Volley 的网络缓存源码进行分析。
+description: 在前面两篇文章中,我们已经对 Volley 的简单使用和图片加载的源码进行了简单分析,在这篇文章中将对 Volley 的网络缓存源码进行分析。
 ---
 
 - [Volley 网络库源码初探](http://wizardiy.com/2016/09/29/Volley%20网络库源码初探/)

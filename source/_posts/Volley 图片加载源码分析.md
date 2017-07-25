@@ -5,7 +5,7 @@ categories: 源码分析
 tags: [Android, Volley]
 keywords: Android, Volley
 comments: true
-description: Volley 基于基础的网络请求框架封装了自己的图片请求框架，我们在《 Volley 网络库源码初探》这篇文章中已经对 Volley 的网络库工作流程做了进行了简单分析: Volley 中的图片加载方式总结起来有三种，分别为 ImageRequest、ImageLoader、NetworkImageView，这三种方式名称和使用方式各不相同，下面我们将通过每种加载方式的使用来对 Volley的图片的加载框架进行分析。
+description: Volley 基于基础的网络请求框架封装了自己的图片请求框架，Volley 中的图片加载方式总结起来有三种，分别为 ImageRequest、ImageLoader、NetworkImageView，这三种方式名称和使用方式各不相同，下面我们将通过每种加载方式的使用来对 Volley的图片的加载框架进行分析。
 ---
 
 Volley基于基础的网络请求框架封装了自己的图片请求框架，我们在上一篇中已经对Volley的网络库工作流程做了进行了简单分析:
