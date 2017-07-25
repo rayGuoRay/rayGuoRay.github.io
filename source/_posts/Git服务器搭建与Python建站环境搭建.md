@@ -5,6 +5,7 @@ categories: 工作总结
 tags: [Android, Git, Python]
 keywords: Android, Git，Python
 comments: true
+description: 猿最近折腾了个服务器，尝试着在阿里云的 Linux 主机上搭建一个 Git 服务器，特把搭建服务器的相关步骤及若干问题进行总结贡献出来供大家参考。
 ---
 
 搭建环境为阿里云 CenterOS 7.0 64位,

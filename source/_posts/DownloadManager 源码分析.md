@@ -5,10 +5,10 @@ categories: 源码分析
 tags: [Android, DownloadManager]
 keywords: Android, DownloadManager
 comments: true
+description: DownloadManager 是 Android 用系统服务的方式提供的用来优化处理长时间下载任务的工具。本文将基于 Android N 的源码进行分析。
 ---
 
-DownloadManager是Android用系统服务的方式提供的用来优化处理长时间下载任务的工具。
-本文将基于Ａndroid Ｎ的源码进行分析。
+DownloadManager 是 Android 用系统服务的方式提供的用来优化处理长时间下载任务的工具。本文将基于 Android N 的源码进行分析。
 
 ### DownloadManager的使用方式
     DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);

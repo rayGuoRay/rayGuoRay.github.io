@@ -5,6 +5,7 @@ categories: 工具分享
 tags: [Shell, JDK, Linux]
 keywords: Shell, JDK, Linux
 comments: true
+description: 猿最近在 Ubuntu 14.04.5 环境下搞 Android 代码编译，但是由于重复开窗口、切换分支、切换 JDK 版本，要重复敲很多命令。深感不便，于是自己参考网上的语法，写了个简单脚本，现在share给大家，希望大家喜欢（＊＠ο＠＊）　哇～。
 ---
 
 猿最近在Ubuntu 14.04.5环境下搞Android代码编译，但是由于重复开窗口、切换分支、切换JDK版本，要重复敲很多命令。深感不便，于是自己参考网上的语法，写了个简单脚本，现在share给大家，希望大家喜欢（＊＠ο＠＊）　哇～。

@@ -5,12 +5,13 @@ categories: 源码分析
 tags: [Android, DownloadManager, JobSchedule]
 keywords: Android, DownloadManager, JobSchedule
 comments: true
+description: 在之前的文章中本猿曾介绍过 Android N DownloadManager 中已经采用了 JobSchedule 方式进行下载任务的调度,今天就开发过程中碰到的关于 JobSchedule 的一点小坑,总结出来供大家参考分析。
 ---
 
 在之前的文章中本猿曾介绍过 Android N DownloadManager 中已经采用了 JobSchedule 方式进行下载任务的调度,今天就开发过程中碰到的关于 JobSchedule 的一点小坑,总结出来供大家参考分析。
 
 想了解更多关于Android N中DownloadManager的源码分析请点击下文:
-- [源码学习｜Android N DownloadManager源码分析](http://www.jianshu.com/p/c9dc04af2f54)
+- [Android N DownloadManager源码分析](http://wizardiy.com/2016/09/02/DownloadManager%20源码分析/)
 
 ### 问题背景
 在项目中,项目采用基于源码修改的DownloadManager进行下载任务,而出于控制下载流量的考虑,会额外对网络访问权限进行一定的处理。目前主要修改点有两个:

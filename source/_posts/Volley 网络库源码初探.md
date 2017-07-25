@@ -5,9 +5,10 @@ categories: 源码分析
 tags: [Android, Volley]
 keywords: Android, Volley
 comments: true
+description: Volley 是 Google I/O 2013上发布的一个网络通信库，本文将基于 Android N Frameworks 层中的 Volley 源码对其基础实现进行分析。
 ---
 
-Volley是Google I/O 2013上发布的一个网络通信库，本文将基于Ａndroid N Frameworks层中的Volley源码对其基础实现进行分析。
+Volley 是 Google I/O 2013上发布的一个网络通信库，本文将基于 Android N Frameworks 层中的 Volley 源码对其基础实现进行分析。
 
 ### Volley 框架介绍:
 在计算机网络发展中，诞生了两种经典的计算机网络参考模型： OSI 参考模型与 TCP/IP 参考模型，其中的分层如下所示：

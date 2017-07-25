@@ -5,6 +5,7 @@ categories: 源码分析
 tags: [Android, Handler]
 keywords: Android, Handler
 comments: true
+description: 在前面两篇文章中我们介绍了 Hanlder 的构造方法与 Looper 的初始化。本篇中我们将对主线程 Looper 与 Handler 消息循环的工作方式进行分析。
 ---
 
 在前面两篇文章中我们介绍了 Hanlder 的构造方法与 Looper 的初始化。本篇中我们将对主线程 Looper 与 Handler 消息循环的工作方式进行分析。

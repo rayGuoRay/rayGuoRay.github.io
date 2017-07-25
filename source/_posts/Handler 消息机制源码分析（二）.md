@@ -5,9 +5,12 @@ categories: 源码分析
 tags: [Android, Handler]
 keywords: Android, Handler
 comments: true
+description: 在上一片文章中《Handler 消息机制源码分析（一）》中我们分析了 Handler 中创建 Handler ，并且会绑定 Looper 。这篇文章中我们将分析下 Looper 的工作方式。
 ---
 
-在上一片文章中[Handler 消息机制源码分析（一）](http://wizardiy.com/2016/06/17/Handler%20%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/)中我们分析到Handler在创建时会绑定一个 Looper 对象，而Looper 如果用户不进行显式传入，会在 Handler 中调用 Looper.myLooper() 来创建一个 Looper 对象。
+在上一片文章中[Handler 消息机制源码分析（一）](http://wizardiy.com/2016/06/17/Handler%20%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/)中我们分析了 Handler 中创建 Handler ，并且会绑定 Looper 。这篇文章中我们将分析下 Looper 的工作方式。
+
+Handler 在创建时会绑定一个 Looper 对象，而Looper 如果用户不进行显式传入，会在 Handler 中调用 Looper.myLooper() 来创建一个 Looper 对象。
 
 那什么是 Looper 呢？ Android 中对于 Looper 类的注释中是这样描述的：“Class used to run a message loop for a thread”。大概意思是指这个类是用来为一个线程做消息循环。而 Looper 类本身被声明为 final 类型的，同时它的构造方法也被声明为 final 类型。所以我们如果要获取其中的 Looper 实例或者使用 Looper 的方法需要使用其中提供的两种静态方法：
 

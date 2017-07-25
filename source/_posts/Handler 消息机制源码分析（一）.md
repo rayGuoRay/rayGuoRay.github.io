@@ -5,6 +5,7 @@ categories: 源码分析
 tags: [Android, Handler]
 keywords: Android, Handler
 comments: true
+description: 一直在用 Handler,但却一直因为不能准确表述其工作原理而耿耿于怀，现在正好有时间，自己决定初步梳理下。如果有整理不足或不准确的地方，请大家批评指正。
 ---
 
 一直在用 Handler,但却一直因为不能准确表述其工作原理而耿耿于怀，现在正好有时间，自己决定初步梳理下。如果有整理不足或不准确的地方，请大家批评指正。

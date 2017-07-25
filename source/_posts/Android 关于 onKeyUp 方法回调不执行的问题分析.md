@@ -5,9 +5,10 @@ categories: 工作总结
 tags: [Android, ListView, KeyEvent]
 keywords: Android, ListView, KeyEvent
 comments: true
+description: 我们大家都知道 Android 中事件有其传递机制，但是对于焦点( Focus )和按键事件，触摸事件之间的联系暂时还没有一个整体的认识。前段时间在修改一个关于按键事件点击的 Bug,让猿对 Android 的事件传递有了更深的了解,现在分享出来给大家。
 ---
 
-我们大家都知道 Android 中事件有其传递机制，但是对于焦点(Focus)和按键事件，触摸事件之间的联系暂时还没有一个整体的认识。前段时间在修改一个关于按键事件点击的 Bug,让猿对 Android 的事件传递有了更深的了解,现在分享出来给大家。<!--more-->
+我们大家都知道 Android 中事件有其传递机制，但是对于焦点(Focus)和按键事件，触摸事件之间的联系暂时还没有一个整体的认识。前段时间在修改一个关于按键事件点击的 Bug,让猿对 Android 的事件传递有了更深的了解,现在分享出来给大家。
 
 ### 需求描述
 当页面中ListView处于选择态时,当第一次点击Back键需要将ListView的选择态清除,点击第二次Back键时,页面才关闭退出。
