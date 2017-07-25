@@ -93,20 +93,20 @@
 
 
 
-<meta name="description" content="一直在用 Handler,但却一直因为不能准确表述其工作原理而耿耿于怀，现在正好有时间，自己决定初步梳理下。如果有整理不足或不准确的地方，请大家批评指正。 相信大家对于主线程中创建并使用 Handler 一点都不陌生了。如下图所示：（声明为 static 的静态类原因是避免 Handler 作为内部类，避免隐式持有外部引用导致的内存泄漏问题。）  或许大家也有碰到过类似于下面的声明方法:  Han">
+<meta name="description" content="一直在用 Handler,但却一直因为不能准确表述其工作原理而耿耿于怀，现在正好有时间，自己决定初步梳理下。如果有整理不足或不准确的地方，请大家批评指正。">
 <meta name="keywords" content="Android, Handler">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Handler 消息机制源码分析（一）">
 <meta property="og:url" content="http://wizardiy.com/2016/06/17/Handler 消息机制源码分析（一）/index.html">
 <meta property="og:site_name" content="Wizardiy">
-<meta property="og:description" content="一直在用 Handler,但却一直因为不能准确表述其工作原理而耿耿于怀，现在正好有时间，自己决定初步梳理下。如果有整理不足或不准确的地方，请大家批评指正。 相信大家对于主线程中创建并使用 Handler 一点都不陌生了。如下图所示：（声明为 static 的静态类原因是避免 Handler 作为内部类，避免隐式持有外部引用导致的内存泄漏问题。）  或许大家也有碰到过类似于下面的声明方法:  Han">
+<meta property="og:description" content="一直在用 Handler,但却一直因为不能准确表述其工作原理而耿耿于怀，现在正好有时间，自己决定初步梳理下。如果有整理不足或不准确的地方，请大家批评指正。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1489253-325849abb2712457.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1489253-bcbc1d99a5675e43.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-07-17T15:51:00.000Z">
+<meta property="og:updated_time" content="2017-07-25T14:21:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Handler 消息机制源码分析（一）">
-<meta name="twitter:description" content="一直在用 Handler,但却一直因为不能准确表述其工作原理而耿耿于怀，现在正好有时间，自己决定初步梳理下。如果有整理不足或不准确的地方，请大家批评指正。 相信大家对于主线程中创建并使用 Handler 一点都不陌生了。如下图所示：（声明为 static 的静态类原因是避免 Handler 作为内部类，避免隐式持有外部引用导致的内存泄漏问题。）  或许大家也有碰到过类似于下面的声明方法:  Han">
+<meta name="twitter:description" content="一直在用 Handler,但却一直因为不能准确表述其工作原理而耿耿于怀，现在正好有时间，自己决定初步梳理下。如果有整理不足或不准确的地方，请大家批评指正。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1489253-325849abb2712457.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -364,6 +364,10 @@
 
           
 
+          
+              <div class="post-description">
+                  一直在用 Handler,但却一直因为不能准确表述其工作原理而耿耿于怀，现在正好有时间，自己决定初步梳理下。如果有整理不足或不准确的地方，请大家批评指正。
+              </div>
           
 
         </div>

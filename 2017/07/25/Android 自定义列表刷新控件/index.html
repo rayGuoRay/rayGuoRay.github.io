@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android, Git，Python" />
+  <meta name="keywords" content="Android, RecyclerView, PullToRefresh, EasyRefreshView" />
 
 
 
@@ -93,18 +93,20 @@
 
 
 
-<meta name="description" content="猿最近折腾了个服务器，尝试着在阿里云的 Linux 主机上搭建一个 Git 服务器，特把搭建服务器的相关步骤及若干问题进行总结贡献出来供大家参考。">
-<meta name="keywords" content="Android, Git，Python">
+<meta name="description" content="Android 中上拉加载和下拉刷新都是很常用的控件，所以在 Android 后续版本中提供了 PullToRefresh 这个控件，以方便开发者很便捷的集成下拉刷新功能。而对于上拉加载功能，仍然需要开发者自己监听 ListView 或者 RecyclerView 滑动状态来实现自己的上拉加载功能。因此在最近猿最近基于 PullToRefresh 与 RecyclerView 自己试做了一个控件：">
+<meta name="keywords" content="Android, RecyclerView, PullToRefresh, EasyRefreshView">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 服务器搭建与 Python 建站环境搭建">
-<meta property="og:url" content="http://wizardiy.com/2016/08/23/Git服务器搭建与Python建站环境搭建/index.html">
+<meta property="og:title" content="Android 列表刷新控件 EasyRefreshView">
+<meta property="og:url" content="http://wizardiy.com/2017/07/25/Android 自定义列表刷新控件/index.html">
 <meta property="og:site_name" content="Wizardiy">
-<meta property="og:description" content="猿最近折腾了个服务器，尝试着在阿里云的 Linux 主机上搭建一个 Git 服务器，特把搭建服务器的相关步骤及若干问题进行总结贡献出来供大家参考。">
+<meta property="og:description" content="Android 中上拉加载和下拉刷新都是很常用的控件，所以在 Android 后续版本中提供了 PullToRefresh 这个控件，以方便开发者很便捷的集成下拉刷新功能。而对于上拉加载功能，仍然需要开发者自己监听 ListView 或者 RecyclerView 滑动状态来实现自己的上拉加载功能。因此在最近猿最近基于 PullToRefresh 与 RecyclerView 自己试做了一个控件：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-25T14:11:34.000Z">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1489253-0220580c36c04f7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-07-25T13:48:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git 服务器搭建与 Python 建站环境搭建">
-<meta name="twitter:description" content="猿最近折腾了个服务器，尝试着在阿里云的 Linux 主机上搭建一个 Git 服务器，特把搭建服务器的相关步骤及若干问题进行总结贡献出来供大家参考。">
+<meta name="twitter:title" content="Android 列表刷新控件 EasyRefreshView">
+<meta name="twitter:description" content="Android 中上拉加载和下拉刷新都是很常用的控件，所以在 Android 后续版本中提供了 PullToRefresh 这个控件，以方便开发者很便捷的集成下拉刷新功能。而对于上拉加载功能，仍然需要开发者自己监听 ListView 或者 RecyclerView 滑动状态来实现自己的上拉加载功能。因此在最近猿最近基于 PullToRefresh 与 RecyclerView 自己试做了一个控件：">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1489253-0220580c36c04f7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -132,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://wizardiy.com/2016/08/23/Git服务器搭建与Python建站环境搭建/"/>
+  <link rel="canonical" href="http://wizardiy.com/2017/07/25/Android 自定义列表刷新控件/"/>
 
 
 
 
 
-  <title>Git 服务器搭建与 Python 建站环境搭建 | Wizardiy</title>
+  <title>Android 列表刷新控件 EasyRefreshView | Wizardiy</title>
   
 
 
@@ -287,7 +289,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://wizardiy.com/2016/08/23/Git服务器搭建与Python建站环境搭建/">
+    <link itemprop="mainEntityOfPage" href="http://wizardiy.com/2017/07/25/Android 自定义列表刷新控件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="寒石">
@@ -304,7 +306,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Git 服务器搭建与 Python 建站环境搭建</h2>
+          <h2 class="post-title" itemprop="name headline">Android 列表刷新控件 EasyRefreshView</h2>
         
 
         <div class="post-meta">
@@ -316,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-23T23:47:56+08:00">
-                2016-08-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-25T21:41:37+08:00">
+                2017-07-25
               </time>
             
 
@@ -339,8 +341,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工作总结/" itemprop="url" rel="index">
-                    <span itemprop="name">工作总结</span>
+                  <a href="/categories/工具分享/" itemprop="url" rel="index">
+                    <span itemprop="name">工具分享</span>
                   </a>
                 </span>
 
@@ -363,7 +365,7 @@
 
           
               <div class="post-description">
-                  猿最近折腾了个服务器，尝试着在阿里云的 Linux 主机上搭建一个 Git 服务器，特把搭建服务器的相关步骤及若干问题进行总结贡献出来供大家参考。
+                  Android 中上拉加载和下拉刷新都是很常用的控件，所以在 Android 后续版本中提供了 PullToRefresh 这个控件，以方便开发者很便捷的集成下拉刷新功能。而对于上拉加载功能，仍然需要开发者自己监听 ListView 或者 RecyclerView 滑动状态来实现自己的上拉加载功能。因此在最近猿最近基于 PullToRefresh 与 RecyclerView 自己试做了一个控件：EasyRefreshView，来方便开发者集成相关功能。
               </div>
           
 
@@ -377,41 +379,51 @@
       
 
       
-        <p>搭建环境为阿里云 CenterOS 7.0 64位,<br>Git服务器自带版本号为 1.8.3.1</p>
-<h3 id="Git服务器搭建与配置"><a href="#Git服务器搭建与配置" class="headerlink" title="Git服务器搭建与配置"></a>Git服务器搭建与配置</h3><ol>
-<li>创建Git管理员账号并设置密码：<br><code>useradd -m git</code><br><code>passwd git</code><br><em>执行此步操作后，系统会在会在/Home/下创建一个以用户名命名的文件夹</em><br><em>删除用户的命令为<code>userdel username</code></em><br><em>删除组的命令为<code>groupdel groupname</code></em></li>
-<li>导入客户端生成的SSH公钥文件：<br>服务端在/Home/git目录下创建.ssh文件夹，创建出来的文件夹是隐藏文件，注意使用ls命令是无法查看的，在.ssh文件夹下创建authorized_keys文件，将客户端生成的公钥文件(.pub文件)内容导入文件中。<br><em>客户端生成SSH公钥方法请参考<a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/" target="_blank" rel="external">Generating a new SSH key and adding it to the ssh-agent</a></em><br><em>客户端如果生成有多个SSH Key, 请本地配置config文件</em></li>
-<li>禁止git账号的SSH登录：<br>修改 /etc/passwd 文件中git账号的配置。如果有 /bin/bash 修改为 /usr/bin/git-shell，否则增加此配置。</li>
-<li>修改SSH认证配置文件:<br>命令行中执行<code>vi /etc/ssh/sshd_config</code>，将配置文件中的<br><code>RSAAuthentication yes</code><br><code>PubkeyAuthentication yes</code><br>这两个选项的注释打开。</li>
-<li>初始化Git仓库：<br>在/home/git/目录下创建repositories目录，同时修改权限。<br><code>sudo mkdir /home/git/repositories</code><br><code>sudo chown git:git /home/git/repositories</code><br><code>chmod 700 /home/git/repositories</code><br>在repositories目录创建git仓库，并同时初始化。<br><code>cd /home/git/repositories/</code><br><code>mkdir mytest.git</code><br><code>sudo chown git:git mytest.git/</code><br><code>cd mytest.git/</code><br><code>git init --bare</code><br>至此，整个Git服务器搭建工作完成。</li>
-<li>若干可能遇到的问题说明：<ul>
-<li>使用SSH登录如果提示此异常：fatal: Interactive git shell is not enabled. hint: ~/git-shell-commands should exist and have read and execute access.<br>解决方法如下：<br><code>cp /usr/share/doc/git/contrib/git-shell-commands /home/git -R</code><br><code>chown git:git /home/git/git-shell-commands/ -R</code></li>
-<li>如果使用SSH登录进入，显示结果为：Run ‘help’ for help, or ‘exit’ to leave.  Available commands:<br>list<br><a href="https://git-scm.com/docs/git-shell" target="_blank" rel="external">参考文档</a>解决方法如下：<br>基于上一步操作，<br><code>vi /home/git/git-shell-commands/no-interactive-login</code><br><code>cat &gt;/home/git/git-shell-commands/no-interactive-login &lt;&lt;\EOF</code><br>输入：<code>printf &#39;%s\n&#39; &quot;Hi $USER! You&#39;ve successfully authenticated, but I do not&quot;</code><br>输入：<code>printf &#39;%s\n&#39; &quot;provide interactive shell access.&quot;</code><br>输入：<code>exit 128</code><br><code>EOF</code><br><code>chmod +x /home/git/git-shell-commands/no-interactive-login</code></li>
-<li>如果在创建仓库后，发现客户端提交异常：remote: error: insufficient permission for adding an object to repository database ./objects<br>remote: fatal: failed to write object<br>error: unpack failed: unpack-objects abnormal exit<br>请修改仓库读写权限如下：<br><code>sudo chown -R git:git mytest.git</code></li>
-<li>如果第一次提交时提示异常：No refs in common and none specified; doing nothing.<br>Perhaps you should specify a branch such as ‘master’.<br>请使用如下的提交命令：<br><code>git push --set-upstream origin master</code></li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="Nginx安装："><a href="#Nginx安装：" class="headerlink" title="Nginx安装："></a>Nginx安装：</h3><ol>
-<li>下载对应版本的nginx包<br><code># wget http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</code></li>
-<li>建立nginx的yum仓库<br><code># rpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpm</code></li>
-<li>下载并安装nginx<br><code># yum install nginx</code></li>
-<li>启动nginx服务<br><code>systemctl start nginx</code></li>
-<li>测试<br>在浏览器地址栏中输入部署nginx环境的机器的IP，如果一切正常，应该能看到”Welcome to nginx!”字样的内容。</li>
-</ol>
-<h3 id="Django-安装"><a href="#Django-安装" class="headerlink" title="Django 安装"></a>Django 安装</h3><ol>
-<li>首先安装pip包管理工具：<br><code>wget https://bootstrap.pypa.io/get-pip.py</code><br><code>python get-pip.py</code></li>
-<li>使用pip安装django:<br><code>pip install django＝＝1.7</code></li>
-<li>安装后检测是否安装完成：<br><code>python</code><br><code>python install django｀</code>django.get_version()｀<br>输出1.7，证明安装成功。</li>
-</ol>
-<h3 id="GUnicorn安装"><a href="#GUnicorn安装" class="headerlink" title="GUnicorn安装"></a>GUnicorn安装</h3><p><a href="http://docs.gunicorn.org/en/latest/install.html" target="_blank" rel="external">参考文档</a>使用<code>pip install unicorn</code>,全部安装完成</p>
-<h3 id="MySQL安装："><a href="#MySQL安装：" class="headerlink" title="MySQL安装："></a>MySQL安装：</h3><p>在CenterOS 7.0中的yum源没有mysql-server,所以我们采用如下方式安装：<br><code># wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</code><br><code># rpm -ivh mysql-community-release-el7-5.noarch.rpm</code><br><code># yum install mysql-community-server</code><br>成功安装之后重启mysql服务<br><code># service mysqld restart</code></p>
-<h3 id="MySQLdb-模块依赖安装："><a href="#MySQLdb-模块依赖安装：" class="headerlink" title="MySQLdb 模块依赖安装："></a>MySQLdb 模块依赖安装：</h3><p>直接尝试运行python项目报错缺少MySQLdb，使用yum安装<br><code>yum install MySQL-python -y</code><br><em>尝试使用pip安装，但是安装失败。如果有成功的同学欢迎分享经验。</em></p>
-<p><em>PS:昨天服务器刚刚搭好，今天阿里云就报警说服务器被黑了，看后台是用git用户登录的。原来git配置时考虑文件权限读取，本来还把git用户sudoers文件中的。后来格完盘考虑到安全性就没在加了。附上操作：<br><code>visudo</code>在<code>root ALL=(ALL)ALL</code>下面一行添加 <code>git ALL=(ALL)ALL</code></em></p>
-<blockquote>
-<p>如果有建站经验丰富的同学，欢迎砸砖留言指导：）</p>
-</blockquote>
+        <p>Android 中上拉加载和下拉刷新都是很常用的控件，所以在 Android 后续版本中提供了 PullToRefresh 这个控件，以方便开发者很便捷的集成下拉刷新功能。而对于上拉加载功能，仍然需要开发者自己监听 ListView 或者 RecyclerView 滑动状态来实现自己的上拉加载功能。因此在最近猿最近基于 PullToRefresh 与 RecyclerView 自己试做了一个控件：EasyRefreshView，来方便开发者集成相关功能。</p>
+<h3 id="控件截图"><a href="#控件截图" class="headerlink" title="控件截图"></a>控件截图</h3><p><img src="http://upload-images.jianshu.io/upload_images/1489253-0220580c36c04f7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h3><p>1、AndroidStudio 集成方法</p>
+<pre><code>compile &apos;com.ray.easyrefreshview:easy-refresh-view:0.5.9&apos;
+</code></pre><p>2、Layout 布局文件声明</p>
+<pre><code>&lt;com.ray.easyrefreshview.EasyRefreshView
+    android:id=&quot;@+id/user_elv&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    easyrefreshview:layoutType=&quot;linear&quot;
+    easyrefreshview:normalLayout=&quot;@layout/item_normal&quot;
+    easyrefreshview:loadingLayout=&quot;@layout/foot_loading&quot;
+    easyrefreshview:nomoreLayout=&quot;@layout/foot_loading_nomore_data&quot;
+    easyrefreshview:errorLayout=&quot;@layout/foot_loading_error&quot;/&gt;
+</code></pre><p>控件支持用户自定义相关 Item Layout ，分别是正常显示状态、等待显示状态、无更多数据状态、加载错误状态，集成者可以在 bindAdapter 中的 onCreate 回调方法中去创建对应 layout 的 Holder，并在 onBind 回调方法对相应的 View 进行操作。</p>
+<p>3、控件绑定 Adapter 并自定义相关 ViewHolder</p>
+<pre><code>easyRefreshView.bindAdapter(new EasyRefreshHolderCallBack() {
+    @Override
+    public RecyclerView.ViewHolder onCreateNormal(View view) {
+        //return new NormalHolder(view);
+    }
+
+    @Override
+    public void onBindNormal(RecyclerView.ViewHolder holder, int position) {
+        super.onBindNormal(holder, position);
+        //todo
+    }
+});
+</code></pre><p>4、 控件滑动到顶部和底部的两种回调</p>
+<p>当列表滑动到顶部和底部时，分别会有 onTopLoadStarted 与 onBottomLoadStarted 回调触发，继承者可以在这两个回调中进行下拉加载与上拉刷新进行数据更新。</p>
+<pre><code>public void onTopLoadStarted() {
+    list.clear();
+    startRxLoad(0);
+}
+
+public void onBottomLoadStarted(int position) {
+    if (position &gt;= mTotalCount) {
+        erv.setFootViewState(EasyRefreshAdapter.FOOT_STATE_LOAD_NOMORE);
+        return;
+    }
+    erv.setFootViewState(EasyRefreshAdapter.FOOT_STATE_LOADING);
+    startRxLoad(position + 1);
+}
+</code></pre><p>目前控件已开源至GitHub(<a href="https://github.com/rayGuoRay/RssMovie" target="_blank" rel="external">相关链接</a>) , 相关 Demo 使用数据来源豆瓣电影开放 API ,使用 Retrofit2 进行网络请求，并利用RxJava 对进行了部分逻辑处理，欢迎 Fork 和 Star ，如果有改进意见也可以提给猿，猿会在后续版本中加以改进。</p>
+<p>O(∩_∩)O谢谢</p>
 
       
     </div>
@@ -469,9 +481,11 @@
           
             <a href="/tags/Android/" rel="tag"><i class="fa fa-tags"></i> Android</a>
           
-            <a href="/tags/Git/" rel="tag"><i class="fa fa-tags"></i> Git</a>
+            <a href="/tags/RecyclerView/" rel="tag"><i class="fa fa-tags"></i> RecyclerView</a>
           
-            <a href="/tags/Python/" rel="tag"><i class="fa fa-tags"></i> Python</a>
+            <a href="/tags/PullToRefresh/" rel="tag"><i class="fa fa-tags"></i> PullToRefresh</a>
+          
+            <a href="/tags/EasyRefreshView/" rel="tag"><i class="fa fa-tags"></i> EasyRefreshView</a>
           
         </div>
       
@@ -484,8 +498,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/18/Handler 消息机制源码分析（三）/" rel="next" title="Handler 消息机制源码分析（三）">
-                <i class="fa fa-chevron-left"></i> Handler 消息机制源码分析（三）
+              <a href="/2017/03/10/Android 关于 onKeyUp 方法回调不执行的问题分析/" rel="next" title="Android 关于 onKeyUp 方法回调不执行的问题分析">
+                <i class="fa fa-chevron-left"></i> Android 关于 onKeyUp 方法回调不执行的问题分析
               </a>
             
           </div>
@@ -493,10 +507,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/02/DownloadManager 源码分析/" rel="prev" title="Android N DownloadManager 源码分析">
-                Android N DownloadManager 源码分析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -700,7 +710,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git服务器搭建与配置"><span class="nav-number">1.</span> <span class="nav-text">Git服务器搭建与配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx安装："><span class="nav-number">2.</span> <span class="nav-text">Nginx安装：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Django-安装"><span class="nav-number">3.</span> <span class="nav-text">Django 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GUnicorn安装"><span class="nav-number">4.</span> <span class="nav-text">GUnicorn安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL安装："><span class="nav-number">5.</span> <span class="nav-text">MySQL安装：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQLdb-模块依赖安装："><span class="nav-number">6.</span> <span class="nav-text">MySQLdb 模块依赖安装：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#控件截图"><span class="nav-number">1.</span> <span class="nav-text">控件截图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用说明"><span class="nav-number">2.</span> <span class="nav-text">使用说明</span></a></li></ol></div>
             
 
           </div>

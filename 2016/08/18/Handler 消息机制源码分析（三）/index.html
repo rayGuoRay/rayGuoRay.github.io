@@ -93,18 +93,18 @@
 
 
 
-<meta name="description" content="在前面两篇文章中我们介绍了 Hanlder 的构造方法与 Looper 的初始化。本篇中我们将对主线程 Looper 与 Handler 消息循环的工作方式进行分析。 前文链接如下所示  《Handler 消息机制源码分析（一）》 《Handler 消息机制源码分析（二）》  主线程的Looper初始化主线程的 looper 的初始化是在 Looper.prepareMainLooper 中进行初">
+<meta name="description" content="在前面两篇文章中我们介绍了 Hanlder 的构造方法与 Looper 的初始化。本篇中我们将对主线程 Looper 与 Handler 消息循环的工作方式进行分析。">
 <meta name="keywords" content="Android, Handler">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Handler 消息机制源码分析（三）">
 <meta property="og:url" content="http://wizardiy.com/2016/08/18/Handler 消息机制源码分析（三）/index.html">
 <meta property="og:site_name" content="Wizardiy">
-<meta property="og:description" content="在前面两篇文章中我们介绍了 Hanlder 的构造方法与 Looper 的初始化。本篇中我们将对主线程 Looper 与 Handler 消息循环的工作方式进行分析。 前文链接如下所示  《Handler 消息机制源码分析（一）》 《Handler 消息机制源码分析（二）》  主线程的Looper初始化主线程的 looper 的初始化是在 Looper.prepareMainLooper 中进行初">
+<meta property="og:description" content="在前面两篇文章中我们介绍了 Hanlder 的构造方法与 Looper 的初始化。本篇中我们将对主线程 Looper 与 Handler 消息循环的工作方式进行分析。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-17T15:51:00.000Z">
+<meta property="og:updated_time" content="2017-07-25T14:12:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Handler 消息机制源码分析（三）">
-<meta name="twitter:description" content="在前面两篇文章中我们介绍了 Hanlder 的构造方法与 Looper 的初始化。本篇中我们将对主线程 Looper 与 Handler 消息循环的工作方式进行分析。 前文链接如下所示  《Handler 消息机制源码分析（一）》 《Handler 消息机制源码分析（二）》  主线程的Looper初始化主线程的 looper 的初始化是在 Looper.prepareMainLooper 中进行初">
+<meta name="twitter:description" content="在前面两篇文章中我们介绍了 Hanlder 的构造方法与 Looper 的初始化。本篇中我们将对主线程 Looper 与 Handler 消息循环的工作方式进行分析。">
 
 
 
@@ -361,6 +361,10 @@
 
           
 
+          
+              <div class="post-description">
+                  在前面两篇文章中我们介绍了 Hanlder 的构造方法与 Looper 的初始化。本篇中我们将对主线程 Looper 与 Handler 消息循环的工作方式进行分析。
+              </div>
           
 
         </div>

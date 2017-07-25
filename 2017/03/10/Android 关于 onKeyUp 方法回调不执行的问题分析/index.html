@@ -93,18 +93,18 @@
 
 
 
-<meta name="description" content="前段时间在修改一个关于按键事件点击的bug,让猿对Android的事件传递有了更深的了解,现在分享出来给大家。 需求描述当页面中ListView处于选择态时,当第一次点击Back键需要将ListView的选择态清除,点击第二次Back键时,页面才关闭退出。 需求实现在页面Activity中重写了onBackPressed()方法,ListView中重写了View的onKeyUp方法,当ListVi">
+<meta name="description" content="我们大家都知道 Android 中事件有其传递机制，但是对于焦点( Focus )和按键事件，触摸事件之间的联系暂时还没有一个整体的认识。前段时间在修改一个关于按键事件点击的 Bug,让猿对 Android 的事件传递有了更深的了解,现在分享出来给大家。">
 <meta name="keywords" content="Android, ListView, KeyEvent">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 关于 onKeyUp 方法回调不执行的问题分析">
 <meta property="og:url" content="http://wizardiy.com/2017/03/10/Android 关于 onKeyUp 方法回调不执行的问题分析/index.html">
 <meta property="og:site_name" content="Wizardiy">
-<meta property="og:description" content="前段时间在修改一个关于按键事件点击的bug,让猿对Android的事件传递有了更深的了解,现在分享出来给大家。 需求描述当页面中ListView处于选择态时,当第一次点击Back键需要将ListView的选择态清除,点击第二次Back键时,页面才关闭退出。 需求实现在页面Activity中重写了onBackPressed()方法,ListView中重写了View的onKeyUp方法,当ListVi">
+<meta property="og:description" content="我们大家都知道 Android 中事件有其传递机制，但是对于焦点( Focus )和按键事件，触摸事件之间的联系暂时还没有一个整体的认识。前段时间在修改一个关于按键事件点击的 Bug,让猿对 Android 的事件传递有了更深的了解,现在分享出来给大家。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-17T15:51:00.000Z">
+<meta property="og:updated_time" content="2017-07-25T14:29:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 关于 onKeyUp 方法回调不执行的问题分析">
-<meta name="twitter:description" content="前段时间在修改一个关于按键事件点击的bug,让猿对Android的事件传递有了更深的了解,现在分享出来给大家。 需求描述当页面中ListView处于选择态时,当第一次点击Back键需要将ListView的选择态清除,点击第二次Back键时,页面才关闭退出。 需求实现在页面Activity中重写了onBackPressed()方法,ListView中重写了View的onKeyUp方法,当ListVi">
+<meta name="twitter:description" content="我们大家都知道 Android 中事件有其传递机制，但是对于焦点( Focus )和按键事件，触摸事件之间的联系暂时还没有一个整体的认识。前段时间在修改一个关于按键事件点击的 Bug,让猿对 Android 的事件传递有了更深的了解,现在分享出来给大家。">
 
 
 
@@ -362,6 +362,10 @@
           
 
           
+              <div class="post-description">
+                  我们大家都知道 Android 中事件有其传递机制，但是对于焦点( Focus )和按键事件，触摸事件之间的联系暂时还没有一个整体的认识。前段时间在修改一个关于按键事件点击的 Bug,让猿对 Android 的事件传递有了更深的了解,现在分享出来给大家。
+              </div>
+          
 
         </div>
       </header>
@@ -373,7 +377,7 @@
       
 
       
-        <p>前段时间在修改一个关于按键事件点击的bug,让猿对Android的事件传递有了更深的了解,现在分享出来给大家。</p>
+        <p>我们大家都知道 Android 中事件有其传递机制，但是对于焦点(Focus)和按键事件，触摸事件之间的联系暂时还没有一个整体的认识。前段时间在修改一个关于按键事件点击的 Bug,让猿对 Android 的事件传递有了更深的了解,现在分享出来给大家。</p>
 <h3 id="需求描述"><a href="#需求描述" class="headerlink" title="需求描述"></a>需求描述</h3><p>当页面中ListView处于选择态时,当第一次点击Back键需要将ListView的选择态清除,点击第二次Back键时,页面才关闭退出。</p>
 <h3 id="需求实现"><a href="#需求实现" class="headerlink" title="需求实现"></a>需求实现</h3><p>在页面Activity中重写了onBackPressed()方法,ListView中重写了View的onKeyUp方法,当ListView中如果是点击态时,在onKeyUp中拦截事件,并清除ListView的选择态,并return True拦截按键事件返回。</p>
 <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>在调试过程中发现:当页面中ListView处于选择态时,点击Back键时,页面直接关闭。程序并不执行ListView中的onKeyUp方法。</p>
@@ -486,7 +490,7 @@ public boolean dispatchKeyEvent(KeyEvent event) {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/17/Android 自定义列表刷新控件/" rel="prev" title="Android 列表刷新控件 EasyRefreshView">
+              <a href="/2017/07/25/Android 自定义列表刷新控件/" rel="prev" title="Android 列表刷新控件 EasyRefreshView">
                 Android 列表刷新控件 EasyRefreshView <i class="fa fa-chevron-right"></i>
               </a>
             

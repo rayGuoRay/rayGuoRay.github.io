@@ -93,18 +93,18 @@
 
 
 
-<meta name="description" content="目前对于ListView中addHeaderView()方法的使用大致有以下两种说法:  addHeaderView()方法必须在setAdapter()之前进行,否则会抛出异常。 addHeaderView()方法可以随时调用。  在经过分析后,猿发现:以上两种说法都是正确的╮(╯▽╰)╭, 原因就在于Android版本不一致。由于比对所有源码工作量较大,所以我们就选取三个Android版本进行">
+<meta name="description" content="目前 Android 中对于 ListView 中 addHeaderView() 方法的使用大致有以下两种说法，一种需要在 setAdapter() 之前调用，否则会抛出异常。另外一种则随时可以调用，不会抛出异常。猿在使用中有些疑惑，经过分析，发现两种说法都是正确的。">
 <meta name="keywords" content="Android, ListView, HeaderView">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 关于 ListView addHeaderView() 使用说明">
 <meta property="og:url" content="http://wizardiy.com/2017/03/04/Android 关于 ListView addHeaderView() 使用说明/index.html">
 <meta property="og:site_name" content="Wizardiy">
-<meta property="og:description" content="目前对于ListView中addHeaderView()方法的使用大致有以下两种说法:  addHeaderView()方法必须在setAdapter()之前进行,否则会抛出异常。 addHeaderView()方法可以随时调用。  在经过分析后,猿发现:以上两种说法都是正确的╮(╯▽╰)╭, 原因就在于Android版本不一致。由于比对所有源码工作量较大,所以我们就选取三个Android版本进行">
+<meta property="og:description" content="目前 Android 中对于 ListView 中 addHeaderView() 方法的使用大致有以下两种说法，一种需要在 setAdapter() 之前调用，否则会抛出异常。另外一种则随时可以调用，不会抛出异常。猿在使用中有些疑惑，经过分析，发现两种说法都是正确的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-17T15:51:00.000Z">
+<meta property="og:updated_time" content="2017-07-25T14:21:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 关于 ListView addHeaderView() 使用说明">
-<meta name="twitter:description" content="目前对于ListView中addHeaderView()方法的使用大致有以下两种说法:  addHeaderView()方法必须在setAdapter()之前进行,否则会抛出异常。 addHeaderView()方法可以随时调用。  在经过分析后,猿发现:以上两种说法都是正确的╮(╯▽╰)╭, 原因就在于Android版本不一致。由于比对所有源码工作量较大,所以我们就选取三个Android版本进行">
+<meta name="twitter:description" content="目前 Android 中对于 ListView 中 addHeaderView() 方法的使用大致有以下两种说法，一种需要在 setAdapter() 之前调用，否则会抛出异常。另外一种则随时可以调用，不会抛出异常。猿在使用中有些疑惑，经过分析，发现两种说法都是正确的。">
 
 
 
@@ -362,6 +362,10 @@
           
 
           
+              <div class="post-description">
+                  目前 Android 中对于 ListView 中 addHeaderView() 方法的使用大致有以下两种说法，一种需要在 setAdapter() 之前调用，否则会抛出异常。另外一种则随时可以调用，不会抛出异常。猿在使用中有些疑惑，经过分析，发现两种说法都是正确的。
+              </div>
+          
 
         </div>
       </header>
@@ -373,14 +377,14 @@
       
 
       
-        <p>目前对于ListView中addHeaderView()方法的使用大致有以下两种说法:</p>
+        <p>目前 Android 中对于 ListView 中 addHeaderView() 方法的使用大致有以下两种说法:</p>
 <ol>
-<li>addHeaderView()方法必须在setAdapter()之前进行,否则会抛出异常。</li>
-<li>addHeaderView()方法可以随时调用。</li>
+<li>addHeaderView() 方法必须在 setAdapter() 之前进行,否则会抛出异常。</li>
+<li>addHeaderView() 方法可以随时调用。</li>
 </ol>
 <p>在经过分析后,猿发现:<strong>以上两种说法都是正确的╮(╯▽╰)╭, 原因就在于Android版本不一致。</strong>由于比对所有源码工作量较大,所以我们就选取三个Android版本进行比较,分别是:Android ICE_CREAM_SANDWICH_MR1(VersionCode  = 15)、Android L(VersionCode = 21)、Android N(VersionCode = 24)。**</p>
-<h3 id="ICE-CREAM-SANDWICH-MR1版本中的部分实现"><a href="#ICE-CREAM-SANDWICH-MR1版本中的部分实现" class="headerlink" title="ICE_CREAM_SANDWICH_MR1版本中的部分实现:"></a>ICE_CREAM_SANDWICH_MR1版本中的部分实现:</h3><ul>
-<li><p>addHeaderView()方法部分关键实现</p>
+<h3 id="ICE-CREAM-SANDWICH-MR1-版本中的部分实现"><a href="#ICE-CREAM-SANDWICH-MR1-版本中的部分实现" class="headerlink" title="ICE_CREAM_SANDWICH_MR1 版本中的部分实现:"></a>ICE_CREAM_SANDWICH_MR1 版本中的部分实现:</h3><ul>
+<li><p>addHeaderView() 方法部分关键实现</p>
 <pre><code>public void addHeaderView(View v, Object data, boolean isSelectable) {
 
   if (mAdapter != null &amp;&amp; ! (mAdapter instanceof HeaderViewListAdapter)) {
@@ -401,7 +405,7 @@
   }
 }
 </code></pre></li>
-<li><p>setAdapter()方法实现</p>
+<li><p>setAdapter() 方法实现</p>
 <pre><code>if (mHeaderViewInfos.size() &gt; 0|| mFooterViewInfos.size() &gt; 0) {
     mAdapter = new HeaderViewListAdapter(mHeaderViewInfos, mFooterViewInfos, adapter);
 } else {
@@ -410,7 +414,7 @@
 </code></pre></li>
 </ul>
 <p>我们可以看到，在这个版本中addHeaderView时，会对ListView绑定的adapter进行判断，如果非空并且类型不为HeaderViewListAdapter时，就会抛出IllegalStateException。而对于HeaderViewListAdapter的来源，则是在setAdapter方法中处理，如果当前有Header，则会将adapter包装为HeaderViewListAdapter，否则的话，就不进行处理，所以<strong>在这个版本中，”addHeaderView()方法必须在setAdapter()之前进行,否则会抛出异常”这种说法是正确的</strong>。</p>
-<p>###Android L版本中的部分实现:</p>
+<p>###Android L 版本中的部分实现:</p>
 <ul>
 <li><p>addHeaderView()方法部分关键实现</p>
 <pre><code>public void addHeaderView(View v, Object data, boolean isSelectable) {
@@ -443,7 +447,7 @@
 }
 </code></pre></li>
 </ul>
-<p>###Android N版本中的部分实现:</p>
+<p>###Android N 版本中的部分实现:</p>
 <ul>
 <li><p>addHeaderView()方法部分关键实现</p>
 <pre><code>public void addHeaderView(View v, Object data, boolean isSelectable) {
@@ -468,7 +472,7 @@
   }
 }
 </code></pre></li>
-<li><p>setAdapter()方法实现</p>
+<li><p>setAdapter() 方法实现</p>
 <pre><code>if (mHeaderViewInfos.size() &gt; 0|| mFooterViewInfos.size() &gt; 0) {
    mAdapter = wrapHeaderListAdapterInternal(mHeaderViewInfos, mFooterViewInfos, adapter);
 } else {
@@ -476,8 +480,8 @@
 }
 </code></pre></li>
 </ul>
-<p>而对于Android L 和Android N这两个版本,其基本实现逻辑一致，相比于ICE_CREAM_SANDWICH_MR1版本,对于在setAdapter之后调用addHeaderView这种情况，并不会抛出异常，反而会对mAdapter强制进行一层包装，保证addHeaderView的Adapter是HeaderViewListAdapter，之后通知数据进行刷新。所以<strong>“addHeaderView()可以随时调用”这种说法在这两个版本中其实也是正确的</strong>。</p>
-<p><em>事实上考虑到目前大多数手机都运行在4.0以上的机型，所以对于addHeaderView()方法的使用本猿更倾向于第二种</em></p>
+<p>而对于 Android L 和 Android N 这两个版本,其基本实现逻辑一致，相比于 ICE_CREAM_SANDWICH_MR1 版本,对于在 setAdapter 之后调用 addHeaderView 这种情况，并不会抛出异常，反而会对 mAdapter 强制进行一层包装，保证 addHeaderView 的 Adapter 是 HeaderViewListAdapter ，之后通知数据进行刷新。所以<strong>“ addHeaderView() 可以随时调用”这种说法在这两个版本中其实也是正确的</strong>。</p>
+<p><em>事实上考虑到目前大多数手机都运行在4.0以上的机型，所以对于 addHeaderView() 方法的使用本猿更倾向于第二种</em></p>
 <p>以上~~~b(￣▽￣)d</p>
 
       
@@ -767,7 +771,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ICE-CREAM-SANDWICH-MR1版本中的部分实现"><span class="nav-number">1.</span> <span class="nav-text">ICE_CREAM_SANDWICH_MR1版本中的部分实现:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ICE-CREAM-SANDWICH-MR1-版本中的部分实现"><span class="nav-number">1.</span> <span class="nav-text">ICE_CREAM_SANDWICH_MR1 版本中的部分实现:</span></a></li></ol></div>
             
 
           </div>

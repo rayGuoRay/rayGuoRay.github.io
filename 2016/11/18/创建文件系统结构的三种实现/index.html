@@ -93,20 +93,20 @@
 
 
 
-<meta name="description" content="最近在做关于压缩文件预览的需求，涉及到对于文件系统的目录结构进行简单的模拟。在实现过程中，尝试了三种实现方式，下文对三种实现方式做详细说明。  使用递归构建文件二叉树结构 最初的思路是：每次从输入流中读入一个结点，判断根据结点的路径名判断，如果是其子节点，则放入结点的右子树。如果是其同级结点，则放入其左子树中。（与上学时学的数据结构中多叉树转二叉树的区别在于：书上实现要求左孩子，右兄弟，我的实现是">
+<meta name="description" content="猿最近在做关于压缩文件预览的需求，涉及到对于文件系统的目录结构进行简单的模拟。在实现过程中，尝试了三种实现方式，文章将对三种实现方式进行详细说明。">
 <meta name="keywords" content="Android, Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="创建文件系统结构的三种实现">
 <meta property="og:url" content="http://wizardiy.com/2016/11/18/创建文件系统结构的三种实现/index.html">
 <meta property="og:site_name" content="Wizardiy">
-<meta property="og:description" content="最近在做关于压缩文件预览的需求，涉及到对于文件系统的目录结构进行简单的模拟。在实现过程中，尝试了三种实现方式，下文对三种实现方式做详细说明。  使用递归构建文件二叉树结构 最初的思路是：每次从输入流中读入一个结点，判断根据结点的路径名判断，如果是其子节点，则放入结点的右子树。如果是其同级结点，则放入其左子树中。（与上学时学的数据结构中多叉树转二叉树的区别在于：书上实现要求左孩子，右兄弟，我的实现是">
+<meta property="og:description" content="猿最近在做关于压缩文件预览的需求，涉及到对于文件系统的目录结构进行简单的模拟。在实现过程中，尝试了三种实现方式，文章将对三种实现方式进行详细说明。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1489253-f5d22bd0210e9a34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1489253-c64505e62acc48eb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-07-17T15:51:00.000Z">
+<meta property="og:updated_time" content="2017-07-25T14:00:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="创建文件系统结构的三种实现">
-<meta name="twitter:description" content="最近在做关于压缩文件预览的需求，涉及到对于文件系统的目录结构进行简单的模拟。在实现过程中，尝试了三种实现方式，下文对三种实现方式做详细说明。  使用递归构建文件二叉树结构 最初的思路是：每次从输入流中读入一个结点，判断根据结点的路径名判断，如果是其子节点，则放入结点的右子树。如果是其同级结点，则放入其左子树中。（与上学时学的数据结构中多叉树转二叉树的区别在于：书上实现要求左孩子，右兄弟，我的实现是">
+<meta name="twitter:description" content="猿最近在做关于压缩文件预览的需求，涉及到对于文件系统的目录结构进行简单的模拟。在实现过程中，尝试了三种实现方式，文章将对三种实现方式进行详细说明。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1489253-f5d22bd0210e9a34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -365,6 +365,10 @@
           
 
           
+              <div class="post-description">
+                  猿最近在做关于压缩文件预览的需求，涉及到对于文件系统的目录结构进行简单的模拟。在实现过程中，尝试了三种实现方式，文章将对三种实现方式进行详细说明。
+              </div>
+          
 
         </div>
       </header>
@@ -376,7 +380,7 @@
       
 
       
-        <p>最近在做关于压缩文件预览的需求，涉及到对于文件系统的目录结构进行简单的模拟。在实现过程中，尝试了三种实现方式，下文对三种实现方式做详细说明。</p>
+        <p>猿最近在做关于压缩文件预览的需求，涉及到对于文件系统的目录结构进行简单的模拟。在实现过程中，尝试了三种实现方式，文章将对三种实现方式进行详细说明。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1489253-f5d22bd0210e9a34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="传统目录结构"></p>
 <h3 id="使用递归构建文件二叉树结构"><a href="#使用递归构建文件二叉树结构" class="headerlink" title="使用递归构建文件二叉树结构"></a>使用递归构建文件二叉树结构</h3><ul>
 <li>最初的思路是：每次从输入流中读入一个结点，判断根据结点的路径名判断，如果是其子节点，则放入结点的右子树。如果是其同级结点，则放入其左子树中。（与上学时学的数据结构中多叉树转二叉树的区别在于：书上实现要求左孩子，右兄弟，我的实现是左兄弟，右孩子）</li>

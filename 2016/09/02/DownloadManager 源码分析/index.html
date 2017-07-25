@@ -93,19 +93,19 @@
 
 
 
-<meta name="description" content="DownloadManager是Android用系统服务的方式提供的用来优化处理长时间下载任务的工具。本文将基于Ａndroid Ｎ的源码进行分析。 DownloadManager的使用方式DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE); Ur">
+<meta name="description" content="DownloadManager 是 Android 用系统服务的方式提供的用来优化处理长时间下载任务的工具。本文将基于 Android N 的源码进行分析。">
 <meta name="keywords" content="Android, DownloadManager">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android N DownloadManager 源码分析">
 <meta property="og:url" content="http://wizardiy.com/2016/09/02/DownloadManager 源码分析/index.html">
 <meta property="og:site_name" content="Wizardiy">
-<meta property="og:description" content="DownloadManager是Android用系统服务的方式提供的用来优化处理长时间下载任务的工具。本文将基于Ａndroid Ｎ的源码进行分析。 DownloadManager的使用方式DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE); Ur">
+<meta property="og:description" content="DownloadManager 是 Android 用系统服务的方式提供的用来优化处理长时间下载任务的工具。本文将基于 Android N 的源码进行分析。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1489253-eb335cfacbcd097b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-07-17T15:51:00.000Z">
+<meta property="og:updated_time" content="2017-07-25T14:32:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android N DownloadManager 源码分析">
-<meta name="twitter:description" content="DownloadManager是Android用系统服务的方式提供的用来优化处理长时间下载任务的工具。本文将基于Ａndroid Ｎ的源码进行分析。 DownloadManager的使用方式DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE); Ur">
+<meta name="twitter:description" content="DownloadManager 是 Android 用系统服务的方式提供的用来优化处理长时间下载任务的工具。本文将基于 Android N 的源码进行分析。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1489253-eb335cfacbcd097b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -364,6 +364,10 @@
           
 
           
+              <div class="post-description">
+                  DownloadManager 是 Android 用系统服务的方式提供的用来优化处理长时间下载任务的工具。本文将基于 Android N 的源码进行分析。
+              </div>
+          
 
         </div>
       </header>
@@ -375,7 +379,7 @@
       
 
       
-        <p>DownloadManager是Android用系统服务的方式提供的用来优化处理长时间下载任务的工具。<br>本文将基于Ａndroid Ｎ的源码进行分析。</p>
+        <p>DownloadManager 是 Android 用系统服务的方式提供的用来优化处理长时间下载任务的工具。本文将基于 Android N 的源码进行分析。</p>
 <h3 id="DownloadManager的使用方式"><a href="#DownloadManager的使用方式" class="headerlink" title="DownloadManager的使用方式"></a>DownloadManager的使用方式</h3><pre><code>DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
 Uri uri = Uri.parse(&quot;downloadUrl&quot;);
 DownloadManager.Request request = new Request(uri);

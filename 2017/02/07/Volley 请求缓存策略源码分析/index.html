@@ -93,19 +93,19 @@
 
 
 
-<meta name="description" content="源码学习｜Volley网络库源码分析 源码学习｜Volley图片加载源码分析  在上面两篇文章中,我们已经对Volley的简单使用和图片加载的源码进行了简单分析,在这篇文章中,我们将具体对Volley的网络缓存源码进行分析。 ###1. 使用HTTP缓存的作用使用缓存其实主要有两个原因。首先降低延迟,缓存离客户端更近，因此，从缓存请求内容比从源服务器所用时间更少，呈现速度更快，网站就显得更灵敏。">
+<meta name="description" content="在前面两篇文章中,我们已经对 Volley 的简单使用和图片加载的源码进行了简单分析,在这篇文章中,我们将具体对 Volley 的网络缓存源码进行分析。">
 <meta name="keywords" content="Android, Volley">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Volley 网络请求缓存策略源码分析">
 <meta property="og:url" content="http://wizardiy.com/2017/02/07/Volley 请求缓存策略源码分析/index.html">
 <meta property="og:site_name" content="Wizardiy">
-<meta property="og:description" content="源码学习｜Volley网络库源码分析 源码学习｜Volley图片加载源码分析  在上面两篇文章中,我们已经对Volley的简单使用和图片加载的源码进行了简单分析,在这篇文章中,我们将具体对Volley的网络缓存源码进行分析。 ###1. 使用HTTP缓存的作用使用缓存其实主要有两个原因。首先降低延迟,缓存离客户端更近，因此，从缓存请求内容比从源服务器所用时间更少，呈现速度更快，网站就显得更灵敏。">
+<meta property="og:description" content="在前面两篇文章中,我们已经对 Volley 的简单使用和图片加载的源码进行了简单分析,在这篇文章中,我们将具体对 Volley 的网络缓存源码进行分析。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1489253-b063aa1e51e3f139.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-07-17T15:51:00.000Z">
+<meta property="og:updated_time" content="2017-07-25T14:30:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Volley 网络请求缓存策略源码分析">
-<meta name="twitter:description" content="源码学习｜Volley网络库源码分析 源码学习｜Volley图片加载源码分析  在上面两篇文章中,我们已经对Volley的简单使用和图片加载的源码进行了简单分析,在这篇文章中,我们将具体对Volley的网络缓存源码进行分析。 ###1. 使用HTTP缓存的作用使用缓存其实主要有两个原因。首先降低延迟,缓存离客户端更近，因此，从缓存请求内容比从源服务器所用时间更少，呈现速度更快，网站就显得更灵敏。">
+<meta name="twitter:description" content="在前面两篇文章中,我们已经对 Volley 的简单使用和图片加载的源码进行了简单分析,在这篇文章中,我们将具体对 Volley 的网络缓存源码进行分析。">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1489253-b063aa1e51e3f139.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -364,6 +364,10 @@
           
 
           
+              <div class="post-description">
+                  在前面两篇文章中,我们已经对 Volley 的简单使用和图片加载的源码进行了简单分析,在这篇文章中,我们将具体对 Volley 的网络缓存源码进行分析。
+              </div>
+          
 
         </div>
       </header>
@@ -376,8 +380,8 @@
 
       
         <ul>
-<li><a href="http://www.jianshu.com/p/0e2d0d8b4e97" target="_blank" rel="external">源码学习｜Volley网络库源码分析</a></li>
-<li><a href="http://www.jianshu.com/p/2aa373c1c624" target="_blank" rel="external">源码学习｜Volley图片加载源码分析</a></li>
+<li><a href="http://wizardiy.com/2016/09/29/Volley%20网络库源码初探/">Volley 网络库源码初探</a></li>
+<li><a href="http://wizardiy.com/2016/10/25/Volley%20图片加载源码分析/">Volley 图片加载源码分析</a></li>
 </ul>
 <p>在上面两篇文章中,我们已经对Volley的简单使用和图片加载的源码进行了简单分析,在这篇文章中,我们将具体对Volley的网络缓存源码进行分析。</p>
 <p>###1. 使用HTTP缓存的作用<br>使用缓存其实主要有两个原因。首先降低延迟,缓存离客户端更近，因此，从缓存请求内容比从源服务器所用时间更少，呈现速度更快，网站就显得更灵敏。其次降低网络传输, 副本被重复使用，大大降低了用户的带宽使用，其实也是一种变相的省钱（如果流量要付费的话），同时保证了带宽请求在一个低水平上，更容易维护了。</p>

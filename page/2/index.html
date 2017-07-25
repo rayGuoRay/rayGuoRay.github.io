@@ -375,116 +375,14 @@
 
       
         
-          
-            <p>DownloadManager是Android用系统服务的方式提供的用来优化处理长时间下载任务的工具。<br>本文将基于Ａndroid Ｎ的源码进行分析。</p>
-<h3 id="DownloadManager的使用方式"><a href="#DownloadManager的使用方式" class="headerlink" title="DownloadManager的使用方式"></a>DownloadManager的使用方式</h3><pre><code>DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-Uri uri = Uri.parse(&quot;downloadUrl&quot;);
-DownloadManager.Request request = new Request(uri);
-long reference = downloadManager.enqueue(request);
-</code></pre><p>调用enqueue方法之后，只要数据连接可用并且Download Manager可用，下载就会开始。<br>要在下载完成的时候获得一个系统通知（notification）,注册一个广播接受者来接收ACTION_DOWNLOAD_COMPLETE广播，这个广播会包含一个EXTRA_DOWNLOAD_ID信息在intent中包含了已经完成的这个下载的ID。</p>
-<p><em>其他更详细API使用方法请参考<a href="http://blog.csdn.net/sir_zeng/article/details/8983430" target="_blank" rel="external">Android DownloadManager的使用</a>一文,此处不再详述。</em></p>
-<h3 id="DownloadManager的调用处理"><a href="#DownloadManager的调用处理" class="headerlink" title="DownloadManager的调用处理"></a>DownloadManager的调用处理</h3><p>DownloadManager的执行入口方法enqueue的源码如下所示：</p>
-<pre><code>ContentValues values = request.toContentValues(mPackageName);
-Uri downloadUri = mResolver.insert(Downloads.Impl.CONTENT_URI, values);
-long id = Long.parseLong(downloadUri.getLastPathSegment());
-return id;
-</code></pre><p>其中，request为请求初始化传入的DownloadManager.Rquest对象，传入请求后<br>toContentValues()方法会以传入包名将待插入的数据生成ContentValues,方法中会有一个断言检查，代码如下所示：</p>
-<pre><code>ContentValues toContentValues(String packageName) {
-    ContentValues values = new ContentValues();
-    assert mUri != null;
-    //.......
-}
-</code></pre><p><em>其实看到这处断言检查有点疑惑，在构造Uri对象的时候已经进行了空判断，为什么此处还要进行一次断言检查呢,不是会有冗余吗?</em></p>
-<p>在插入ContentValues时，mResolver.insert()实际调用的是系统DownloadProvider中的insert方法,插入返回的downloadUri会在原有Uri基础上调用<code>ContentUris.withAppendedId(Downloads.Impl.CONTENT_URI, rowID)</code>添加一个rowId返回一个形如<code>content://downloads/my_downloads/33</code>的Uri，经过Uri截取之后，实际操作的reference其实是数据库中的rowId(数据库行号)。</p>
-<h3 id="DownloadProvider的调用处理"><a href="#DownloadProvider的调用处理" class="headerlink" title="DownloadProvider的调用处理"></a>DownloadProvider的调用处理</h3><p>在之前版本中，DownloadProvider在插入数据后，会直接以context.startService的方式<br>来启动DownloadService。进行异步任务下载。而在Android N版本中引入了JobSchedule组件来进行异步下载任务的处理。<br>在Android L版本中引入的JobScheduler可以控制耗电，具体使用可以参考：<a href="http://blog.csdn.net/qq_31726827/article/details/50462025" target="_blank" rel="external">Android JobSchedule工作调度</a>,<br>其中DownlaodProvider中的insert方法中的关键操作如下所示：</p>
-<pre><code>final long token = Binder.clearCallingIdentity();
-try {
-  Helpers.scheduleJob(getContext(), rowID);
-} finally {
-  Binder.restoreCallingIdentity(token);
-}
-</code></pre><p>其中Helpers.scheduleJob()方法中使用rowId将那条下载信息查询出来，然后调用绑定的DownloadJobService进行下载任务。如果线程调度失败，会返回false。</p>
-<pre><code>public static void scheduleJob(Context context, long downloadId) {
-    final boolean scheduled = scheduleJob(context,　DownloadInfo.queryDownloadInfo(context, downloadId));
-    if (!scheduled) {
-        // If we didn&apos;t schedule a future job, kick off a notification
-        // update pass immediately
-        getDownloadNotifier(context).update();
-    }
-}
-</code></pre><p>此时getDownloadNotifier(context).update()会将遍历出所有未删除的</p>
-<h3 id="DownloadJobService调度执行"><a href="#DownloadJobService调度执行" class="headerlink" title="DownloadJobService调度执行"></a>DownloadJobService调度执行</h3><p>DownloadService中调度的线程开始下载，在onStartJob中用rowId查出来后，直接开线程开始下载，具体代码如下所示：</p>
-<pre><code>public boolean onStartJob(JobParameters params) {
-  final int id = params.getJobId();
-  // Spin up thread to handle this download
-  final DownloadInfo info = DownloadInfo.queryDownloadInfo(this, id);
-  if (info == null) {
-      Log.w(TAG, &quot;Odd, no details found for download &quot; + id);
-      return false;
-    }
-    final DownloadThread thread;
-    synchronized (mActiveThreads) {
-      thread = new DownloadThread(this, params, info);
-      mActiveThreads.put(id, thread);
-    }
-    thread.start();
-    return true;
-}
-</code></pre><h3 id="DownloadJobService中的暂停、取消与完成"><a href="#DownloadJobService中的暂停、取消与完成" class="headerlink" title="DownloadJobService中的暂停、取消与完成"></a>DownloadJobService中的暂停、取消与完成</h3><p>DownloadJobService中在线程开启后，会刷新展示相应的通知栏，通过通知栏UI中的相应控制，可以实现对于下载任务的控制。</p>
-<ul>
-<li><p>在开始下载后，当点击取消后，会发送广播到DownlaodReceiver,当接受到这个广播后，会调用DownloadManager.remove(downloadIds)，而DownloadManager.remove()方法则会调用DownloadProvider.delete去删除记录任务。同时会依据rowId移除该线程调度。</p>
-</li>
-<li><p>任务完成时，会发送一个广播，通知下载完成，但是这里比较意外的是，下载完成的广播发送是放在DownloadInfo中调用DownloadInfo.sendIntentIfRequested()发送的， 而不是在DownloadThread中。</p>
-</li>
-<li><p>暂停，比较奇怪的是，DownloadManager的异步下载线程提供了断点下载的功能，写入文件也会检查任务的下载状态是不是暂停，但是，却并未提供暂停下载任务的API方法，同时它的下载状态查询的方法也是私有类型的。如果需要暂停任务就需要自定义自己的下载任务了。</p>
-</li>
-</ul>
-<h3 id="DownloadThread中的断点下载的实现方法"><a href="#DownloadThread中的断点下载的实现方法" class="headerlink" title="DownloadThread中的断点下载的实现方法"></a>DownloadThread中的断点下载的实现方法</h3><p>其实在DownloadThread中，主要的下载方法就是就是线程中的excuteDownload()方法。部分关键代码如下：</p>
-<pre><code>private void executeDownload() throws StopRequestException {
-  final boolean resuming = mInfoDelta.mCurrentBytes != 0;
-  ...
-  int redirectionCount = 0;
-  while (redirectionCount++ &lt; Constants.MAX_REDIRECTS) {
-      ......
-      conn = (HttpURLConnection) mNetwork.openConnection(url);
-      addRequestHeaders(conn, resuming);
-      final int responseCode = conn.getResponseCode();
-      switch (responseCode) {
-          case HTTP_OK:
-              if (resuming) {
-                  throw new StopRequestException(
-                          STATUS_CANNOT_RESUME, &quot;Expected partial, but received OK&quot;);
-              }
-              parseOkHeaders(conn);
-              transferData(conn);
-              return;
-          case HTTP_PARTIAL:
-              if (!resuming) {
-                  throw new StopRequestException(
-                          STATUS_CANNOT_RESUME, &quot;Expected OK, but received partial&quot;);
-              }
-              transferData(conn);
-              return;
-          ......
-      }
-      ......
-  }
-}
-</code></pre><p>在addRequestHeaders()方法中，如果从数据库中查出的数据已读取写入文件的字节数不为0，则会在请求头前添加一个range<code>conn.addRequestProperty(&quot;Range&quot;, &quot;bytes=&quot; + mInfoDelta.mCurrentBytes + &quot;-&quot;);</code>，当添加上此请求头后，当求求成功后，服务器会返回HTTP_PARTIAL,将接收到的数据通过transferData()方法写入到文件中。在写入文件中时，DownloadThread引入了android.drm.DrmManagerClient与android.drm.DrmOutputStream，这两个包位于framework/base/core/drm包下，部分引用代码如下所示：</p>
-<pre><code>if (DownloadDrmHelper.isDrmConvertNeeded(mInfoDelta.mMimeType)) {
-  drmClient = new DrmManagerClient(mContext);
-  out = new DrmOutputStream(drmClient, outPfd, mInfoDelta.mMimeType);
-} else {
-  out = new ParcelFileDescriptor.AutoCloseOutputStream(outPfd);
-}
-</code></pre><p><em>对于这两个类的引入，目前还不是特别熟悉，后续研究后会进一步进行分析</em></p>
-<p>最后丧心病狂的自己画个图，简单总结下DownloadManager的工作流程:整体外源应用层通过FrameWork层DownloadManager API调用到DownloadProvider,通过操作数据库，最后通过DownloadService中的线程调度完成工作。整体上都是由DownloadProvider进行过渡调用。而数据库与Service都通过DownloadProvider进行隔离。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1489253-eb335cfacbcd097b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="简单结构图"></p>
-<blockquote>
-<p>DownloadManager中的分析目前就先告一段落，文中如有分析错误或描述不清楚之处，请大家留言指出～:）</p>
-</blockquote>
-
-          
+          DownloadManager 是 Android 用系统服务的方式提供的用来优化处理长时间下载任务的工具。本文将基于 Android N 的源码进行分析。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/09/02/DownloadManager 源码分析/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -615,44 +513,14 @@ try {
 
       
         
-          
-            <p>搭建环境为阿里云 CenterOS 7.0 64位,<br>Git服务器自带版本号为 1.8.3.1</p>
-<h3 id="Git服务器搭建与配置"><a href="#Git服务器搭建与配置" class="headerlink" title="Git服务器搭建与配置"></a>Git服务器搭建与配置</h3><ol>
-<li>创建Git管理员账号并设置密码：<br><code>useradd -m git</code><br><code>passwd git</code><br><em>执行此步操作后，系统会在会在/Home/下创建一个以用户名命名的文件夹</em><br><em>删除用户的命令为<code>userdel username</code></em><br><em>删除组的命令为<code>groupdel groupname</code></em></li>
-<li>导入客户端生成的SSH公钥文件：<br>服务端在/Home/git目录下创建.ssh文件夹，创建出来的文件夹是隐藏文件，注意使用ls命令是无法查看的，在.ssh文件夹下创建authorized_keys文件，将客户端生成的公钥文件(.pub文件)内容导入文件中。<br><em>客户端生成SSH公钥方法请参考<a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/" target="_blank" rel="external">Generating a new SSH key and adding it to the ssh-agent</a></em><br><em>客户端如果生成有多个SSH Key, 请本地配置config文件</em></li>
-<li>禁止git账号的SSH登录：<br>修改 /etc/passwd 文件中git账号的配置。如果有 /bin/bash 修改为 /usr/bin/git-shell，否则增加此配置。</li>
-<li>修改SSH认证配置文件:<br>命令行中执行<code>vi /etc/ssh/sshd_config</code>，将配置文件中的<br><code>RSAAuthentication yes</code><br><code>PubkeyAuthentication yes</code><br>这两个选项的注释打开。</li>
-<li>初始化Git仓库：<br>在/home/git/目录下创建repositories目录，同时修改权限。<br><code>sudo mkdir /home/git/repositories</code><br><code>sudo chown git:git /home/git/repositories</code><br><code>chmod 700 /home/git/repositories</code><br>在repositories目录创建git仓库，并同时初始化。<br><code>cd /home/git/repositories/</code><br><code>mkdir mytest.git</code><br><code>sudo chown git:git mytest.git/</code><br><code>cd mytest.git/</code><br><code>git init --bare</code><br>至此，整个Git服务器搭建工作完成。</li>
-<li>若干可能遇到的问题说明：<ul>
-<li>使用SSH登录如果提示此异常：fatal: Interactive git shell is not enabled. hint: ~/git-shell-commands should exist and have read and execute access.<br>解决方法如下：<br><code>cp /usr/share/doc/git/contrib/git-shell-commands /home/git -R</code><br><code>chown git:git /home/git/git-shell-commands/ -R</code></li>
-<li>如果使用SSH登录进入，显示结果为：Run ‘help’ for help, or ‘exit’ to leave.  Available commands:<br>list<br><a href="https://git-scm.com/docs/git-shell" target="_blank" rel="external">参考文档</a>解决方法如下：<br>基于上一步操作，<br><code>vi /home/git/git-shell-commands/no-interactive-login</code><br><code>cat &gt;/home/git/git-shell-commands/no-interactive-login &lt;&lt;\EOF</code><br>输入：<code>printf &#39;%s\n&#39; &quot;Hi $USER! You&#39;ve successfully authenticated, but I do not&quot;</code><br>输入：<code>printf &#39;%s\n&#39; &quot;provide interactive shell access.&quot;</code><br>输入：<code>exit 128</code><br><code>EOF</code><br><code>chmod +x /home/git/git-shell-commands/no-interactive-login</code></li>
-<li>如果在创建仓库后，发现客户端提交异常：remote: error: insufficient permission for adding an object to repository database ./objects<br>remote: fatal: failed to write object<br>error: unpack failed: unpack-objects abnormal exit<br>请修改仓库读写权限如下：<br><code>sudo chown -R git:git mytest.git</code></li>
-<li>如果第一次提交时提示异常：No refs in common and none specified; doing nothing.<br>Perhaps you should specify a branch such as ‘master’.<br>请使用如下的提交命令：<br><code>git push --set-upstream origin master</code></li>
-</ul>
-</li>
-</ol>
-<hr>
-<h3 id="Nginx安装："><a href="#Nginx安装：" class="headerlink" title="Nginx安装："></a>Nginx安装：</h3><ol>
-<li>下载对应版本的nginx包<br><code># wget http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</code></li>
-<li>建立nginx的yum仓库<br><code># rpm -ivh nginx-release-centos-7-0.el7.ngx.noarch.rpm</code></li>
-<li>下载并安装nginx<br><code># yum install nginx</code></li>
-<li>启动nginx服务<br><code>systemctl start nginx</code></li>
-<li>测试<br>在浏览器地址栏中输入部署nginx环境的机器的IP，如果一切正常，应该能看到”Welcome to nginx!”字样的内容。</li>
-</ol>
-<h3 id="Django-安装"><a href="#Django-安装" class="headerlink" title="Django 安装"></a>Django 安装</h3><ol>
-<li>首先安装pip包管理工具：<br><code>wget https://bootstrap.pypa.io/get-pip.py</code><br><code>python get-pip.py</code></li>
-<li>使用pip安装django:<br><code>pip install django＝＝1.7</code></li>
-<li>安装后检测是否安装完成：<br><code>python</code><br><code>python install django｀</code>django.get_version()｀<br>输出1.7，证明安装成功。</li>
-</ol>
-<h3 id="GUnicorn安装"><a href="#GUnicorn安装" class="headerlink" title="GUnicorn安装"></a>GUnicorn安装</h3><p><a href="http://docs.gunicorn.org/en/latest/install.html" target="_blank" rel="external">参考文档</a>使用<code>pip install unicorn</code>,全部安装完成</p>
-<h3 id="MySQL安装："><a href="#MySQL安装：" class="headerlink" title="MySQL安装："></a>MySQL安装：</h3><p>在CenterOS 7.0中的yum源没有mysql-server,所以我们采用如下方式安装：<br><code># wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</code><br><code># rpm -ivh mysql-community-release-el7-5.noarch.rpm</code><br><code># yum install mysql-community-server</code><br>成功安装之后重启mysql服务<br><code># service mysqld restart</code></p>
-<h3 id="MySQLdb-模块依赖安装："><a href="#MySQLdb-模块依赖安装：" class="headerlink" title="MySQLdb 模块依赖安装："></a>MySQLdb 模块依赖安装：</h3><p>直接尝试运行python项目报错缺少MySQLdb，使用yum安装<br><code>yum install MySQL-python -y</code><br><em>尝试使用pip安装，但是安装失败。如果有成功的同学欢迎分享经验。</em></p>
-<p><em>PS:昨天服务器刚刚搭好，今天阿里云就报警说服务器被黑了，看后台是用git用户登录的。原来git配置时考虑文件权限读取，本来还把git用户sudoers文件中的。后来格完盘考虑到安全性就没在加了。附上操作：<br><code>visudo</code>在<code>root ALL=(ALL)ALL</code>下面一行添加 <code>git ALL=(ALL)ALL</code></em></p>
-<blockquote>
-<p>如果有建站经验丰富的同学，欢迎砸砖留言指导：）</p>
-</blockquote>
-
-          
+          猿最近折腾了个服务器，尝试着在阿里云的 Linux 主机上搭建一个 Git 服务器，特把搭建服务器的相关步骤及若干问题进行总结贡献出来供大家参考。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/08/23/Git服务器搭建与Python建站环境搭建/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -783,112 +651,14 @@ try {
 
       
         
-          
-            <p>在前面两篇文章中我们介绍了 Hanlder 的构造方法与 Looper 的初始化。本篇中我们将对主线程 Looper 与 Handler 消息循环的工作方式进行分析。</p>
-<p><em>前文链接如下所示</em></p>
-<ul>
-<li><a href="http://wizardiy.com/2016/06/17/Handler%20%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/">《Handler 消息机制源码分析（一）》</a></li>
-<li><a href="http://wizardiy.com/2016/06/18/Handler%20%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88%E4%BA%8C%EF%BC%89/">《Handler 消息机制源码分析（二）》</a></li>
-</ul>
-<h3 id="主线程的Looper初始化"><a href="#主线程的Looper初始化" class="headerlink" title="主线程的Looper初始化"></a>主线程的Looper初始化</h3><p>主线程的 looper 的初始化是在 Looper.prepareMainLooper 中进行初始化的。而这个方法被调用位置在 ActivityThread 中 main 方法中其代码引用如下：</p>
-<pre><code>Looper.prepareMainLopper();
-ActivityThread thread = new ActivityThread();
-thread.attach(false);
-if (false) {
-    Looper.myLooper().setMessag
-}
-Looper.loop();
-</code></pre><p>而 ActivityThread 的 main 方法是 Android 应用程序主线程的入口，所以我们可以理解为：主线程的 Looper 在应用启动时已经初始化过了。</p>
-<h3 id="Handler-的消息发送"><a href="#Handler-的消息发送" class="headerlink" title="Handler 的消息发送"></a>Handler 的消息发送</h3><p>我们在创建好 Ｈandler 后，使用 Handler 发送消息一般调用根据其方法调用有:</p>
-<ul>
-<li>sendMessage()</li>
-<li>sendEmptyMessage()</li>
-<li>sendMessageAtTime()</li>
-<li>sendMessageDelayed()</li>
-</ul>
-<p>其中主要区别在于如下源码展示:</p>
-<pre><code>public final boolean sendMessage(Message msg) {
-    return sendMessageDelayed(msg, 0);
-}
-
-public final boolean sendEmptyMessage(int what) {
-    return sendEmptyMessageDelayed(what, 0);
-}
-
-public final boolean sendMessageDelayed(Message msg, long delayMillis) {
-    if (delayMillis &lt; 0) {
-        delayMillis = 0;
-    }
-    return sendMessageAtTime(msg, SystemClock.uptimeMillis() + delayMillis);
-}
-
-public final boolean sendEmptyMessageDelayed(int what, long delayMillis) {
-    Message msg = Message.obtain();
-    msg.what = what;
-    return sendMessageDelayed(msg, delayMillis);
-}
-
-
-public boolean sendMessageAtTime(Message msg, long uptimeMillis) {
-    MessageQueue queue = mQueue;
-    if (queue == null) {
-        RuntimeException e = new RuntimeException(
-                this + &quot; sendMessageAtTime() called with no mQueue&quot;);
-        Log.w(&quot;Looper&quot;, e.getMessage(), e);
-        return false;
-    }
-    return enqueueMessage(queue, msg, uptimeMillis);
-}
-</code></pre><p>可以看到，当发送 EmptyMessage 时，会在 Handler 中使用 Message.obtain() 来构造一个 Message ，而如果发送无延时消息时，会设置延时时间为0，最后会发送都会调用 sendMessageAtTime() 方法。所有的消息都会通过 enqueMessage 发送出去。</p>
-<p><em>注意： Hanlder 中的 enqueMessage 中会调用其中 messageQueue.enqueMessage(msg, uptimeMillis) ,但是 Handler 中的 MessageQueue 对象是从 Looper 中 get 到的，所以，MessageQueue 耦合的还是 Looper</em></p>
-<h3 id="MessageQueue-的消息遍历"><a href="#MessageQueue-的消息遍历" class="headerlink" title="MessageQueue 的消息遍历"></a>MessageQueue 的消息遍历</h3><pre><code>if (p == null || when == 0 || when &lt; p.when) {
-    // New head, wake up the event queue if blocked.
-    msg.next = p;
-    mMessages = msg;
-    needWake = mBlocked;
-} else {
-    // Inserted within the middle of the queue.  Usually we don&apos;t have to wake
-    // up the event queue unless there is a barrier at the head of the queue
-    // and the message is the earliest asynchronous message in the queue.
-    needWake = mBlocked &amp;&amp; p.target == null &amp;&amp; msg.isAsynchronous();
-    Message prev;
-    for (;;) {
-        prev = p;
-        p = p.next;
-        if (p == null || when &lt; p.when) {
-            break;
-        }
-        if (needWake &amp;&amp; p.isAsynchronous()) {
-            needWake = false;
-        }
-    }
-    msg.next = p; // invariant: p == prev.next
-    prev.next = msg;
-}
-if (needWake) {
-    nativeWake(mPtr);
-}
-</code></pre><p>如上图中代码中所示：其中主要操作是将新加入的 Message 与当前的 MessageQueue 中的头进行比较，如果当前有新消息进入并且触发时间为0或小于当前头节点的时间，如果队列阻塞，则唤醒线程处理。如果新消息触发时间长于队列中的消息时间，则按时间排序，插入到队列中。如果唤醒线程，则调用 nativeWake 函数进行 JNI 方法调用发送消息。</p>
-<h3 id="消息循环处理与回调"><a href="#消息循环处理与回调" class="headerlink" title="消息循环处理与回调"></a>消息循环处理与回调</h3><p>Looper 中的 loop() 方法会拿到与 looper 耦合的 MessageQueue 对象，由 MessageQueue 调用 next() 方法，如果 meesage 对象不为空，则调用 msg.target.dispatchMessage(msg) 回调到 Handler 中。</p>
-<pre><code>public void dispatchMessage(Message msg) {
-    if (msg.callback != null) {
-        handleCallback(msg);
-    } else {
-        if (mCallback != null) {
-            if (mCallback.handleMessage(msg)) {
-                return;
-            }
-        }
-        handleMessage(msg);
-    }
-}
-</code></pre><p>其中，else 语句中的 handlerMessage 最终会回调回当时创建的 Handler 对应的 handMessage 方法中。</p>
-<p><em>在回调中，我们注意到除了 handleMessage 的回调，还有可以注册 message 的 CallBack 或者 Handler的 callback 来回调。message 的 Callback 需要在 message 创建时传入一个 Runnable 对象。而 Handler的 Callback 与 handleMessage 方法就目前而言使用上没感觉有什么区别。<br>希望有了解的同学能对这个问题留言说明下，谢谢～！</em></p>
-<h5 id="写到最后"><a href="#写到最后" class="headerlink" title="写到最后"></a>写到最后</h5><blockquote>
-<p>Handler的基础分析就算完成了，后续有时间会做其他相关的源码分析。<br>不足之处，请大家批评指导。</p>
-</blockquote>
-
-          
+          在前面两篇文章中我们介绍了 Hanlder 的构造方法与 Looper 的初始化。本篇中我们将对主线程 Looper 与 Handler 消息循环的工作方式进行分析。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/08/18/Handler 消息机制源码分析（三）/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1019,22 +789,14 @@ if (needWake) {
 
       
         
-          
-            <p>在上一片文章中<a href="http://wizardiy.com/2016/06/17/Handler%20%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/">Handler 消息机制源码分析（一）</a>中我们分析到Handler在创建时会绑定一个 Looper 对象，而Looper 如果用户不进行显式传入，会在 Handler 中调用 Looper.myLooper() 来创建一个 Looper 对象。</p>
-<p>那什么是 Looper 呢？ Android 中对于 Looper 类的注释中是这样描述的：“Class used to run a message loop for a thread”。大概意思是指这个类是用来为一个线程做消息循环。而 Looper 类本身被声明为 final 类型的，同时它的构造方法也被声明为 final 类型。所以我们如果要获取其中的 Looper 实例或者使用 Looper 的方法需要使用其中提供的两种静态方法：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1489253-6a6158c9a3c87f21.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>我们可以看到，无论是 getMainLooper() 方法还是 myLooper() 方法，获取的 Looper 都是直接返回已经初始化的对象。那它们的初始化在哪操作的呢？如下图所示：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1489253-15a623d946d67366.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>我们可以看到，主线程 Looper 和子线程 Looper 创建的区别在于一个 quitAllowed 变量（主线程为 false , 子线程为 true ）。而最终这个变量会传入到 Looper 构造方法中用于构造 MessageQueue 。而 Looper 中的线程绑定的是当前线程。如下图所示：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1489253-8846ed6a2eeca544.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>这样的话，结合上一篇，我们可以发现，直接在子线程中使用 Handler handler = new Handler(),会调用 Looper.myLooper() 方法获取 Looper 对象，在这之前并没有调用 Looper.prepare() 方法进行初始化，所以 sThreadLocal.get() 中会返回 null ，进而报错。</p>
-<p>那大家或许会问，主线程中的 mainLooper 是何时进行初始化的呢，为什么主线程中直接 new Handler() 不会报错呢？其实这个主线程 Handler 在应用启动时就已经进行了初始化，具体启动时机需要在后面继续分析呢～😊</p>
-<p>＊ps：后续文章传送门：＊</p>
-<ul>
-<li><a href="http://wizardiy.com/2016/08/18/Handler%20%E6%B6%88%E6%81%AF%E6%9C%BA%E5%88%B6%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%EF%BC%88%E4%B8%89%EF%BC%89/">Handler 消息机制源码分析（三）</a></li>
-</ul>
-
-          
+          在上一片文章中《Handler 消息机制源码分析（一）》中我们分析了 Handler 中创建 Handler ，并且会绑定 Looper 。这篇文章中我们将分析下 Looper 的工作方式。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/06/18/Handler 消息机制源码分析（二）/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1165,36 +927,14 @@ if (needWake) {
 
       
         
-          
-            <p>一直在用 Handler,但却一直因为不能准确表述其工作原理而耿耿于怀，现在正好有时间，自己决定初步梳理下。如果有整理不足或不准确的地方，请大家批评指正。</p>
-<p>相信大家对于主线程中创建并使用 Handler 一点都不陌生了。如下图所示：（声明为 static 的静态类原因是避免 Handler 作为内部类，避免隐式持有外部引用导致的内存泄漏问题。）</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1489253-325849abb2712457.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>或许大家也有碰到过类似于下面的声明方法:</p>
-<ul>
-<li>Handler mainHandler = newHandler(Looper.getMainLooper());<p></p></li>
-</ul>
-<p>但是阅读 Handler 源码发现，Handler 提供了多种构造方法以供使用:</p>
-<ol>
-<li>public Handler() { this(null,false); }</li>
-<li>public Handler(Callback callback) { this(callback,false); }</li>
-<li>public Handler(Looper looper) { this(looper,null,false); }</li>
-<li>public Handler(Looper looper, Callback callback) { this(looper, callback,false);}</li>
-<li>public Handler(boolean async) {this(null, async);}</li>
-<li>public Handler(Callback callback, boolean async) {}</li>
-<li>public Handler(Looper looper, Callback callback,booleanasync) {}</li>
-</ol>
-<p>可以看到，如果未传入最常见的参数为空的构造方法其实引用的序号为6的构造方法。其实大家应该也有发现：Handler 如果不显式传入 Looper 创建对象的话，最后都会调用序号为6的构造方法，而如果显示传入 Looper 的话，最后都会调用序号为7的构造方法。</p>
-<p>而构造方法6与构造方法7的区别是什么呢？附上源码大家应该就比较清楚了</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1489253-bcbc1d99a5675e43.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>可以看到，唯一的区别或许就是mLooper的获取方式了，而在构造方法6中， 如果mLooper对象为空的时候，会抛出一个异常，称在线程中创建handler时没用调用Looper.prepare()方法。我想这也许就是大多数时候在子线程中调用构造方法1，时会抛出异常的原因了。</p><p>至于为何会抛出异常，请期待对Looper类的分析吧～～～😊</p>
-<p><em>ps：或许有哪位小伙伴能回答下FIND_POTENTIAL_LEAKS这个参数有什么意义呢？</em></p>
-<p>相关文章链接：</p>
-<ul>
-<li><a href="">Handler 消息机制源码分析(二)</a></li>
-<li><a href="">Handler 消息机制源码分析(三)</a></li>
-</ul>
-
-          
+          一直在用 Handler,但却一直因为不能准确表述其工作原理而耿耿于怀，现在正好有时间，自己决定初步梳理下。如果有整理不足或不准确的地方，请大家批评指正。
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/06/17/Handler 消息机制源码分析（一）/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

@@ -93,18 +93,18 @@
 
 
 
-<meta name="description" content="在之前的文章中本猿曾介绍过 Android N DownloadManager 中已经采用了 JobSchedule 方式进行下载任务的调度,今天就开发过程中碰到的关于 JobSchedule 的一点小坑,总结出来供大家参考分析。 想了解更多关于Android N中DownloadManager的源码分析请点击下文:  源码学习｜Android N DownloadManager源码分析  问题背">
+<meta name="description" content="在之前的文章中本猿曾介绍过 Android N DownloadManager 中已经采用了 JobSchedule 方式进行下载任务的调度,今天就开发过程中碰到的关于 JobSchedule 的一点小坑,总结出来供大家参考分析。">
 <meta name="keywords" content="Android, DownloadManager, JobSchedule">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DownloadManager 使用 JobSchedule 的问题">
 <meta property="og:url" content="http://wizardiy.com/2017/02/09/DownloadManager 使用 JobSchedule 的问题/index.html">
 <meta property="og:site_name" content="Wizardiy">
-<meta property="og:description" content="在之前的文章中本猿曾介绍过 Android N DownloadManager 中已经采用了 JobSchedule 方式进行下载任务的调度,今天就开发过程中碰到的关于 JobSchedule 的一点小坑,总结出来供大家参考分析。 想了解更多关于Android N中DownloadManager的源码分析请点击下文:  源码学习｜Android N DownloadManager源码分析  问题背">
+<meta property="og:description" content="在之前的文章中本猿曾介绍过 Android N DownloadManager 中已经采用了 JobSchedule 方式进行下载任务的调度,今天就开发过程中碰到的关于 JobSchedule 的一点小坑,总结出来供大家参考分析。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-07-17T15:51:00.000Z">
+<meta property="og:updated_time" content="2017-07-25T14:35:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DownloadManager 使用 JobSchedule 的问题">
-<meta name="twitter:description" content="在之前的文章中本猿曾介绍过 Android N DownloadManager 中已经采用了 JobSchedule 方式进行下载任务的调度,今天就开发过程中碰到的关于 JobSchedule 的一点小坑,总结出来供大家参考分析。 想了解更多关于Android N中DownloadManager的源码分析请点击下文:  源码学习｜Android N DownloadManager源码分析  问题背">
+<meta name="twitter:description" content="在之前的文章中本猿曾介绍过 Android N DownloadManager 中已经采用了 JobSchedule 方式进行下载任务的调度,今天就开发过程中碰到的关于 JobSchedule 的一点小坑,总结出来供大家参考分析。">
 
 
 
@@ -362,6 +362,10 @@
           
 
           
+              <div class="post-description">
+                  在之前的文章中本猿曾介绍过 Android N DownloadManager 中已经采用了 JobSchedule 方式进行下载任务的调度,今天就开发过程中碰到的关于 JobSchedule 的一点小坑,总结出来供大家参考分析。
+              </div>
+          
 
         </div>
       </header>
@@ -376,7 +380,7 @@
         <p>在之前的文章中本猿曾介绍过 Android N DownloadManager 中已经采用了 JobSchedule 方式进行下载任务的调度,今天就开发过程中碰到的关于 JobSchedule 的一点小坑,总结出来供大家参考分析。</p>
 <p>想了解更多关于Android N中DownloadManager的源码分析请点击下文:</p>
 <ul>
-<li><a href="http://www.jianshu.com/p/c9dc04af2f54" target="_blank" rel="external">源码学习｜Android N DownloadManager源码分析</a></li>
+<li><a href="http://wizardiy.com/2016/09/02/DownloadManager%20源码分析/">Android N DownloadManager源码分析</a></li>
 </ul>
 <h3 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h3><p>在项目中,项目采用基于源码修改的DownloadManager进行下载任务,而出于控制下载流量的考虑,会额外对网络访问权限进行一定的处理。目前主要修改点有两个:</p>
 <ol>
