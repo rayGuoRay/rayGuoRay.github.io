@@ -8,6 +8,7 @@ comments: true
 ---
 
 Android 中上拉加载和下拉刷新都是很常用的控件，所以在 Android 后续版本中提供了 PullToRefresh 这个控件，以方便开发者很便捷的集成下拉刷新功能。而对于上拉加载功能，仍然需要开发者自己监听 ListView 或者 RecyclerView 滑动状态来实现自己的上拉加载功能。因此在最近猿最近基于 PullToRefresh 与 RecyclerView 自己试做了一个控件：EasyRefreshView，来方便开发者集成相关功能。
+<!--more-->
 
 ### 控件截图
 
